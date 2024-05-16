@@ -1,0 +1,87 @@
+<ng-container>
+    <div style="margin-bottom:5px;">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="">DNI</label>
+                    <input class="form-control" type="text" 
+                    placeholder="--Filtrar por DNI--"
+                    [(ngModel)]="form.dni" >
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="">Nombres y apellidos</label>
+                    <input class="form-control" type="text" 
+                    placeholder="--Filtrar por nombres y apellidos--"
+                    [(ngModel)]="form.nombres" >
+                </div>
+            </div>
+            <div class="col-sm-3 text-right">
+                <div class="form-group">
+                    <br>
+                    <button type="button" class="btn btn-primary-custom" (click)="get_list()">
+                        <i class="fa fa-search"></i> Filtrar
+                    </button>
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn-default-custom" (click)="handleClickLimpiar()">
+                        <i class="fa fa-eraser"aria-hidden="true"></i> Limpiar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container>
+    <div class="table-responsive table-striped table-bordered table-hover">
+        <nz-table #ajaxTable class="container-table-custom" nzShowSizeChanger [nzFrontPagination]="true"
+        [nzBordered]="true" [nzData]="EncuestadosList" [nzLoading]="cargando_tabla" >
+    
+            <thead>
+                <tr>
+                    <th>N°</th>
+                    <th
+                    WIDTH="550"
+                    [nzShowSort]="true"
+                    [nzSort]="null"
+                    [nzSortKey]="'full_name'"
+                    (nzSortChangeWithKey)="handleSortByKey($event,'string')"
+                    >Nombres y apellidos</th>
+                    <th
+                    [nzShowSort]="true"
+                    [nzSort]="null"
+                    [nzSortKey]="'dependecia'"
+                    (nzSortChangeWithKey)="handleSortByKey($event,'string')">Dependencia</th>
+                    <th
+                    [nzShowSort]="true"
+                    [nzSort]="null"
+                    [nzSortKey]="'regimen'"
+                    (nzSortChangeWithKey)="handleSortByKey($event,'string')">Régimen</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of ajaxTable.data; let i = index">
+                    <td align="center">{{ item.nro }}</td>
+                    <td>{{ item.full_name }} </td>
+                    <td>{{ item.dependecia }}</td>       
+                    <td>{{ item.regimen }}</td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+    <div *ngIf="error_encuestados" class="has-error">
+        <div class="ant-form-explain">
+        Debe ingresar al menos un encuestado.
+        </div>
+    </div>
+</ng-container>
+
+<div class="row" style="margin-top: 15px;">
+    <div class="col-sm-6 text-left">
+        <button type="button" class="btn btn-default-custom" (click)="goback()">
+            Retornar
+        </button>
+    </div>
+</div>
+

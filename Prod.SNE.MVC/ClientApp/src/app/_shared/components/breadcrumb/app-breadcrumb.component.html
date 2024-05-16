@@ -1,0 +1,9 @@
+<ol class="breadcrumb">
+    <li *ngFor="let item of data" [ngClass]="{'active': item.active}">
+        <a *ngIf="!item.active" routerLink="{{item.link}}">{{item.label}}</a>
+        <span *ngIf="item.active">{{item.label}}</span>
+    </li>
+    <a class="btn btn-primary btn-manual" *ngIf="_manual" (click)="handleDescargarManual()">
+        <i class="fa fa-file-pdf-o fa-lg pull-left"></i> Descargar Manual
+    </a>
+</ol>

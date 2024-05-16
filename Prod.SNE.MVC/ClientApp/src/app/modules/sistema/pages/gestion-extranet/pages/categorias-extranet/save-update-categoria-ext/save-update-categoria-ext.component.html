@@ -1,0 +1,100 @@
+<nz-modal 
+  [(nzVisible)]="isVisibleModal" 
+  nzTitle="{{title}} categorías" 
+  [nzWidth]="600" 
+  nzClosable="false"
+  [nzFooter]="extraTemplate">
+    <ng-container >
+        <div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label for=""><span class="span_required">*</span> Categoría</label>
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Debe ingresar la categoría!">
+                                <nz-input-group>
+                                    <input
+                                    [formControl]="frmPRG.frmNombre" 
+                                    class="form-control" 
+                                    placeholder="--Ingresar categoría--"
+                                    maxlength="80"
+                                    [readonly]="!allow_edit"
+                                    [disabled]="!allow_edit"
+                                    [(ngModel)]="categoria.nombre">
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row" *ngIf="allow_edit">
+                <div class="col-sm-12 text-right"><button nz-button nzType="primary" (click)="_add_sub_categoria()">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i> Crear subcategoría</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <ng-container> 
+                        <div class="table-responsive table-striped table-bordered table-hover">
+                            <nz-table #ajaxTable class="container-table-custom" nzShowSizeChanger [nzFrontPagination]="true"
+                            [nzBordered]="true" [nzData]="array_sub_categorias_extranet" [nzLoading]="cargando_tabla">
+                    
+                                <thead>
+                                    <tr>
+                                        <th>Nro</th>
+                                        <th WIDTH="500">Sub categoría</th>
+                                        <th WIDTH="80" *ngIf="allow_edit">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of ajaxTable.data;">
+                                        <td align="center">{{ item.nro }}</td>
+                                        <td>
+                                            <div *ngIf="allow_edit">
+                                                <nz-form-item>
+                                                    <nz-form-control nzErrorTip="Debe ingresar sub categoría!">
+                                                        <nz-input-group>
+                                                            <input type="text" [formControl]="frmSubCategorias[item.nro-1]" 
+                                                            class="form-control" 
+                                                            placeholder="--Ingresar sub categoría--"
+                                                            maxlength="500"
+                                                            [(ngModel)]="item.nombre">
+                                                        </nz-input-group>
+                                                    </nz-form-control>
+                                                </nz-form-item>
+                                            </div>
+                                            <div *ngIf="!allow_edit">
+                                                {{item.nombre}}
+                                            </div>
+                                        </td>              
+                                        <td align="center" *ngIf="allow_edit">
+                                            <ng-container *ngIf="item.es_eliminado==false">
+                                                <a  class="btn btn-icon" data-tooltip="tooltip" data-placement="bottom" 
+                                                    (click)="_delete_sub_categoria(item.nro-1)" title="Eliminar sub categoría" >
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                </a>
+                                            </ng-container>
+                    
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </nz-table>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+
+
+        </div>
+    </ng-container>
+    <ng-template #extraTemplate>      
+        <div class="row">
+            <div class="col-sm-6 text-left"><button type="button" class="btn btn-default-custom" (click)="handleCancelarFormularioModal()"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button></div>
+            <div class="col-sm-6 text-right"><button nz-button nzType="primary" [disabled]="!allow_edit" (click)="handleSaveFormularioModal()"><i class="fa fa-save" aria-hidden="true"></i> Guardar</button></div>
+        </div>  
+    </ng-template>
+</nz-modal>
+
+
+

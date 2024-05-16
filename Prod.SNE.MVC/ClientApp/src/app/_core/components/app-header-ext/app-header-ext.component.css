@@ -1,0 +1,10 @@
+.navbar-principal {
+  background-color: #2473B6 !important;
+    border-color: #2473B6 !important;
+}
+
+.btn-group .dropdown-menu>li>a:focus, .btn-group .dropdown-menu>li>a:hover, .navbar-nav .dropdown-menu>li>a:focus, .navbar-nav .dropdown-menu>li>a:hover, .navbar-nav .dropdown-menu>li>a.active {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #2473B6;
+}

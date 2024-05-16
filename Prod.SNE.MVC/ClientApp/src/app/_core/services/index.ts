@@ -1,0 +1,18 @@
+export * from "./auth.service";
+export * from "./comun.service";
+export * from "./file.service";
+export * from "./ubigeo.service";
+export * from "./windowRef.service";
+export * from "./alert.service";
+export { ComunService } from "./comun.service";
+export { PersonaService } from "./persona.service";
+export { ParametroService } from "./parametro.service";
+export { EnumeradoService } from "./enumerado.service";
+export { PermisoPorRolService } from './permiso_por_rol.service';
+export { EquipoRolSeguridadService } from './equipo_rol_seguridad.service';
+export { MaestroService } from './maestro.service';
+export { ConfiguracionInicialService } from './configuracion_inicial.service';
+export { SisEnumeradoService } from './sis_enumerado.service';
+export { EncuestasService } from './encuestas.service';
+export { EncuestasConfigurarService } from './encuestas_configurar.service';
+export { CategoriaService } from './categoria.service';

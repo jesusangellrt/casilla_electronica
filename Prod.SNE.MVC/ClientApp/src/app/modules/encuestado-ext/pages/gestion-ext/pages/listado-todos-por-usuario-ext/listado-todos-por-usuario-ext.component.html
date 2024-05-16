@@ -1,0 +1,127 @@
+<div class="_container" *ngIf="verListado">
+    <div class="row">
+        <div class="col-md-12" style="padding-top: 10px"> 
+            <button type="button" class="btn btn-atras" (click)="goBackMainList()">
+                <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;&nbsp;Atrás
+            </button>            
+        </div>
+        <div class="col-md-12" style="padding-top: 40px;">
+            <p class="text-general">Listado de encuestas</p>
+        </div> 
+        <div class="col-md-12" style="padding-top: 15px;">
+            <div class="row">
+                <div class="col-md-12 div-filtro" >                 
+                    <div class="row div-center">
+                        <div class="col-md-3 div-input" style="border-right: 1px solid #C5CEDB;">
+                            <input type="text" class="form-control" placeholder="Título" style="padding-left: 25px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="input-icon" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="col-md-5" style="border-right: 1px solid #C5CEDB;">
+                            <form class="form-inline" style="text-align: center;" [formGroup]="formMACRO">
+                                <div class="form-group">            
+                                    <nz-form-item>
+                                        <nz-form-control>
+                                            <nz-input-group>
+                                                <nz-date-picker formControlName="FechaHoraInicio" 
+                                                    [(ngModel)]="frm.fecha_inicio" 
+                                                    nzFormat="dd/MM/yyyy"
+                                                    [nzDisabledDate]="disabledStartDate"
+                                                    nzPlaceHolder="Desde" ngModel>
+                                                </nz-date-picker>
+                                            </nz-input-group>
+                                        </nz-form-control>
+                                    </nz-form-item>                                    
+                                </div>
+                                <div class="form-group">   
+                                    <nz-form-item>
+                                        <nz-form-control>
+                                            <nz-input-group>
+                                                <nz-date-picker formControlName="FechaHoraFin"
+                                                    [(ngModel)]="frm.fecha_fin"
+                                                    nzFormat="dd/MM/yyyy"
+                                                    [nzDisabledDate]="disabledEndDate"
+                                                    nzPlaceHolder="Hasta" ngModel>
+                                                </nz-date-picker>
+                                            </nz-input-group>
+                                        </nz-form-control>
+                                    </nz-form-item>                                    
+                                </div>
+                            </form>                           
+                        </div>
+                        <div class="col-md-2">
+                            <nz-select
+                            [(ngModel)]="frm.estado">
+                            <ng-container *ngFor="let item of array_estados; let _idx of index">
+                                <nz-option [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+                            </ng-container>
+                            </nz-select>
+                        </div>
+                        <div class="col-md-2" style="text-align: center;">
+                            <button type="button" class="btn btn-default btn-limpiar" (click)="handleClickLimpiar()" style="margin-right: 10px;">Limpiar</button>
+                            <button type="button" class="btn btn-success btn-buscar" (click)="get_list()">Buscar</button>                             
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+    
+    <div class="row" style="padding-top: 45px;">
+        <div class="col-md-3 div-bloque" style="width: 268px"  *ngFor="let item of EncuestaList; let _idx of index"
+                [ngStyle]="{'opacity' : item.fecha_fin_date<today ? 0.5 : 1}">
+                    <div class="row">
+                        <div class="col-md-12 div-cabecera">
+                            <span *ngIf="item.es_anonima" class="bg-warning text-anonimo">*Esta encuesta es anónima</span>        
+                        </div>
+                        <div class="col-md-12" style="padding: 25px 25px 15px 25px;">
+                            <span class="text-activo">Encuesta</span>
+                        </div>
+                        <div class="col-md-12" style="padding: 0px 25px 0px 25px;">
+                            <h3 class="text-titulo">{{item.titulo}}</h3>
+                        </div>
+                        <div class="col-md-12 text-fecha" style="padding: 0px 25px 5px 25px;">
+                            <span class="text-fechas">Desde {{item.inicio | date:'dd/MM/yyyy'}}</span><br>
+                            <span class="text-fechas">Hasta {{item.fin | date:'dd/MM/yyyy'}}</span>
+                        </div>
+                       <div class="col-md-12" *ngIf="!item.resuelto && item.fecha_fin_date>today && item.id_estado_resuelto ==_ESTADO.sin_comenzar" style="padding: 25px">
+                            <button type="button" class="btn btn-default btn-comenzar" (click)="verParaLLenado(item)">Comenzar</button>
+                        </div>
+                        <div class="col-md-12" *ngIf="!item.resuelto && item.fecha_fin_date>today && item.id_estado_resuelto ==_ESTADO.comenzada"
+                         style="padding: 25px">
+                            <button type="button" class="btn btn-success btn-completar" (click)="verParaLLenado(item)">Continuar</button>
+                        </div>
+                        <div class="col-md-12" *ngIf="item.resuelto && item.id_estado_resuelto == _ESTADO.completada" style="padding: 25px">
+                            <span class="bg-primary text-completado">Encuesta completada</span>
+                        </div>
+                        <div class="col-md-12" *ngIf="!item.resuelto && item.fecha_fin_date<today" style="padding: 25px">
+                            <span class="bg-primary text-finalizado">Encuesta finalizada</span>
+                        </div>                        
+                    </div>
+                </div>    
+                
+    </div>
+</div>
+
+
+
+<ng-container *ngIf="verItemParaLLenado">
+    <app-vista-encuesta-ext *ngIf="verItemParaLLenado"
+    (onGoInicio)="handleGoInicio($event)"
+    [main_data]="encuesta_main_data"
+    [welcome_data]="encuesta_welcome_data"
+    [indicaciones]="indicaciones"
+    [agradecimiento_data]="encuesta_agradecimiento_data"></app-vista-encuesta-ext>
+</ng-container>
+
+
+<!--<ng-container *ngIf="show_resultados">
+    <app-resultado-chart *ngIf="show_resultados"
+    (onEmitDataToHeader)="handleOnEmitDataToHeader($event)"
+    (onGoBackListadoAll)="handleGoBackListadoAll($event)"
+    [titulo_encuesta]="selected_title"
+    [id_encuesta]="selected_id_encuesta"></app-resultado-chart>
+</ng-container>-->
+

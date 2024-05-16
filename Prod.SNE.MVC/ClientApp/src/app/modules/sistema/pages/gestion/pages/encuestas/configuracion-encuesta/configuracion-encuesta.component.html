@@ -1,0 +1,25 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+<p style="font-size: 20px; color: white">Procesando información, por favor no cierre la ventana.</p>
+</ngx-spinner>
+<br>
+<h1 class="title-custom">Configuración de encuesta</h1>
+<hr class="mt-0">
+<ng-container >
+    <nz-tabset (nzSelectedIndexChange)="show_tab_by_index($event)" [nzSelectedIndex]="index_tab">
+        <nz-tab *ngFor="let tab of tabs" nzClosable [nzTitle]="tab.title" [nzDisabled]="tab.disabled"></nz-tab>
+    </nz-tabset>
+
+    
+    <app-datos-encuesta *ngIf="index_tab==0" [encuesta_data]="encuesta_data" 
+    (onSaveUpdateEncuesta)="handleSaveUpdateEncuesta($event)"
+    (onChangeAllPersonalStatus)="handleChangeAllPersonalStatus($event)"></app-datos-encuesta>
+    <app-preguntas-encuesta *ngIf="index_tab==1" [encuesta_data]="encuesta_data" 
+    [id_encuesta]="id_encuesta"
+    (onPublishSuccess)="handlePublishSuccess($event)"
+    (onGoDatos)="handleGoDatos($event)"
+    (onGoEncuestados)="handleGoEncuestados($event)"></app-preguntas-encuesta>
+    <app-encuestados-encuesta *ngIf="index_tab==2"
+    (onGoPreguntas)="handleGoPreguntas($event)"
+    [id_encuesta]="id_encuesta"
+    (onPublishSuccess)="handlePublishSuccess($event)"></app-encuestados-encuesta>
+</ng-container>

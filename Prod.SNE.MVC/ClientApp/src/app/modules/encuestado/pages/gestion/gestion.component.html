@@ -1,0 +1,113 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Procesando información, por favor no cierre la ventana.</p>
+</ngx-spinner>
+<br>
+<ng-container>
+    <div [hidden]="!show_main_title" class="row">
+        <div class="col-md-2 col-sm-1"></div>
+        <div class="col-md-8 col-sm-10">
+            <div  align="center">
+                <h1 class="title-custom">Bienvenido/a a la plataforma de encuestas institucional</h1>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-1">
+            <!--
+            <button [hidden]="true" #btnPlayMainAudio id="btnPlayMainAudio" 
+            class="btnPlayMainAudio" (click)="this.main_audio.muted = false;this.main_audio.play()">Play</button>-->
+            <button [hidden]="true" #btnPlayMainAudio id="btnPlayMainAudio" 
+            class="btnPlayMainAudio" >Play</button>
+            <div align="right" *ngIf="loading_audio" style="margin-top: 2px">
+                <div class="col-md-2 col-sm-12">
+                    <span style="color:#cf2a27;font-size:25px">
+                        <nz-spin nzSimple></nz-spin>
+                    </span>
+                </div>
+            </div>
+            <div  align="right" *ngIf="!loading_audio && audio_finally_loaded && audio_exists" style="margin-top: 2px">
+                <div class="col-md-3 col-sm-12">
+                    <table>
+                        <tr>
+                            <td>
+                                <span *ngIf="audio_exists" style="color:#cf2a27;font-size:25px" 
+                                    class="btn_hoverable" (click)="handleAudioClick()">
+                                    <i [class]="volume_value>0?(volume_value>30?'fa fa-volume-up':'fa fa-volume-down'):'fa fa-volume-off'"></i>
+                                </span>
+                            </td>
+                            <td style="padding-left:5px">
+                                <span *ngIf="audio_exists" style="color:#cf2a27;font-size:25px" 
+                                class="btn_hoverable" (click)="handleAudioPause()">
+                                    <i [class]="audio_paused?'fa fa-play-circle-o':'fa fa-pause-circle-o'"></i>
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-7 col-sm-12" [hidden]="!show_control_audio">
+                    <nz-slider [(ngModel)]="volume_value" (ngModelChange)="setVolumeOfObject($event)" ></nz-slider>
+                </div>
+            </div>
+            <div  align="right" *ngIf="!loading_audio && !audio_finally_loaded && audio_exists" style="margin-top: 2px">
+                <div class="col-md-2 col-sm-12">
+                    <span *ngIf="audio_exists" style="color:#cf2a27;font-size:25px" 
+                    class="btn_disabled" >
+                    <i class="fa fa-volume-off"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<hr class="mt-0">
+<ng-container *ngIf="show_welcome">
+    <div class="_container">
+        <app-my-chk-editor [(ngModel)]="welcome_text" [configEditor]="{}" [readonly]="true"></app-my-chk-editor>
+        <br>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10" align="center">
+                <!--
+                <div style="width: 95%;" *ngIf="page_loaded" align="center">
+                    <video 
+                    src="../../../../../assets/images/BIENVENIDOA.mp4"
+                    autoplay controls width="100%"></video>
+                   
+                    <video 
+                    src="https://produce365.sharepoint.com/sites/BibliotecaExterno/Documentos%20compartidos/Forms/AllItems.aspx?id=%2Fsites%2FBibliotecaExterno%2FDocumentos%20compartidos%2FComunicaci%C3%B3n%20Interna%2FVIDEOS%2FSistema%20de%20Encuesta%2FBIENVENIDOA%20%282%29%2Emp4&parent=%2Fsites%2FBibliotecaExterno%2FDocumentos%20compartidos%2FComunicaci%C3%B3n%20Interna%2FVIDEOS%2FSistema%20de%20Encuesta&p=true&ga=1"
+                    autoplay controls width="100%"></video>
+                   
+                </div>
+                -->
+                
+                <div style="width: 95%;" *ngIf="page_loaded && idYoutubeVideo" align="center">
+                    <youtube-player
+                        [videoId]="idYoutubeVideo"
+                        (ready)="savePlayer($event)"
+                        [width]="'100%'"
+                        [height]="400"
+                        (change)="onStateChange($event)">
+                    </youtube-player>
+                </div>
+                
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+        <!--
+        <div  style="width: 100%;" *ngIf="loaded_media && page_loaded && url_video==null">
+            <img [src]="urlArchivo[0]" width="95%">
+        </div>
+        <div  align="center" *ngIf="loaded_media==false && page_loaded && url_video==null">
+            <img src="../../../../../assets/images/Imagen_no_disponible.png" width="450px">
+        </div>
+        -->
+    </div>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-sm-12" align="center">
+            <button type="button" class="btn btn-primary-custom" *ngIf="!disable_next_btn" (click)="goMainList()">Continuar&nbsp;<i class="fa fa-chevron-circle-right"></i></button>
+            <button type="button" class="btn btn-primary-custom" *ngIf="disable_next_btn" disabled>Continuar&nbsp;<i class="fa fa-chevron-circle-right"></i></button>
+        </div>
+    </div>
+</ng-container>
+<ng-container *ngIf="show_main_list">
+    <app-listado-principal (onIniciarLLenado)="handleOnIniciarLLenado($event)" 
+    (onIniciarListado)="handleOnIniciarListado($event)"></app-listado-principal>
+</ng-container>

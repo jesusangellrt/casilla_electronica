@@ -1,0 +1,261 @@
+@import '~@angular/cdk/overlay-prebuilt.css';
+/* You can add global styles to this file, and also import other style files */
+.ck-editor__editable {
+  /* min-height: 600px !important; */
+  /*border: 1px solid rgb(217, 217, 217) !important;*/
+}
+._btn:hover{
+  cursor: pointer;
+}  
+._btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  text-align: center;
+  /* white-space: nowrap; */
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+
+}
+
+.ant-table-thead > tr > th .ant-table-column-sorter .ant-table-column-sorter-inner .ant-table-column-sorter-up.on, 
+.ant-table-thead > tr > th .ant-table-column-sorter .ant-table-column-sorter-inner .ant-table-column-sorter-down.on {
+  color: #000000;
+}
+
+.ant-carousel .slick-dots li {
+  position: relative;
+  display: inline-block;
+  flex: 0 1 auto;
+  box-sizing: content-box;
+  width: 16px;
+  height: 3px;
+  margin: 0 3px;
+  color:#dc354649;
+  padding: 0;
+  text-align: center;
+  text-indent: -999px;
+  vertical-align: top;
+  transition: all .5s;
+}
+.ant-carousel .slick-dots li {
+  position: relative;
+  display: inline-block;
+  flex: 0 1 auto;
+  box-sizing: content-box;
+  width: 16px;
+  height: 3px;
+  margin: 0 3px;
+  background-color:#dc354649;
+  padding: 0;
+  text-align: center;
+  text-indent: -999px;
+  vertical-align: top;
+  transition: all .5s;
+}
+.ant-carousel .slick-dots li.slick-active button {
+  background: #dc3545;
+  opacity: 1;
+}
+.ant-carousel .slick-dots li.slick-active:hover {
+  opacity: 1;
+}
+.ant-carousel .slick-dots-bottom {
+  bottom: 0px;
+}
+
+.ck-editor__editable {
+  max-height: 600px;
+}
+.ant-table-thead > tr > th.ant-table-column-sort {
+  background: #dc3545;
+}
+.ant-table-thead > tr > th.ant-table-column-sort:hover {
+  background: #dc3545;
+  cursor:pointer;
+}
+.table-column-sort{
+  background: #dc3545;
+}
+.ant-table-column-has-sorters:hover {
+  background: #dc3545;
+  cursor:pointer;
+}
+.ant-table-column-sort:hover{
+  background: #dc3545;
+  cursor:pointer;
+}
+.ant-table-column-has-sorters {
+  background: #dc3545;
+}
+.ant-table-column-sort{
+  background: #dc3545;
+}
+
+@media (min-width: 1200px){
+  ._container {
+    width: 1170px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px){
+  ._container {
+    width: 970px;
+  }
+}
+
+@media (max-width: 768px) and (max-width: 991px){
+  ._container {
+    width: 750px;
+  }
+}
+@media (min-width: 650px) and (max-width: 767px){
+  ._container {
+    width: 95%;
+    margin-top: 40px;
+  }
+}
+._container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.btn_marked{
+  background-color: #d89299;
+  color: #ffffff;
+}
+
+app-gestion .ant-steps-small .ant-steps-item-title{
+  font-size: 14px;
+}
+dp-weekdays {
+  margin-bottom: 0;
+}
+.dp-calendar-week {
+  max-height: 32px;
+}
+dp-day-calendar .dp-weekdays {
+  max-height: 32px;
+}
+dp-day-calendar .dp-calendar-weekday {
+  border: 1px solid white !important;
+}
+dp-day-calendar .dp-calendar-day {
+  background: white;
+  border: 1px solid white;
+  text-align: center;
+  line-height: 18px;
+  cursor: pointer;
+}
+dp-day-calendar .dp-calendar-day[disabled] {
+  color: #c3c3c3;
+  background: inherit !important;
+  cursor: not-allowed !important;
+}
+dp-day-calendar .dp-calendar-day:hover {
+  background: #fff1f0;
+  cursor: pointer;
+}
+
+dp-day-calendar .dp-selected {
+  background: #ffe1e0 !important;
+  color: inherit !important;
+}
+dp-calendar-nav .dp-nav-header-btn {
+  max-height: 20px;
+  line-height: 14px;
+  background: white;
+  border: 0;
+  cursor: pointer;
+}
+dp-calendar-nav .dp-nav-header-btn: hover {
+  color: #dc3545;
+}
+dp-calendar-nav .dp-calendar-nav-left, 
+dp-calendar-nav .dp-calendar-nav-right {
+  background: white;
+  border: 0;
+  cursor: pointer;
+}
+dp-calendar-nav .dp-calendar-nav-left:hover,
+dp-calendar-nav .dp-calendar-nav-right:hover {
+  color: #dc3545;
+}
+dp-calendar-nav .dp-calendar-nav-container {
+  border: 1px solid #ededed !important;
+}
+dp-day-calendar .dp-calendar-wrapper {
+  border: 1px solid #ededed !important;
+}
+.ck.ck-editor__editable > .ck-placeholder::before {
+  color: #dc3545;
+  font-family: Georgia;
+}
+.span_required{
+  color: #dc3545;
+  font-weight: bold;
+}
+.dp-picker-input {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-variant: tabular-nums;
+  list-style: none;
+  font-feature-settings: 'tnum';
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 34px;
+  padding: 4px 11px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  line-height: 1.5;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+dp-month-calendar .dp-calendar-month {
+  background: white;
+  border: 0 !important;
+}
+dp-month-calendar .dp-calendar-month:hover {
+  background: #fff1f0;
+}
+
+dp-time-select .dp-time-select-control-down, 
+dp-time-select .dp-time-select-control-up {
+  background: white;
+  border: 0;
+  cursor: pointer;
+}
+dp-time-select .dp-time-select-control-down:hover,
+dp-time-select .dp-time-select-control-up:hover {
+  color: #dc3545;
+}
+dp-day-time-calendar dp-time-select {
+  border: 1px solid white !important;
+}
+.ant-select-dropdown{
+  top: 100%;
+  left:0;
+  position: relative;
+  width: 100%;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}

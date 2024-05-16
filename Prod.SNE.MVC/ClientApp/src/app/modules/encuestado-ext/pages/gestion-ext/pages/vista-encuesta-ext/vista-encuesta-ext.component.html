@@ -1,0 +1,171 @@
+<ng-container *ngIf="show_selected_encuesta">
+    <div class="_container">
+        <div>
+            <div class="row">
+                <div class="col-md-12" style="padding-top: 50px">
+                    <button type="button" class="btn btn-atras" (click)="goInicio()">
+                        <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;&nbsp;Atrás
+                    </button> 
+                </div>
+            </div> 
+            <div class="row" style="padding-top: 50px;">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form class="form-inline" style="text-align: left;">
+                                <div class="form-group" *ngIf="main_data.es_anonima">                          
+                                    <span class="bg-warning text-anonimo">*Esta encuesta es anónima</span>
+                                </div>
+                                <div class="form-group" style="padding-left: 10px;">                                      
+                                    <button [hidden]="true" #btnPlayWelcomeAudio id="btnPlayWelcomeAudio" 
+                                    class="btnPlayWelcomeAudio" (click)="this.welcome_audio.muted = true;this.welcome_audio.play()">Play</button>
+                                    
+                                        <div align="right" *ngIf="_audio_loaded && _audio_exists">
+                                
+                                            <span *ngIf="_audio_loaded && _audio_exists" style="color:#2473B6;font-size:25px" 
+                                            class="btn_hoverable" (click)="_handleWelcomeEncuestaClick()">
+                                                <i [class]="_volume_value>0?(_volume_value>30?'fa fa-volume-up':'fa fa-volume-down'):'fa fa-volume-off'"></i>
+                                            </span>
+                                        
+                                            <span *ngIf="_audio_loaded && _audio_exists" style="color:#2473B6;font-size:25px;padding-left:5px" 
+                                            class="btn_hoverable" (click)="handleAudioPauseEncuesta()">
+                                                <i [class]="audio_paused_encuesta?'fa fa-play-circle-o':'fa fa-pause-circle-o'"></i>
+                                        </span>                           
+                                
+                                </div>
+                                <div  align="right" *ngIf="!_audio_loaded && _audio_exists" style="margin-top: 2px">
+                                    <div class="col-md-2 col-sm-12">
+                                        <span *ngIf="_audio_exists" 
+                                        class="btn_disabled" >
+                                        <img src="assets/img/audio.png">
+                                        </span>
+                                    </div>
+                                </div>
+                                </div>
+                            </form>  
+                                
+                                
+                                
+                        </div>
+                        <div class="col-md-12" style="padding-top: 30px;">
+                            <h3 class="text-titulo">{{main_data?main_data.titulo:''}}</h3>
+                        </div>
+                        <div class="col-md-12" style="padding-top: 10px;">
+                            <form>
+                                <div class="form-group row">
+                                  <label for="" class="col-md-4 col-sm-6 col-form-label" style="margin-right: -30px;">
+                                    <img src="assets/img/clock.png" width="18px">
+                                    <span style="margin-left: 10px;">Tiempo: {{main_data.tiempo_estimado}} min</span>
+                                  </label>
+                                  <div class="col-md-4 col-sm-6">
+                                    <img src="assets/img/total.png" width="18px">
+                                    <span style="margin-left: 10px;">{{PreguntasList.length}} preguntas</span>
+                                  </div>
+                                </div>                                
+                            </form>
+                            <!--<div class="row">
+                                <div class="col-md-6">
+                                    <img src="assets/img/clock.png" width="18px">
+                                    <span style="margin-left: 15px;">Tiempo: {{main_data.tiempo_estimado}} min</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="assets/img/total.png" width="18px">
+                                    <span style="margin-left: 15px;">{{PreguntasList.length}} preguntas</span>
+                                </div>
+                            </div>-->
+                        </div>
+                        <div class="col-md-12" style="padding-top: 20px;">
+                            <p class="text-indicacion">Indicaciones:</p>
+                        </div>
+                        <div class="col-md-12" style="padding-top: -10px;">
+                            <app-my-chk-editor [(ngModel)]="indicaciones" [configEditor]="{}" [readonly]="true"></app-my-chk-editor>
+                        </div>
+                        <div class="col-md-12" style="padding-top: 20px;">
+                            <div class="checkbox">
+                                <label>
+                                  <input type="checkbox"
+                                  [(ngModel)]="isCheckedAutorizo">
+                                  <span >Autorizó el uso de tratamiento de datos. Ver <span style="color: #2473B6;"><u (click)="onDownloadFileItem()">Términos y condiciones</u></span></span>  
+                                </label>
+                              </div>
+                            
+                        </div>
+                        <div class="col-md-12" style="padding-top: 25px;">
+                            <button type="button" class="btn btn-success btn-iniciar" (click)="goEncuesta()" style="font-size: 16px !important;">Iniciar encuesta</button> 
+                        </div>
+                     </div>
+                </div>
+                <div class="col-md-6">
+                    <div align="center" *ngIf="show_loader_encuesta" style="margin-top: 5px">
+                        <div>
+                            <span style="color:#2473B6;">
+                                <nz-spin nzSimple [nzSize]="'large'"></nz-spin>
+                            </span>
+                        </div>
+                    </div>
+                    <div  style="width: 100%;" *ngIf="!show_loader_encuesta && _loaded_media && _idYoutubeVideo" align="center">
+                        <youtube-player
+                            [videoId]="_idYoutubeVideo"
+                            (ready)="_savePlayer($event)"
+                            [width]="'100%'"
+                            [height]="400"
+                            (change)="_onStateChange($event)">
+                        </youtube-player>
+                    </div>
+                    <div  style="width: 100%;" *ngIf="!show_loader_encuesta && _loaded_media && welcome_data.url_video==null">
+                        <img [src]="_urlArchivo" width="95%">
+                    </div>
+                    <div  style="width: 100%;" *ngIf="!show_loader_encuesta && _loaded_media==false && welcome_data.url_video==null">
+                        <img src="../../../../../../../assets/images/Imagen_no_disponible.png" width="95%">
+                    </div>
+                </div>
+
+                <div class="col-md-12" style="padding: 0px;">
+                    <div class="col-md-4" style="padding: 0px; text-align-last: left;">
+                        <img src="../../../../../../../assets/images/logo-produce2.png" width="65%">
+                    </div>
+                    <div class="col-md-4" style="padding: 0px; text-align-last: center;">
+                        <img src="../../../../../../../assets/images/logo-proinnovate.png" width="60%">
+                    </div>
+                    <div class="col-md-4" style="padding: 0px; text-align-last: right;">
+                        <img src="../../../../../../../assets/images/logo-pecap.png" width="60%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ng-container>
+<ng-container *ngIf="show_preguntas">
+    <app-llenado-pregunta-ext *ngIf="show_preguntas"
+    (onEmitDataToHeader)="handleOnEmitDataToHeader($event)"
+    (onGoBackEncuesta)="handleGoBackEncuesta($event)"
+    (onGoToInicio)="handleGoBackInicio($event)"
+    [agradecimiento_data]="agradecimiento_data"
+    [es_anonima]="main_data?main_data.es_anonima:true"
+    [disparadoresRespuestas]="disparadoresRespuestas"
+    [paginado_registrado]="paginado_registrado"
+    [_total_preguntas]="_total_preguntas"
+    [total]="total" [pageIndex]="pageIndex"
+    [presetIndex]="presetIndex"
+    [id_encuesta]="id_encuesta" 
+    [title]="main_data?main_data.titulo:''"
+   ></app-llenado-pregunta-ext>
+</ng-container>
+<ng-container *ngIf="show_preguntas_seccion">
+    <app-llenado-pregunta-seccion-ext *ngIf="show_preguntas_seccion"
+    (onEmitDataToHeader)="handleOnEmitDataToHeader($event)"
+    (onGoBackEncuesta)="handleGoBackEncuesta($event)"
+    (onGoToInicio)="handleGoBackInicio($event)"
+    [agradecimiento_data]="agradecimiento_data"
+    [es_anonima]="main_data?main_data.es_anonima:true"
+    [disparadoresRespuestas]="disparadoresRespuestas"
+    [paginado_registrado]="paginado_registrado"
+    [_total_preguntas]="_total_preguntas"
+    [total]="total" [pageIndex]="pageIndex"
+    [presetIndex]="presetIndex"
+    [id_encuesta]="id_encuesta" 
+    [pageIndexSeccion]="pageIndexSeccion"
+    [title]="main_data?main_data.titulo:''"
+   ></app-llenado-pregunta-seccion-ext>
+</ng-container>

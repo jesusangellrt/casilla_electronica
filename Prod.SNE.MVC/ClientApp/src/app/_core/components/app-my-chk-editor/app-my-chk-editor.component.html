@@ -1,0 +1,26 @@
+<style>
+    .editable-container,
+    .toolbar-container {
+      position: relative;
+      border: 0px solid #ddd;
+      background: #eee;
+    }
+  
+    .toolbar-container {
+      padding: 1em;
+    }
+  
+    .editable-container {
+      padding: 3em;
+      overflow-y: scroll;
+      max-height: 800px;
+    }
+  
+    .editable-container .document-editor__editable.ck-editor__editable {
+      border: 0px;
+      background: white;
+    }
+  </style>
+
+<ckeditor [editor]="editor" [config]="configEditor" [(ngModel)]="value" 
+(ready)="onReady($event)" [disabled]="readonly"></ckeditor>

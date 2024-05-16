@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Proxys\Consultas\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.8" />
+    <PackageReference Include="Release.Helper" Version="1.1.9" />
+    <PackageReference Include="Release.Helper.WebKoMvc" Version="1.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Prod.SNE.Entidades\Prod.SNE.Entidades.csproj" />
+    <ProjectReference Include="..\Prod.SNE.ServiciosExternos\Prod.SNE.ServiciosExternos.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Prod.MS.GestorArchivos.Proxy">
+      <HintPath>..\DllExternos\prod.ms.gestorarchivos.proxy\1.0.3\Prod.MS.GestorArchivos.Proxy.dll</HintPath>
+    </Reference>
+    <Reference Include="Prod.ServiciosExternos">
+      <HintPath>..\DllExternos\prod.serviciosexternos\1.3.72\Prod.ServiciosExternos.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

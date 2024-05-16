@@ -1,0 +1,66 @@
+.btn_hoverable:hover{
+  cursor: pointer;
+}
+
+.btn_disabled:hover{
+  cursor: not-allowed;
+}
+
+/**************************/
+.text-atras {
+  color: #2473B6;
+  font-weight: 400;
+  font-size: 12px;
+  background: #F4F7FB;
+  border-radius: 20px;            
+  padding: 10px;
+}
+
+.text-anonimo {    
+  font-style: normal;   
+  color: #E9AD13;
+  padding: 0px 5px 2px 5px;
+  border-radius: 16px;
+  background: #FBF2DC;
+  font-size: 10px;
+}
+
+.text-titulo {
+  color: #2473B6;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+}
+
+
+.text-indicacion {
+  color: #404347;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.btn-iniciar {
+  background-color: #128C3C;color: #ffffff;
+}
+
+.btn-iniciar:active { background-color: #128C3C; color: White; border: none; outline:none !important;;
+}
+
+.btn-iniciar:focus { background-color: #128C3C; border: none; outline:none !important;}
+
+.btn-atras {
+  color: #2473B6;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  background: #FCFCFC;
+  border-radius: 20px;        
+  padding: 10px;
+  width: 92px;
+}
+.btn-atras:active { background-color: #FCFCFC; color: #2473B6; border: none; outline:none !important;}
+
+.btn-atras:focus { background-color: #FCFCFC; color: #2473B6; border: none; outline:none !important;}
+
+.btn-atras:hover { background-color: #FCFCFC; color: #2473B6; border: none; outline:none !important;}

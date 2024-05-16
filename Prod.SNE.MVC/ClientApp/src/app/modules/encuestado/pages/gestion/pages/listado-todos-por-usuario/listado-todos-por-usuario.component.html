@@ -1,0 +1,165 @@
+<div class="_container" *ngIf="verListado">
+    <div class="row">
+        <div class="col-sm-12">
+            <span class="btn_hoverable" (click)="goBackMainList()"><u style="color:#006192">Inicio > Encuesta >...</u></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12" align="center">
+            <br><h1 style="color:#dc3545">Listado de encuestas</h1>
+        </div>
+        <div class="col-md-5 col-sm-12">
+            <div class="form-group">
+                <label for="">Título</label>
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Debe ingresar la pregunta!">
+                        <nz-input-group>
+                            <input type="text"
+                            class="form-control" 
+                            maxlength="500"
+                            placeholder="--Buscar por título--"
+                            [(ngModel)]="frm.titulo">
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-12"></div>
+        <div class="col-md-4 col-sm-12">
+            <label for="">Estado</label>
+            <nz-form-item>
+                <nz-form-control nzErrorTip="Debe ingresar la pregunta!">
+                    <nz-input-group>
+                        <nz-select nzAllowClear nzShowSearch nzPlaceHolder="--Todos--"
+                        [(ngModel)]="frm.estado">
+                            <ng-container *ngFor="let item of array_estados">
+                                <nz-option [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+                            </ng-container>
+                        </nz-select>
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-sm-12 row">
+           <div style="padding-left:18px">
+            <table>
+                <tr style="border:0px">
+                    <td style="border:0px"><label>Desde&nbsp;&nbsp;</label></td>
+                    <td style="border:0px">
+                        <nz-date-picker 
+                        [(ngModel)]="frm.fecha_inicio"
+                        nzFormat="dd/MM/yyyy">
+                        </nz-date-picker>
+                    </td>
+
+                    <td style="border:0px"><label>&nbsp;Hasta&nbsp;&nbsp;</label></td>
+                    <td style="border:0px">
+                        <nz-date-picker
+                        [(ngModel)]="frm.fecha_fin"
+                        nzFormat="dd/MM/yyyy">
+                        </nz-date-picker>
+                    </td>
+                </tr>
+            </table>
+           </div>
+        </div>
+        <div class="col-md-3 col-sm-12"></div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group text-right">
+                <br>
+                <button type="button" class="btn btn-primary-custom" (click)="get_list()">
+                    <i class="fa fa-search"></i> Buscar
+                </button>
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-default-custom" (click)="handleClickLimpiar()">
+                    <i class="fa fa-eraser"aria-hidden="true"></i> Limpiar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row"> 
+        <div class="table-responsive table-striped table-bordered table-hover" 
+        style="overflow-x:hidden;border:0px;padding: 0px 10px 0px 10px;">
+            <nz-table #ajaxTable class="container-table-custom" nzShowSizeChanger [nzFrontPagination]="false"
+            [nzBordered]="true" [nzData]="EncuestaList" [nzLoading]="cargando_tabla" [nzTotal]="total"
+            [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" (nzPageIndexChange)="handleClickBuscar()"
+            (nzPageSizeChange)="handleClickBuscar(true)" style="border:0px">
+                <tbody style="border:0px">
+                    <tr *ngFor="let item of ajaxTable.data; let i = index" style="border:0px">
+                        <td align="center" width="300px" style="border:0px">
+                            <div>
+                                <img *ngIf="item.has_imagen" [src]="item.b64_file" width="100%">
+                                <img *ngIf="!item.has_imagen" src="../../../../../../../assets/images/Imagen_no_disponible.png" width="100%">
+                            </div>
+                        </td>
+                        <td style="border:0px">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h3 style="color:#dc3545">{{item.titulo}}</h3>
+                                </div>
+                                <div class="col-sm-12">
+                                    <p>{{item.descripcion}}</p>
+                                </div>
+                                <div class="col-sm-12" align="right">
+                                    <div *ngIf="!item.resuelto && item.fecha_fin_date>item.today && item.id_estado_resuelto==_ESTADO_COMPLETADO.por_completar">
+                                        <div class="btn_hoverable" style="width:86px;height:45px"
+                                            (click)="verParaLLenado(item)">
+                                            <div class="w3-light-red w3-round-xlarge" align="left" >
+                                                <div class="w3-container w3-green w3-round-xlarge" 
+                                                [ngStyle]="{'width': item.porcentaje_avance+'%'}">&nbsp;</div>
+                                            </div>
+                                            <div class="text_completar">Completar</div>
+                                        </div>    
+                                    </div>
+                                    <button *ngIf="!item.resuelto && item.fecha_fin_date>item.today && item.id_estado_resuelto!=_ESTADO_COMPLETADO.por_completar" 
+                                        (click)="verParaLLenado(item)" type="button" class="btn btn-primary-custom" >
+                                        Iniciar
+                                    </button>
+                                    <button *ngIf="!item.resuelto && item.today>=item.fecha_fin_date"
+                                        (click)="verResultados(item)" type="button" class="btn btn-primary-custom" >
+                                        Ver resultados
+                                    </button>
+                                    <span *ngIf="item.resuelto && item.fecha_fin_date>item.today" >
+                                        <strong style="color:#c92329">
+                                            Usted ya completó esta encuesta. Pronto podras ver los resultados.
+                                        </strong>
+                                    </span>
+                                    <button *ngIf="item.resuelto && item.today>item.fecha_fin_date" 
+                                        (click)="verResultados(item)" type="button" class="btn btn-primary-custom" >
+                                        Ver resultados
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+    </div>
+    
+</div>
+
+
+
+<ng-container *ngIf="verItemParaLLenado">
+    <app-vista-encuesta *ngIf="verItemParaLLenado"
+    (onGoInicio)="handleGoInicio($event)"
+    [main_data]="encuesta_main_data"
+    [welcome_data]="encuesta_welcome_data"
+    [indicaciones]="indicaciones"
+    [agradecimiento_data]="encuesta_agradecimiento_data"></app-vista-encuesta>
+</ng-container>
+
+
+<ng-container *ngIf="show_resultados">
+    <app-resultado-chart *ngIf="show_resultados"
+    (onEmitDataToHeader)="handleOnEmitDataToHeader($event)"
+    (onGoBackListadoAll)="handleGoBackListadoAll($event)"
+    [titulo_encuesta]="selected_title"
+    [id_encuesta]="selected_id_encuesta"></app-resultado-chart>
+</ng-container>
+

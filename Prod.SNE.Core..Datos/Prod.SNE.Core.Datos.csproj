@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <Compile Include="..\MapDB\Prod.SNE.MapDB\Prod.SNE.Datos\Modelo\*.cs">
+		  <Link>Modelo\%(FileName)</Link>
+	  </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.90" />
+    <PackageReference Include="Release.Helper.Data.Core" Version="1.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Modelo\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Prod.SNE.Entidades\Prod.SNE.Entidades.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="..\MapDB\Prod.SNE.MapDB\Prod.SNE.Datos\Modelo\vw_usuario_rol_intranet.cs" Link="Modelo\vw_usuario_rol_intranet.cs" />
+  </ItemGroup>
+
+</Project>

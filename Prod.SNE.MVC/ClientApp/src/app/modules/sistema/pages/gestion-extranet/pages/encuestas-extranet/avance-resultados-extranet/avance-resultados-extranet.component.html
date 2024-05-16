@@ -1,0 +1,61 @@
+<nz-modal 
+  [(nzVisible)]="visible" 
+  nzTitle="Avance de encuesta" 
+  [nzWidth]="900" 
+  nzClosable="false"
+  [nzFooter]="extraTemplate">
+  <ng-container >
+    <form>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="">
+                    <label for=""><b>Título:</b></label>                          
+                </div>
+            </div> 
+            <div class="col-md-9">
+                <div class="">
+                    <span for="">{{selected_encuesta.titulo}}</span>                          
+                </div>
+            </div> 
+        </div>    
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for=""><b>Fecha de vigencia:</b> </label>                          
+                </div>
+            </div> 
+            <div class="col-md-9">
+                <div class="form-group">
+                    <span for="">{{ selected_encuesta.fecha_inicio | date: 'dd/MM/yyyy hh:mm a'}} - {{ selected_encuesta.fecha_fin | date: 'dd/MM/yyyy hh:mm a'}}</span>                          
+                </div>
+            </div> 
+        </div>     
+    </form>
+</ng-container>
+    <ng-container> 
+        <div class="table-responsive table-striped table-bordered table-hover">
+            <nz-table #ajaxTable class="container-table-custom" [nzFrontPagination]="false"
+            [nzBordered]="false" [nzData]="['']">    
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Estado</th>
+                        <th>Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of EncuestaAvanceList; let i = index">
+                        <td align="center">{{ (i + 1) }}</td>
+                        <td>{{ item.estado}}</td>
+                        <td align="center">{{ item.cantidad}}</td>                          
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+    </ng-container>
+    <ng-template #extraTemplate>      
+        <div class="row">
+            <div class="col-sm-6 text-left"><button type="button" class="btn btn-default-custom" (click)="close_modal()"> Cerrar</button></div>
+        </div>  
+    </ng-template>
+</nz-modal>

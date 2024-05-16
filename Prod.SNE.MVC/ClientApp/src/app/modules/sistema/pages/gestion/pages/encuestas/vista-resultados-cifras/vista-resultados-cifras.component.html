@@ -1,0 +1,28 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Procesando información, por favor no cierre la ventana.</p>
+    </ngx-spinner>
+    <br>
+    <h3 class="title-custom" style="color:#dc3545">Resultados de data analizada</h3>
+    <hr class="mt-0">
+    <ng-container >
+        <div class="row" *ngIf="main_loaded">
+            <div class="col-sm-12" *ngIf="has_file_completo">
+                <iframe [src]="b64_pdf_file_completo" width="100%" height="400px"></iframe>
+            </div>
+            <div class="col-sm-12" *ngIf="!has_file_completo" align="center">
+                <h3>Documento no disponible</h3>
+            </div>
+        </div>
+        <div class="row" style="padding-top:20px" *ngIf="main_loaded">
+            <div class="col-sm-12" *ngIf="has_file_encuestado">
+                <iframe [src]="b64_pdf_file_encuestado" width="100%" height="500px"></iframe>
+            </div>
+            <div class="col-sm-12" *ngIf="!has_file_encuestado" align="center">
+                <h3>Documento no disponible</h3>
+            </div>
+        </div>
+        <br>
+        <button type="button" class="btn btn-default-custom" [routerLink]="['/sistema/gestion/gestor-encuestas']">
+            <i class="fa fa-reply" aria-hidden="true"></i> Volver
+        </button>
+    </ng-container>

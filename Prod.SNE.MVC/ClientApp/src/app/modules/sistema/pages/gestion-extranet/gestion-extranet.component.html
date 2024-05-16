@@ -1,0 +1,36 @@
+<div class="container contenido-interno">
+    <nz-layout class="app-layout app-layout-interno">
+        <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md">
+            <ul nz-menu nzMode="inline">
+              <ng-container>
+                <li nz-submenu nzOpen nzTitle="Configuración" nzIcon="dashboard">
+                  <ul>
+                    <ng-container>
+                      <li nz-menu-item nzMatchRouter>
+                        <a routerLink="/sistema/gestion-extranet/plataforma-extranet">Plataforma extranet</a>
+                      </li>
+                    </ng-container>
+                    <ng-container>
+                      <li nz-menu-item nzMatchRouter>
+                        <a routerLink="/sistema/gestion-extranet/gestor-encuestas-extranet">Encuestas extranet</a>
+                      </li>
+                    </ng-container> 
+                    <ng-container>
+                      <li nz-menu-item nzMatchRouter>
+                        <a routerLink="/sistema/gestion-extranet/categorias-extranet">Categorías extranet</a>
+                      </li>
+                    </ng-container>                                        
+                  </ul>
+                </li>
+              </ng-container>
+            </ul>
+        </nz-sider>
+        <nz-layout>
+            <nz-content>
+                <div class="inner-content internal-content">
+                    <router-outlet></router-outlet>
+                </div>
+            </nz-content>
+        </nz-layout>
+    </nz-layout>
+</div>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ff294638ea2c4aa9ae400db44c55d35e" Name="Diagram1" ZoomLevel="94">
+        <EntityTypeShape EntityType="Modelo.CAT_CATEGORIA" Width="1.5" PointX="1.5" PointY="1" />
+        <EntityTypeShape EntityType="Modelo.CAT_CONFIGURACION_INICIAL" Width="1.5" PointX="5.75" PointY="0.875" />
+        <EntityTypeShape EntityType="Modelo.CAT_SUB_CATEGORIA" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Modelo.DAT_ENCUESTA_AGRADECIMIENTO" Width="1.5" PointX="3" PointY="4.875" />
+        <EntityTypeShape EntityType="Modelo.DAT_ENCUESTA_BIENVENIDA" Width="1.5" PointX="3" PointY="14.75" />
+        <EntityTypeShape EntityType="Modelo.DAT_ENCUESTA_ENCUESTADO" Width="1.5" PointX="3" PointY="23.875" />
+        <EntityTypeShape EntityType="Modelo.DAT_RESPUESTA" Width="1.5" PointX="3" PointY="19" />
+        <EntityTypeShape EntityType="Modelo.DAT_RESPUESTA_PREGUNTA" Width="1.5" PointX="5.25" PointY="19.75" />
+        <EntityTypeShape EntityType="Modelo.vw_aplicacion" Width="1.5" PointX="7.75" PointY="3.875" />
+        <EntityTypeShape EntityType="Modelo.vw_dependencia" Width="1.5" PointX="9.75" PointY="0.875" />
+        <EntityTypeShape EntityType="Modelo.vw_persona" Width="1.5" PointX="9.75" PointY="7.875" />
+        <EntityTypeShape EntityType="Modelo.vw_regimen" Width="1.5" PointX="2.75" PointY="9.875" />
+        <EntityTypeShape EntityType="Modelo.vw_rol" Width="1.5" PointX="11.75" PointY="0.875" />
+        <EntityTypeShape EntityType="Modelo.vw_trabajador" Width="1.5" PointX="11.75" PointY="4.875" />
+        <AssociationConnector Association="Modelo.FK__CAT_SUB_C__id_ca__3A81B327" />
+        <AssociationConnector Association="Modelo.FK__DAT_RESPU__id_re__6383C8BA" />
+        <EntityTypeShape EntityType="Modelo.CAT_ESTADO_ENCUESTA" Width="1.5" PointX="11.75" PointY="13.25" />
+        <EntityTypeShape EntityType="Modelo.CAT_ESTADO_RESPUESTA" Width="1.5" PointX="14.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Modelo.CAT_SEXOS" Width="1.5" PointX="14.375" PointY="3.75" />
+        <EntityTypeShape EntityType="Modelo.CAT_TIPO_MAESTRO_INSTITUCIONAL" Width="1.5" PointX="14.375" PointY="9.75" />
+        <EntityTypeShape EntityType="Modelo.CAT_TIPO_PREGUNTA" Width="1.5" PointX="14.375" PointY="12.75" />
+        <AssociationConnector Association="Modelo.FK_DAT_RESPUESTA_CAT_ESTADO_RESPUESTA" />
+        <EntityTypeShape EntityType="Modelo.CAT_ARCHIVO_TIPO_ARCHIVO" Width="1.5" PointX="14.375" PointY="15.75" />
+        <EntityTypeShape EntityType="Modelo.CAT_TIPO_ENCUESTA" Width="1.5" PointX="0.625" PointY="7.5" />
+        <AssociationConnector Association="Modelo.FK_CAT_CONFIGURACION_INICIAL_CAT_TIPO_ENCUESTA" />
+        <EntityTypeShape EntityType="Modelo.CAT_ESTADO_ADMINISTRADO" Width="1.5" PointX="5.75" PointY="23.5" />
+        <EntityTypeShape EntityType="Modelo.DAT_ENCUESTA_ADMINISTRADO" Width="1.5" PointX="8" PointY="18.875" />
+        <AssociationConnector Association="Modelo.FK_encuesta_administrado_estado_administrado" />
+        <EntityTypeShape EntityType="Modelo.DAT_ENCUESTA_SECCION" Width="1.5" PointX="3" PointY="29.25" />
+        <EntityTypeShape EntityType="Modelo.CAT_TIPO_FECHA" Width="1.5" PointX="16.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Modelo.DAT_ENCUESTA_NOTIFICACION" Width="1.5" PointX="3" PointY="33.25" />
+        <EntityTypeShape EntityType="Modelo.CAT_DIRIGIDO_NOTIFICACION" Width="1.5" PointX="16.375" PointY="3.75" />
+        <EntityTypeShape EntityType="Modelo.CAT_CATEGORIA_EXTRANET" Width="1.5" PointX="16.375" PointY="7" />
+        <EntityTypeShape EntityType="Modelo.CAT_SUB_CATEGORIA_EXTRANET" Width="1.5" PointX="18.625" PointY="7" />
+        <AssociationConnector Association="Modelo.FK_CAT_SUB_CATEGORIA_EXTRANET_CAT_CATEGORIA_EXTRANET" />
+        <EntityTypeShape EntityType="Modelo.vw_departamento" Width="1.5" PointX="16.375" PointY="10.75" />
+        <EntityTypeShape EntityType="Modelo.vw_distrito" Width="1.5" PointX="10.375" PointY="16.75" />
+        <EntityTypeShape EntityType="Modelo.vw_provincia" Width="1.5" PointX="16.375" PointY="13.75" />
+        <EntityTypeShape EntityType="Modelo.CAT_TIPO_ARCHIVO" Width="1.5" PointX="0.75" PointY="3.875" />
+        <EntityTypeShape EntityType="Modelo.DAT_ENCUESTA" Width="1.5" PointX="2.75" PointY="16.625" />
+        <EntityTypeShape EntityType="Modelo.DAT_ENCUESTA_PREGUNTA" Width="1.5" PointX="20.625" PointY="11.125" />
+        <AssociationConnector Association="Modelo.FK_DAT_ENCUESTA_PREGUNTA_CAT_CATEGORIA" />
+        <AssociationConnector Association="Modelo.FK_DAT_ENCUESTA_CAT_ESTADO_ENCUESTA" />
+        <AssociationConnector Association="Modelo.FK_DAT_ENCUESTA_PREGUNTA_CAT_SUB_CATEGORIA" />
+        <AssociationConnector Association="Modelo.FK_DAT_ENCUESTA_AGRADECIMIENTO_CAT_TIPO_ARCHIVO" />
+        <AssociationConnector Association="Modelo.FK_DAT_ENCUESTA_PREGUNTA_CAT_TIPO_ARCHIVO" />
+        <AssociationConnector Association="Modelo.FK_DAT_ENCUESTA_PREGUNTA_CAT_TIPO_PREGUNTA" />
+        <AssociationConnector Association="Modelo.FK__DAT_ENCUE__id_en__48CFD27E" />
+        <AssociationConnector Association="Modelo.FK__DAT_ENCUE__id_en__4D94879B" />
+        <AssociationConnector Association="Modelo.FK__DAT_GRUPO__id_en__5812160E" />
+        <AssociationConnector Association="Modelo.FK__DAT_PREGU__id_en__52593CB8" />
+        <AssociationConnector Association="Modelo.FK__DAT_RESPU__id_en__5DCAEF64" />
+        <AssociationConnector Association="Modelo.FK_encuesta_administrado_encuesta" />
+        <AssociationConnector Association="Modelo.FK_encuesta_notificacion_encuesta" />
+        <AssociationConnector Association="Modelo.FK_encuesta_seccion_encuesta" />
+        <AssociationConnector Association="Modelo.FK_DAT_RESPUESTA_PREGUNTA_DAT_ENCUESTA_PREGUNTA" />
+        <AssociationConnector Association="Modelo.FK_DAT_ENCUESTA_CAT_TIPO_ENCUESTA" />
+        <EntityTypeShape EntityType="Modelo.vw_usuario_rol_intranet" Width="1.5" PointX="5.375" PointY="9.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

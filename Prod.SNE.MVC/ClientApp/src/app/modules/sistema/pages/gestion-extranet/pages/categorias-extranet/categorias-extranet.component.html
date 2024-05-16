@@ -1,0 +1,115 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Procesando información, por favor no cierre la ventana.</p>
+    </ngx-spinner>
+    <br>
+    <h1 class="title-custom">Categorías Extranet</h1>
+    <hr class="mt-0">
+    <ng-container >
+        <div class="panel panel-default panel-custom">
+            <div class="panel-heading">Buscar registros</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Categoría:</label>
+                            <div>
+                                <input type="text"  [(ngModel)]="form.nombre" class="form-control" placeholder="Categoría">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="">Estado:</label>
+                            <div>
+                                <nz-select nzAllowClear nzShowSearch nzPlaceHolder="--Todos--"
+                                [(ngModel)]="form.es_eliminado">
+                                    <ng-container *ngFor="let item of array_estado">
+                                        <nz-option [nzValue]="item.valor" [nzLabel]="item.nombre"></nz-option>
+                                    </ng-container>
+                                </nz-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer text-center">
+                <button type="button" class="btn btn-default-custom" (click)="clean_all()"><i class="fa fa-eraser"
+                    aria-hidden="true"></i> Limpiar</button>
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-primary-custom" (click)="get_list()"><i class="fa fa-search"></i> Buscar</button>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container>
+        <div class="row">
+            <div class="col-sm-12 text-right">
+                <div class="form-group" style="margin-top: -15px;">
+                    <button class="btn btn-primary-custom pull-right" (click)="show_save_edit(null,true)">
+                        <i class="fa fa-plus-circle"></i> Crear categoria
+                    </button>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container> 
+        <div class="table-responsive table-striped table-bordered table-hover">
+            <nz-table #ajaxTable class="container-table-custom" nzShowSizeChanger [nzFrontPagination]="false"
+            [nzBordered]="true" [nzData]="CategoriasList" [nzLoading]="cargando_tabla" [nzTotal]="total"
+            [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" (nzPageIndexChange)="handleClickBuscar()"
+            (nzPageSizeChange)="handleClickBuscar(true)">
+    
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th WIDTH="800">Categoría</th>
+                        <th>Estado</th>
+                        <th WIDTH="100">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of ajaxTable.data; let i = index">
+                        <td align="center">{{ (pageSize * (pageIndex - 1)) + (i + 1) }}</td>
+                        <td>{{ item.nombre}}</td>
+                        <td align="center">{{ item.es_eliminado?'Anulado':'Activo' }}</td>              
+                        <td align="center" >
+                            <ng-container  *ngIf="item.es_eliminado==false">
+                                <a class="btn btn-icon"  data-tooltip="tooltip" data-placement="bottom" 
+                                title="Editar" (click)="show_save_edit(item,true)">
+                                    <i class="fa fa-edit" aria-hidden="true"></i>
+                                </a>
+                            </ng-container>
+                            <ng-container>
+                                <a class="btn btn-icon"  data-tooltip="tooltip" data-placement="bottom" 
+                                title="Visualizar" (click)="show_save_edit(item,false)">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                </a>
+                            </ng-container>  
+                            <ng-container *ngIf="item.es_eliminado==false">
+                                <a  class="btn btn-icon" data-tooltip="tooltip" data-placement="bottom" (click)="_enable_disable(item.id_categoria_extranet,true)" 
+                                title="Eliminar" >
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </a>
+                            </ng-container>
+                            <ng-container *ngIf="item.es_eliminado">
+                                <a  class="btn btn-icon" data-tooltip="tooltip" data-placement="bottom" (click)="_enable_disable(item.id_categoria_extranet,false)"
+                                 title="Habilitar" >
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                </a>
+                            </ng-container>
+                        </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+    </ng-container>
+    
+    <ng-container *ngIf="isVisibleModal">
+        <app-save-update-categoria-ext
+        [allow_edit]="allow_edit"   
+        [categoria]="selected_categoria"
+        [isVisibleModal]="isVisibleModal"
+        [title]="title_modal"
+        (onCloseForm)="handleOnCloseModal($event)"></app-save-update-categoria-ext>
+    </ng-container>
+    

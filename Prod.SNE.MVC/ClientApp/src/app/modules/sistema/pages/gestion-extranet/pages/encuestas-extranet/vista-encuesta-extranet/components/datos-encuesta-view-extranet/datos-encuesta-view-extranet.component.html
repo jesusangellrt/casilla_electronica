@@ -1,0 +1,385 @@
+
+<form [formGroup]="formMACRO">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for=""><span class="span_required">*</span> Titulo de encuesta:</label>
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Debe ingresar el titulo.">
+                        <nz-input-group>
+                            <input type="text" nz-input formControlName="Titulo" 
+                            class="form-control" placeholder="--Ingresar titulo--"
+                            [(ngModel)]="frm_main_data.titulo"  [disabled]="true" nzDisabled/>
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for=""><span class="span_required">*</span> Encabezado:</label>
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Debe ingresar el encabezado.">
+                        <nz-input-group>
+                            <input type="text" nz-input formControlName="Encabezado" 
+                            class="form-control" placeholder="--Ingresar encabezado--"
+                            [(ngModel)]="frm_main_data.encabezado" [disabled]="true" nzDisabled/>
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for=""><span class="span_required">*</span> Objetivo:</label>
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Debe ingresar el objetivo.">
+                        <nz-input-group>
+                            <textarea formControlName="Objetivo" [disabled]="true" nz-input nzDisabled class="form-control" 
+                            [(ngModel)]="frm_main_data.objetivo" placeholder="--Ingresar objetivo--"></textarea>
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for=""><span class="span_required">*</span> Descripción:</label>
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Debe ingresar una descripción.">
+                        <nz-input-group>
+                            <textarea formControlName="Descripcion"  [disabled]="true" nz-input
+                            nzDisabled
+                            class="form-control" 
+                            [(ngModel)]="frm_main_data.descripcion" placeholder="--Ingresar una breve descripción--"></textarea>
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for=""><span class="span_required">*</span> Fecha y hora de inicio de vigencia:</label>
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Debe ingresar fecha y hora.">
+                        <nz-input-group>
+                            <nz-date-picker formControlName="FechaHoraInicio" 
+                            nzDisabled
+                            [(ngModel)]="frm_main_data.fecha_inicio"
+                            nzShowTime nzFormat="dd/MM/yyyy HH:mm a" ngModel
+                            ></nz-date-picker>
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for=""><span class="span_required">*</span> Fecha y hora de fin de vigencia:</label>
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Debe ingresar fecha y hora.">
+                        <nz-input-group>
+                            <nz-date-picker formControlName="FechaHoraFin" nzDisabled
+                            [(ngModel)]="frm_main_data.fecha_fin"
+                            nzShowTime nzFormat="dd/MM/yyyy HH:mm a" ngModel
+                            ></nz-date-picker>
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for=""><span class="span_required">*</span> Tiempo estimado en minutos:</label>
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Debe ingresar el tiempo estimado.">
+                        <nz-input-group>
+                            <nz-input-number 
+                                nzDisabled
+                                formControlName="TiempoEstimado"
+                                [(ngModel)]="frm_main_data.tiempo_estimado" 
+                                [nzMin]="1" 
+                                [nzMax]="300" 
+                                [nzStep]="1">
+                            </nz-input-number>
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-5">
+            <p>
+                <label nz-checkbox  formControlName="EsAnonima"  nzDisabled
+                [(ngModel)]="frm_main_data.es_anonima" 	>Es una encuesta anónima</label> 
+            </p>
+            <p>
+                <label nz-checkbox  formControlName="EsParaTodos" 
+                [(ngModel)]="frm_main_data.es_todos" nzDisabled
+                >Es una encuesta para todos los trabajadores</label> 
+            </p>
+            <div class="form-group" *ngIf="_show_mensaje_bienvenida_anonima">
+                <label for="">Mensaje para encuesta anónima:</label>
+                <nz-form-item>
+                    <nz-form-control>
+                        <nz-input-group>
+                            <textarea formControlName="MensajeAnonimo"[disabled]="true"  nz-input
+                            nzDisabled
+                            class="form-control" 
+                            [(ngModel)]="frm_main_data.mensaje_es_anonima" placeholder="--Ingresar mensaje para anónimos--"></textarea>
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+    </div>
+
+    <hr class="mt-0">
+    <h5 class="title-custom">Presentación</h5>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for=""><span class="span_required">*</span> Adjuntar imagen en segundo plano (pasar el mouse)</label>
+                <app-file-uploader-custom  
+                [puedeEliminarArchivo]="false"
+                [puedeCargarArchivo]="false"
+                [fileInfo]="true"  
+                [id]="frm_main_data.iden_imagen_presentacion" 
+                [(Files)]="_imagen_archivo" 
+                [(Uploading)]="estaGuardando"
+                [pesoMaximoEnMB]="pesoMaximoEnMB" 
+                [esBorrador]="false" 
+                [extensionAceptados]="imagen_extensionAceptados" 
+                [tiposMimePermitidos]="imagen_MimePermitidos"
+                [error_msg]="'Debe adjuntar una imagen.'"
+                [view_width]="600"
+                [puedeVerArchivo]="true"
+                [url]="url" 
+                [loading]="estaGuardando">
+                </app-file-uploader-custom>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-5">
+            <div class="form-group" *ngIf="!_show_mensaje_bienvenida_anonima">
+                <label for="">Mensaje corto de presentación:</label>
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Debe ingresar el mensaje corto de presentación.">
+                        <nz-input-group>
+                            <input type="text"[disabled]="true" nz-input nzDisabled
+                            formControlName="MensajePresentacion" 
+                            class="form-control" placeholder="--Ingresar mensaje corto de presentación--"
+                            [(ngModel)]="frm_main_data.mensaje_corto_presentacion" />
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+    </div>
+    <hr class="mt-0">
+    <h5 class="title-custom">Mensaje de bienvenida</h5>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for=""><span class="span_required">*</span> Indicaciones de encuesta</label>
+                <div style="border: 1px solid rgb(217, 217, 217) !important;">
+                    <ckeditor [editor]="editor" [config]="configEditor" [(ngModel)]="frm_welcome_data.indicaciones" 
+                    formControlName="IndicacionesBienvenida"
+                    placeholder="--Ingresar indicaciones--"
+                    [disabled]="true"
+                    (ready)="onReady($event)" (change)="onChange($event)"></ckeditor>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="">Adjuntar audio de mensaje de bienvenida:</label>
+                <div>
+                    <app-audio-uploader-custom 
+                    [fileInfo]="true" 
+                    [puedeEliminarArchivo]="false"
+                    [puedeCargarArchivo]="false"
+                    [id]="frm_welcome_data.iden_audio" 
+                    [(Files)]="audio_archivo" 
+                    [(Uploading)]="audio_estaGuardando"
+                    [pesoMaximoEnMB]="pesoMaximoEnMB" 
+                    [esBorrador]="false" 
+                    [puedeVerArchivo]="true"
+                            [url]="url" 
+                            [loading]="audio_estaGuardando">
+                    </app-audio-uploader-custom>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for=""><span class="span_required">*</span> Tipo de archivo de bienvenida:</label>
+                <div>
+                    <nz-form-item>
+                        <nz-form-control nzErrorTip="Debe seleccionar el tipo de archivo de bienvenida.">
+                            <nz-input-group>
+                                <nz-select nzAllowClear nzShowSearch 
+                                nzDisabled
+                                nzPlaceHolder="--Seleccionar--"
+                                [(ngModel)]="frm_welcome_data.id_tipo_archivo"
+                                formControlName="TipoArchivoBienvenida">
+                                    <ng-container *ngFor="let item of array_tipo_file">
+                                        <nz-option [nzValue]="item.id_enumerado" [nzLabel]="item.nombre"></nz-option>
+                                    </ng-container>
+                                </nz-select>
+                            </nz-input-group>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>
+            <div class="form-group" [hidden]="!show_url_welcome">
+                <label for=""><span class="span_required">*</span> Url de video de bienvenida:</label>
+                <div>
+                    <input type="text" nz-input [disabled]="true" nzDisabled class="form-control" 
+                    formControlName="UrlMultimediaBienvenida"
+                    placeholder="--https://www.youtube.com/watch?v=FM7MFYoylVs--" 
+                    formControlName="UrlMultimediaBienvenida"
+                    [(ngModel)]="frm_welcome_data.url_video">
+                </div>
+            </div>
+            <div class="form-group"[hidden]="!show_file_input_welcome">
+                <label for=""><span class="span_required">*</span> Adjuntar imagen de bienvenida:</label>
+                <div>
+                    <app-file-uploader-custom  
+                    [puedeEliminarArchivo]="false"
+                    [puedeCargarArchivo]="false"
+                    [fileInfo]="true"  
+                    [id]="frm_welcome_data.iden_imagen" 
+                    [(Files)]="archivo" 
+                    [(Uploading)]="estaGuardando"
+                    [pesoMaximoEnMB]="pesoMaximoEnMB" 
+                    [esBorrador]="false" 
+                    [extensionAceptados]="imagen_extensionAceptados"
+                    [tiposMimePermitidos]="imagen_MimePermitidos"
+                    [error_msg]="'Debe adjuntar una imagen.'"
+                    [view_width]="600"
+                    [puedeVerArchivo]="true"
+                            [url]="url" 
+                            [loading]="estaGuardando">
+                    </app-file-uploader-custom>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="mt-0">
+    <h5 class="title-custom">Mensaje de agradecimiento</h5>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for=""><span class="span_required">*</span> Titulo de mensaje de agradecimiento:</label>
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Debe ingresar el mensaje de agradecimiento.!">
+                        <nz-input-group>
+                            <input type="text" [disabled]="true" nz-input nzDisabled formControlName="IndicacionesAgradecimiento" 
+                            class="form-control" placeholder="--Ingresar mensaje de agradecimiento--"
+                            [(ngModel)]="frm_greet_data.mensaje_agradecimiento" />
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="">Adjuntar audio de mensaje de agradecimiento:</label>
+                <div>
+                    <app-audio-uploader-custom  
+                    [fileInfo]="true" 
+                    [puedeEliminarArchivo]="false"
+                    [puedeCargarArchivo]="false"
+                    [id]="frm_greet_data.iden_audio" 
+                    [(Files)]="audio_archivo" 
+                    [(Uploading)]="audio_estaGuardando"
+                    [pesoMaximoEnMB]="pesoMaximoEnMB" 
+                    [esBorrador]="false" 
+                    [puedeVerArchivo]="true"
+                            [url]="url" 
+                            [loading]="audio_estaGuardando">
+                    </app-audio-uploader-custom>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for=""><span class="span_required">*</span> Tipo de archivo de agradecimiento:</label>
+                <div>
+                    <nz-form-item>
+                        <nz-form-control nzErrorTip="Debe seleccionar un tipo de archivo.">
+                            <nz-input-group>
+                                <nz-select nzAllowClear nzShowSearch 
+                                nzPlaceHolder="--Seleccionar--"
+                                nzDisabled
+                                [(ngModel)]="frm_greet_data.id_tipo_archivo"
+                                formControlName="TipoArchivoAgradecimiento">
+                                    <ng-container *ngFor="let item of array_tipo_file">
+                                        <nz-option [nzValue]="item.id_enumerado" [nzLabel]="item.nombre"></nz-option>
+                                    </ng-container>
+                                </nz-select>
+                            </nz-input-group>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+            </div>
+            <div class="form-group"[hidden]="!show_file_agradecimiento">
+                <label for=""><span class="span_required">*</span> Adjuntar imagen de agradecimiento:</label>
+                <div>
+                    <app-file-uploader-custom  
+                    [puedeEliminarArchivo]="false"
+                    [puedeCargarArchivo]="false"
+                    [fileInfo]="true"  
+                    [id]="frm_greet_data.iden_imagen" 
+                    [(Files)]="archivo" 
+                    [(Uploading)]="estaGuardando"
+                    [pesoMaximoEnMB]="pesoMaximoEnMB" 
+                    [esBorrador]="false" 
+                    [extensionAceptados]="imagen_extensionAceptados"
+                    [tiposMimePermitidos]="imagen_MimePermitidos"
+                    [error_msg]="'Debe adjuntar una imagen.'"
+                    [view_width]="600"
+                    [puedeVerArchivo]="true"
+                            [url]="url" 
+                            [loading]="estaGuardando">
+                    </app-file-uploader-custom>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-5">
+            <div class="form-group" [hidden]="!show_url">
+                <label for=""><span class="span_required">*</span> Url de video de agradecimiento:</label>
+                <div>
+                    <input type="text" nz-input [disabled]="true" nzDisabled  class="form-control" 
+                    placeholder="Url de video de agradecimiento" 
+                    formControlName="UrlMultimediaAgradecimiento"
+                    [(ngModel)]="frm_greet_data.url_video">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="row">
+    <div class="col-sm-6 text-left">
+        <button type="button" class="btn btn-default-custom" 
+        [routerLink]="['/sistema/gestion-extranet/gestor-encuestas-extranet']">
+            Cancelar
+        </button>
+    </div>
+</div>

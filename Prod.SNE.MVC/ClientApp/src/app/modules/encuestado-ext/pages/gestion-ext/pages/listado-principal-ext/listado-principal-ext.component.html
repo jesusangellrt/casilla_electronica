@@ -1,0 +1,65 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Procesando información, por favor no cierre la ventana.</p>
+</ngx-spinner>
+<div class="_container" *ngIf="show_actual_list">
+    <div class="row" style="padding-left: 11px;">
+        <div class="col-md-12">
+            <p class="text-general">Completa estas encuestas para conocer tu opinión</p>
+        </div>
+        <div class="col-md-12" style="padding-top: 10px;">
+            
+                <div class="col-md-3 div-bloque" style="width: 268px" *ngFor="let item of array_paged_front;let idx of index"
+                [ngStyle]="{'opacity' : item.fecha_fin_date<today ? 0.5 : 1}">
+                    <div class="row">
+                        <div class="col-md-12 div-cabecera">
+                            <span *ngIf="item.es_anonima" class="bg-warning text-anonimo">*Esta encuesta es anónima</span>        
+                        </div>
+                        <div class="col-md-12" style="padding: 25px 25px 15px 25px;">
+                            <span class="text-activo">Encuesta</span>
+                        </div>
+                        <div class="col-md-12" style="padding: 0px 25px 0px 25px;">
+                            <h3 class="text-titulo">{{item.titulo}}</h3>
+                        </div>
+                        <div class="col-md-12 text-fecha" style="padding: 0px 25px 5px 25px;">
+                            <span class="text-fechas">Desde {{item.fecha_inicio | date:'dd/MM/yyyy'}}</span><br>
+                            <span class="text-fechas">Hasta {{item.fecha_fin | date:'dd/MM/yyyy'}}</span>
+                        </div>
+                       <div class="col-md-12" *ngIf="!item.resuelto && item.fecha_fin_date>today && item.id_estado_resuelto ==_ESTADO.sin_comenzar" style="padding: 25px">
+                            <button type="button" class="btn btn-default btn-comenzar" (click)="verParaLLenado(item)">Comenzar</button>
+                        </div>
+                        <div class="col-md-12" *ngIf="!item.resuelto && item.fecha_fin_date>today && item.id_estado_resuelto == _ESTADO.comenzada"
+                         style="padding: 25px">
+                            <button type="button" class="btn btn-success btn-completar" (click)="verParaLLenado(item)">Continuar</button>
+                        </div>
+                        <div class="col-md-12" *ngIf="item.resuelto && item.id_estado_resuelto == _ESTADO.completada" style="padding: 25px">
+                            <span class="bg-primary text-completado">Encuesta completada</span>
+                        </div>
+                        <!--<div class="col-md-12" *ngIf="item.resuelto && item.id_estado_resuelto == _ESTADO.completada" style="padding: 25px">
+                            <span class="bg-primary text-completado">Encuesta completada</span>
+                        </div>-->
+                        <div class="col-md-12" *ngIf="!item.resuelto && item.fecha_fin_date<today" style="padding: 25px">
+                            <span class="bg-primary text-finalizado">Encuesta finalizada</span>
+                        </div>                        
+                    </div>
+                </div>
+           
+        </div>
+        <div class="col-md-12">
+            <p class="text-todas" (click)="goListadoTodosEncuestas()" style="padding-top: 40px;"><u>Ver todas las encuestas</u></p>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="verItemParaLLenado">
+    <app-vista-encuesta-ext *ngIf="verItemParaLLenado"
+    (onGoInicio)="handleGoInicio($event)"
+    [main_data]="encuesta_main_data"
+    [welcome_data]="encuesta_welcome_data"
+    [indicaciones]="indicaciones"
+    [agradecimiento_data]="encuesta_agradecimiento_data"></app-vista-encuesta-ext>
+</ng-container>
+<ng-container *ngIf="verListadoTodos">
+    <app-listado-todos-por-usuario-ext *ngIf="verListadoTodos"
+    (onGoListadoPrincipal)="handleGoListadoPrincipal($event)">
+    </app-listado-todos-por-usuario-ext>
+</ng-container>

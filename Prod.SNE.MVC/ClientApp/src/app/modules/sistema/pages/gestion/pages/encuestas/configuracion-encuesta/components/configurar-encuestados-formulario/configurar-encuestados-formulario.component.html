@@ -1,0 +1,167 @@
+<nz-modal 
+  [(nzVisible)]="isVisibleModal" 
+  nzTitle="Agregar Encuestados" 
+  nzWidth="1200" 
+  nzClosable="false"
+  [nzFooter]="extraTemplate">
+    <div class="panel panel-default panel-custom">
+        <div class="panel-heading">Buscar Encuestado</div>
+        <div class="panel-body">
+            <div>                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group mb-0">
+                            <label for="">Dependencia</label>
+                            <div>                                
+                                <nz-select
+                                nzPlaceHolder="--Todos--"
+                                nzAllowClear
+                                nzShowSearch   
+                                [(ngModel)]="form.codigo_dependencia"             
+                            >    
+                            <ng-container *ngFor="let item of list_dependencia">
+                                <nz-option
+                                [nzValue]="item.id"
+                                [nzLabel]="item.nombre"
+                                ></nz-option>
+                            </ng-container>      
+                            </nz-select>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-0">
+                            <label for="">Régimen</label>
+                            <div>
+                                <nz-select
+                                nzPlaceHolder="--Todos--"
+                                nzAllowClear
+                                nzShowSearch   
+                                [(ngModel)]="form.id_regimen"             
+                                >    
+                                <ng-container *ngFor="let item of list_regimen">
+                                <nz-option
+                                    [nzValue]="item.id"
+                                    [nzLabel]="item.nombre"
+                                ></nz-option>
+                                </ng-container>      
+                                </nz-select>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">DNI</label>
+                            <div>
+                                <input type="text" class="form-control" placeholder="DNI" [(ngModel)]="form.dni">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label">Nombres y Apellidos</label>
+                            <div>
+                                <input type="text" class="form-control" placeholder="Nombres y Apellidos" [(ngModel)]="form.nombres_apellidos">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+        
+
+    
+        <div class="panel-footer text-center">
+            <button (click)="getListadoOnly()" type="button" class="btn btn-primary-custom"><i class="fa fa-search"></i> Buscar</button>
+            <button (click)="handleClickLimpiar()" type="button" class="btn btn-default-custom"><i class="fa fa-eraser" aria-hidden="true"></i> Limpiar</button>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="row">
+            <div class="col-md-12 table-responsive">
+                <!--
+                    #ajaxTable class="container-table-custom" 
+                    nzShowSizeChanger 
+                    [nzFrontPagination]="false" 
+                    [nzBordered]="true" 
+                    [nzData]="listaEncuestados"
+                    [nzTotal]="total" 
+                    [(nzPageIndex)]="pageIndex"
+                    [(nzPageSize)]="pageSize" 
+                    (nzPageIndexChange)="handleClickBuscar()" 
+                    [nzLoading]="loading_table"
+                    (nzPageSizeChange)="handleClickBuscar(true)"
+
+                -->
+                <nz-table 
+                    #ajaxTable class="container-table-custom" 
+                    nzShowSizeChanger 
+                    [nzFrontPagination]="true" 
+                    [nzBordered]="true" 
+                    [nzData]="listaEncuestados"
+                    [nzLoading]="loading_table"
+                    [(nzPageIndex)]="pageIndex"
+                    [(nzPageSize)]="pageSize" 
+                    >
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th 
+                            [nzShowSort]="true"
+                            [nzSort]="null"
+                            [nzSortKey]="'dni'"
+                            (nzSortChangeWithKey)="handleSortByKey($event)">DNI</th>
+                            <th 
+                            [nzShowSort]="true"
+                            [nzSort]="null"
+                            [nzSortKey]="'nombres_apellidos'"
+                            (nzSortChangeWithKey)="handleSortByKey($event,'string')">NOMBRES Y APELLIDOS</th>
+                            <th 
+                            [nzShowSort]="true"
+                            [nzSort]="null"
+                            [nzSortKey]="'dependencia'"
+                            (nzSortChangeWithKey)="handleSortByKey($event,'string')">DEPENDENCIA</th>
+                            <th  
+                            [nzShowSort]="true"
+                            [nzSort]="null"
+                            [nzSortKey]="'str_regimen'"
+                            (nzSortChangeWithKey)="handleSortByKey($event,'string')">RÉGIMEN</th>
+                            <th>
+                                <label nz-checkbox  
+                                [(ngModel)]="es_seleccionado"
+                                (ngModelChange)="handleChangeTodoSeleccion($event)"></label>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of ajaxTable.data; let i = index">
+                            <td align="center">{{ item.nro }}</td>
+                            <td align="center">{{ item.dni }}</td>
+                            <td align="center">{{ item.nombres_apellidos }}</td>                     
+                            <td align="center">{{ item.dependencia}}</td>
+                            <td align="center">{{ item.str_regimen}}</td>
+                            <td align="center">
+                                <label nz-checkbox [(ngModel)]="item.es_seleccionado" 
+                                (ngModelChange)="handleChangeSeleccion($event, item)" ></label>
+                            </td>                           
+                        </tr>
+                    </tbody>
+                </nz-table>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #extraTemplate>      
+        <div class="row">
+            <div class="col-sm-6 text-left"><button type="button" class="btn btn-default-custom" (click)="handleCerrarFormularioModal()"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button></div>
+            <div class="col-sm-6 text-right"><button nz-button nzType="primary" (click)="handleCerrarFormularioModal(true)"><i class="fa fa-check" aria-hidden="true"></i> Confirmar Selección</button></div>
+        </div>  
+    </ng-template>
+</nz-modal>

@@ -1,0 +1,25 @@
+.hoverable:hover{
+    cursor:pointer;
+}
+
+.hoverable_txt:hover{
+    cursor:pointer;
+    background-color:#ffc1c1;
+}
+.is_selected_tipo{
+    background-color:#ffc1c1;
+}
+.btn_span {
+    float: right;
+    margin-right: 6px;
+    margin-top: -25px;
+    position: relative;
+    z-index: 2;
+    /*color: #244DAE;*/
+    /*background-color:#E9ECEF;*/
+    font-weight: bolder;
+}
+/*
+.btn_span:hover{
+    cursor: pointer;
+}*/

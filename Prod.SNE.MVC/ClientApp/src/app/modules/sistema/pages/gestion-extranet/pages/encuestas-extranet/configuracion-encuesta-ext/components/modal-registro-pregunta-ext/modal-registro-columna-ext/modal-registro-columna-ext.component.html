@@ -1,0 +1,337 @@
+<nz-modal 
+  [(nzVisible)]="isVisibleModalMatriz" 
+  nzTitle="{{title}}" 
+  [nzWidth]="modal_width" 
+  nzClosable="false"
+  [nzFooter]="extraEndTemplateMatriz">
+    <ng-container >
+        <div>
+            <!--BEGIN FORMATOS-->
+            <div class="row" *ngIf="forma.id_tipo_pregunta==_TIPO_PREGUNTA.archivo">
+                <div class="col-md-12">
+                    <label for=""><span class="span_required">*</span> Tipo de archivo</label>
+                    <div style="padding-left: 10px" *ngFor="let item of array_archivo_tipo_archivo_columna; let i = index">
+                        <input style="background-color: #dc3545;
+                        border-color: #dc3545;" class=""
+                        id="{{item.id_enumerado}}"
+                        name="checkTipoArchivo"
+                        type="checkbox"
+                        [checked]="item.selected"
+                        (change)="change_archivo_byTipo($event)"/>&nbsp;
+                        <label for="{{item.id_enumerado}}">{{ item.nombre }}</label>
+                    </div>
+                    <div style="padding-left: 10px" *ngIf="error_archivo_tipo_archivo" class="has-error">
+                        <div class="ant-form-explain">
+                            Debe seleccionar al menos un tipo de archivo.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="forma.id_tipo_pregunta==_TIPO_PREGUNTA.desplegable_institucional">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for=""><span class="span_required">*</span> Maestro institucional</label>
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Debe seleccionar el maestro institucional!">
+                                <nz-input-group>
+                                    <nz-select nzAllowClear nzShowSearch 
+                                    [(ngModel)]="JSON_DESPLEGABLE_INSTITUCIONAL.tbl_data"
+                                    [formControl]="frmMaestroInstitucional"
+                                    [nzDisabled]="false"
+                                    nzPlaceHolder="--Seleccione--">
+                                        <ng-container *ngFor="let item of array_maestro_institucional">
+                                            <nz-option [nzValue]="item.id_enumerado" [nzLabel]="item.nombre"></nz-option>
+                                        </ng-container>
+                                    </nz-select>
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="forma.id_tipo_pregunta==_TIPO_PREGUNTA.numerico_entero">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for=""><span class="span_required">*</span> Cantidad de digitos enteros</label>
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Debe ingresar los digitos enteros!">
+                                <nz-input-group>
+                                    <nz-input-number 
+                                        [formControl]="frmCantidadDigitosEnteros"
+                                        [(ngModel)]="JSON_NUMERICO_ENTERO.nro_entero" 
+                                        [nzMin]="1" 
+                                        [nzMax]="9" 
+                                        [nzStep]="1">
+                                    </nz-input-number>
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="forma.id_tipo_pregunta==_TIPO_PREGUNTA.numerico_decimal">
+                <div class="col-sm-6" >
+                    <div class="form-group">
+                        <label for=""><span class="span_required">*</span> Cantidad de digitos entero</label>
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Debe ingresar los digitos entero!">
+                                <nz-input-group>
+                                    <nz-input-number 
+                                        [formControl]="frmCantidadDigitosEnteros"
+                                        [(ngModel)]="JSON_NUMERICO_DECIMAL.nro_entero" 
+                                        [nzMin]="1" 
+                                        [nzMax]="9" 
+                                        [nzStep]="1">
+                                    </nz-input-number>
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for=""><span class="span_required">*</span> Cantidad de digitos decimales</label>
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Debe ingresar los digitos decimales!">
+                                <nz-input-group>
+                                    <nz-input-number 
+                                        [formControl]="frmCantidadDigitos"
+                                        [(ngModel)]="JSON_NUMERICO_DECIMAL.nro_decimal" 
+                                        [nzMin]="1" 
+                                        [nzMax]="5" 
+                                        [nzStep]="1">
+                                    </nz-input-number>
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="forma.id_tipo_pregunta==_TIPO_PREGUNTA.fecha">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for=""><span class="span_required">*</span> Tipo de fecha</label>
+                        <div style="padding-left: 10px">
+                            <input style="background-color: #dc3545; border-color: #dc3545;" type="checkbox" [(ngModel)]="checkbox1" id="1" (change)="uncheck('anio')" name="anio"> solo año<br>
+                            <input style="background-color: #dc3545; border-color: #dc3545;" type="checkbox" [(ngModel)]="checkbox2" id="2" (change)="uncheck('mes_anio')" name="mes_anio"> mes/año<br>
+                            <input style="background-color: #dc3545; border-color: #dc3545;" type="checkbox" [(ngModel)]="checkbox3" id="3" (change)="uncheck('dia_mes_anio')" name="dia_mes_anio"> día/mes/año<br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="forma.id_tipo_pregunta==_TIPO_PREGUNTA.texto">
+                <div class="col-sm-12">
+                    <label for="">Indicar cantidad máxima de caracteres</label>
+                        <nz-form-item>
+                            <nz-form-control>
+                                <nz-input-group>
+                                    <nz-input-number 
+                                        [formControl]="frmCantidadCarateres"
+                                        [(ngModel)]="JSON_NUMERICO_TEXTO.nro_caracteres" 
+                                        [nzMin]="1" 
+                                        [nzMax]="1000" 
+                                        [nzStep]="1">
+                                    </nz-input-number>
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                </div>
+            </div>
+            <div class="row col-sm-12" *ngIf="
+            forma.id_tipo_pregunta==_TIPO_PREGUNTA.desplegable_libre
+            || forma.id_tipo_pregunta==_TIPO_PREGUNTA.seleccion_unica 
+            || forma.id_tipo_pregunta==_TIPO_PREGUNTA.seleccion_multiple">
+                <div class="panel panel-default panel-custom">
+                    <div class="panel-heading">Alternativas</div>
+                    <div class="panel-body">                    
+                        <ng-container>
+                            <div class="row">
+                                <div class="col-sm-12 text-left">
+                                    <div>
+                                        <button class="btn btn-primary-custom pull-left" (click)="_add_alternativa_table()">
+                                            <i class="fa fa-plus-circle"></i> Agregar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="table-responsive table-striped table-bordered table-hover">
+                                        <nz-table #ajaxTable class="container-table-custom" nzShowSizeChanger 
+                                        [nzFrontPagination]="true" [nzBordered]="true" [nzLoading]="cargando_tabla" 
+                                        [nzData]="array_alternativa_select">
+                                            <thead>
+                                                <tr>
+                                                    <th>N°</th>
+                                                    <th WIDTH="450">Descripción</th>
+                                                    <th WIDTH="80">Acción</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let item of ajaxTable.data; let i = index">
+                                                    <td align="center">{{ (item.idx+1) }}</td>
+                                                    <td>
+                                                        <nz-form-item>
+                                                            <nz-form-control nzErrorTip="Debe ingresar la descripción!">
+                                                                <nz-input-group>
+                                                                    <input class="form-control" type="text" 
+                                                                    [formControl]="frmAlternativaDescripcion[item.idx]"
+                                                                    placeholder="--Ingresar descripción de opción--"
+                                                                    [(ngModel)]="item.descripcion" >
+                                                                </nz-input-group>
+                                                            </nz-form-control>
+                                                         </nz-form-item>
+                                                    </td>               
+                                                    <td align="center" >
+                                                        <ng-container>
+                                                            <a  class="btn btn-icon" (click)="_delete_alternativa_table(item.idx)" 
+                                                                data-tooltip="tooltip" data-placement="bottom" title="Eliminar" >
+                                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                            </a>
+                                                        </ng-container>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </nz-table>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="forma.id_tipo_pregunta==_TIPO_PREGUNTA.matriz">
+                <div class="col-md-6 col-sm-12">
+                    <div class="panel panel-default panel-custom">
+                        <div class="panel-heading">Filas</div>
+                        <div class="panel-body">                    
+                            <ng-container>
+                                <div class="row">
+                                    <div class="col-sm-12 text-left">
+                                        <div>
+                                            <button class="btn btn-primary-custom pull-left">
+                                                <i class="fa fa-plus-circle"></i> Agregar
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="table-responsive table-striped table-bordered table-hover">
+                                            <nz-table #ajaxTableMatriz class="container-table-custom" nzShowSizeChanger 
+                                            [nzFrontPagination]="true" [nzBordered]="true" [nzLoading]="cargando_tabla" 
+                                            [nzData]="array_filas">
+                                                <thead>
+                                                    <tr>
+                                                        <th>N°</th>
+                                                        <th WIDTH="400">Descripción</th>
+                                                        <th WIDTH="50">Acción</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let item of ajaxTableMatriz.data;">
+                                                        <td align="center">{{ (item.idx+1) }}</td>
+                                                        <td>
+                                                            <nz-form-item>
+                                                                <nz-form-control nzErrorTip="Debe ingresar la descripción de fila">
+                                                                    <nz-input-group>
+                                                                        <input class="form-control" type="text" 
+                                                                        placeholder="--Ingresar descripción de fila--"
+                                                                        [(ngModel)]="item.nombre_fila" >
+                                                                    </nz-input-group>
+                                                                </nz-form-control>
+                                                             </nz-form-item>
+                                                        </td>             
+                                                        <td align="center" >
+                                                            <ng-container>
+                                                                <a  class="btn btn-icon" 
+                                                                    data-tooltip="tooltip" data-placement="bottom" title="Eliminar" >
+                                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                </a>
+                                                            </ng-container>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </nz-table>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="error_filas_matriz" class="has-error">
+                                        <div class="ant-form-explain">
+                                            Debe ingresar por lo menos una (1) fila.
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="panel panel-default panel-custom">
+                        <div class="panel-heading">Columnas</div>
+                        <div class="panel-body">                    
+                            <ng-container>
+                                <div class="row">
+                                    <div class="col-sm-12 text-left">
+                                        <div>
+                                            <button class="btn btn-primary-custom pull-left">
+                                                <i class="fa fa-plus-circle"></i> Agregar
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="table-responsive table-striped table-bordered table-hover">
+                                            <nz-table #ajaxTableColumnas class="container-table-custom" nzShowSizeChanger 
+                                            [nzFrontPagination]="true" [nzBordered]="true" [nzLoading]="cargando_columnas" 
+                                            [nzData]="array_columnas">
+                                                <thead>
+                                                    <tr>
+                                                        <th>N°</th>
+                                                        <th WIDTH="400">Descripción</th>
+                                                        <th WIDTH="50">Acción</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let item of ajaxTableColumnas.data;">
+                                                        <td align="center">{{ (item.idx+1) }}</td>
+                                                        <td>
+                                                            <nz-form-item>
+                                                                <nz-form-control nzErrorTip="Debe ingresar la descripción de columna">
+                                                                    <nz-input-group>
+                                                                        <input class="form-control" type="text" 
+                                                                        placeholder="--Ingresar descripción de columna--"
+                                                                        [(ngModel)]="item.nombre_columna" >
+                                                                    </nz-input-group>
+                                                                </nz-form-control>
+                                                            </nz-form-item>
+                                                        </td>             
+                                                        <td align="center" >
+                                                            <ng-container>
+                                                                <a  class="btn btn-icon" 
+                                                                    data-tooltip="tooltip" data-placement="bottom" title="Eliminar" >
+                                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                </a>
+                                                            </ng-container>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </nz-table>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="error_columnas_matriz" class="has-error">
+                                        <div class="ant-form-explain">
+                                            Debe ingresar por lo menos una (1) columna.
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--END FORMATOS-->
+        </div>
+    </ng-container>
+    <ng-template #extraEndTemplateMatriz>      
+        <div class="row">
+            <div class="col-sm-6 text-left"><button type="button" class="btn btn-default-custom" 
+                (click)="handleCancelarFormularioModal()"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button></div>
+            <div class="col-sm-6 text-right"><button nz-button nzType="primary" (click)="handleSaveFormularioModal()"><i class="fa fa-save" aria-hidden="true"></i> Guardar</button></div>
+        </div>  
+    </ng-template>
+</nz-modal>

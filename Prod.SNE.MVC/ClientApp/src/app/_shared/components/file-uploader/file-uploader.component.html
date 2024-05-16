@@ -1,0 +1,58 @@
+<form #form>
+    <div class="form-horizontal">
+        <div class="input-group">
+            <label>
+                <input type="file" ng2FileSelect 
+                       [uploader]="uploader" 
+                       class="fileinput"                        
+                       (change)="handleChangeFileInput()" />
+                <span class="btn btn-secondary-custom">Seleccionar archivo</span>
+                <span *ngIf="fileToUpload"> {{ fileToUpload.name }}</span>
+            </label>
+            <span class="input-group-btn">
+                <button class="btn btn-primary-custom" 
+                        type="button" [disabled]="!_file || _uploading" 
+                        (click)="onUploadFiles()"
+                        tooltip="Subir archivos pendientes">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                </button>
+                <button class="btn btn-default-custom" 
+                        type="button" 
+                        [disabled]="!_file || _uploading" 
+                        tooltip="Resetear">
+                    <i class="fa fa-trash" aria-hidden="true" (click)="onResetFileInput()"></i>
+                </button>
+            </span>
+            <span class="input-group-btn">                
+            </span>           
+        </div>
+    </div>
+    <!--<div class="bottom-10"></div>-->
+    <span class="help-block" *ngIf="error">{{ error }}</span>
+</form>
+
+<div class="table-responsive" *ngIf="false">
+    <table class="table table-custom table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Archivo</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of uploader.queue">
+                <td>{{ item.file.name }}</td>
+                <td>
+                    {{
+                    item.isUploading
+                    ? "Subiendo..."
+                    : item.isUploaded
+                    ? "Subido"
+                    : "Pendiente"
+                    }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

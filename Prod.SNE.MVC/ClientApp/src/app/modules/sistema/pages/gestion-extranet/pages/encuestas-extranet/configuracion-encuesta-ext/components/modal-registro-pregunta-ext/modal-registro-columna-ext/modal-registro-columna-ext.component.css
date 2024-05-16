@@ -1,0 +1,6 @@
+.hoverable:hover{
+    cursor:pointer;
+}
+.ant-input-number-handler-wrap{
+    display: none !important;
+}

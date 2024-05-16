@@ -1,0 +1,51 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:30700",
+      "sslPort": 0
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "Home/Index",      
+      //"launchUrl": "Home/Index?var=tNNNxML7ofUIqT90EWvySALM2m9abJtzPoPRMsltfNRM7GsatiLUklXFvOSSiU13vgK47h9cpoMMVsl54eXm9kTcIGxeOgmoreFP2UPXyMlmoreS6qWAccmnO4CaSHDjoL9kCuGvrId0BGZmYequal",
+      //"launchUrl": "Home/Index?var=tNNNxML7ofUIqT90EWvySKgXOKlskbuslashkO2l7wggkGq5yrpFcKFEeCs2R0Ff2ql4TvGfs8mJGiumoreLuJXGdWVYnLsKslashJhmc22SJDu2Rmtjdt4UVBDWOD4PFz00mjuCqCw",
+      //20491993686  -  46386595  -  ACUICULTURA MANCO CAPAC S.R.LTDA.
+      //"launchUrl": "Home/Index?var=tNNNxML7ofUIqT90EWvySFSCofOpRnG5cWOnhrxVyX0fFO0NKu42BmoreyxmoreSlytJQfDrbPlE1NEnQNtCmjmR09G4GcIx5FGfaZvjasaYW71byvkMGHtgYRdSrslashH3NfmYizL20oslashK3RUWoequal",
+      //ALEX SANTIAGO
+      //"launchUrl": "Home/Index?var=tNNNxML7ofUIqT90EWvySDQBOmore1HCslashk30mTcil8INLQbilGkGZymoreRzgORaHOW6CisCAvSMuIJQ4RZcT3adzDECKXsWrfavVD1s3iJYqQjnDyPBeEBGIDJyvRbHHzKg5KpAUnH5jtwKUequal",
+      //"launchUrl": "Home/Index?var=tNNNxML7ofUIqT90EWvySAQwSLVOusyfSpUrMFXo36uwWPVW4cTZMyMnTSnjQocaEWslashQsMSOukprWItcrbjIbJ500AKTh6bMMmzeJjXTKPVVh1I3yOQ6slasht5T4rkl1eCLkJzqhzlsi48equal",
+      //"launchUrl": "Home/Index?var=tNNNxML7ofUIqT90EWvySMHoGD5LJCHuuKobmoreheBF5GPCXuwnzOaRartqpgFb5ltxg8ksWQsTS7JOEQxKxVRKJ8dFwWnDFGQewGFmoreiu2moreitPPbYEmorerS4YueRcUFbBYXM0pslashE1LtJsz0equal",
+
+      //20100047056  -  TOPY TOP S.A.  - 00054233
+      //"launchUrl": "Home/Index?var=tNNNxML7ofUIqT90EWvySMw3He0ZHOaDVNZLn0vu61ulClXmoreZZR3frxDmorennmoreU0DIUwBQCcmore5ueuvs55j2BAR3BJ7xJ3soqOGmrUCkIHslashmoreTKq9GftYOD5AipyAVSmoreXt2q7VcWbaiL5Gkequal",
+      //"launchUrl": "Home/Index?var=tNNNxML7ofUIqT90EWvySMw3He0ZHOaDmoreyslashaqtthlF81sPgN54uXrpAi4SL0JgyVrQslash3X53LugrbaOQh5mOTz1QbcDlJemorezybjQLY7w5yg6eHMiyVm52nz6Izhx8sRcR2n7JFQUNuVwequal",
+
+      //administrado
+      //"launchUrl": "Home/Index?var=tNNNxML7ofUIqT90EWvySOtpluvG9S6lVGeClLkEz1OtWlNqND9Vhta0IGnG5Wod2IKXiTGnEc6AfdDsj5fyDKy0VlfK75EhkIximorezE6tM5lkyvI0ZSBcZRxwl4EXh26Ory8avmoren4l8equal",
+      //"launchUrl": "Home/Index?var=tNNNxML7ofUIqT90EWvySDMDiYLdztFw25CG2FrCdTmore7HZCRtCBInOCgmoreEYRKgSWsC0wMNdbRY9Ob9dppcxQKOpeVxlVWJOXGYCnIHOlrmorei5Bc8hEuZ8fpwJqzNGWohG",
+      //"launchUrl": "Home/Index?var=tNNNxML7ofUIqT90EWvySAoNlymI9aqVpSGw7l4ZeJkzMdUHv0slashYPQfV9Rcs7DLZhHKG1LPT4zzVoQFd47MmoreA8GUobgVrR2wRzdgVlwmeYEFIRqrTjqmoreGfaIEghpqqkT",
+      //Persona natural
+      //"launchUrl": "Home/Index?var=tNNNxML7ofUIqT90EWvySKtrmoreEfdTeogQdJ0N1kGhOse3ac6iNIC7Qslashm1JlMtosgrSkKWIQr9kbp3y7jV3Erml5gmorepdpqXSdIfXjDwaGkwX0WmorecN6Z4GZwequalequal",
+      //20100432472
+      //"launchUrl": "Home/Index?var=tNNNxML7ofUIqT90EWvySAQwSLVOusyfSpUrMFXo36uwWPVW4cTZMyMnTSnjQocaEWslashQsMSOukprWItcrbjIbJ500AKTh6bMMmzeJjXTKPVVh1I3yOQ6slasht5T4rkl1eCLkJzqhzlsi48equal",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "nativeDebugging": false
+    },
+    "Prod.SNE.MVC": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "dotnetRunMessages": "true",
+      "applicationUrl": "http://localhost:5000"
+    }
+  }
+}

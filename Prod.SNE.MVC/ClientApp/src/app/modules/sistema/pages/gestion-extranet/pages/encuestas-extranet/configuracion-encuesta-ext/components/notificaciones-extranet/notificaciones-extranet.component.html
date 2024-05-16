@@ -1,0 +1,69 @@
+
+<ng-container>
+    <div class="row" style="padding-bottom: 15px;">
+        <div class="col-md-6 col-sm-12 text-left">
+            <button class="btn btn-primary-custom" (click)="md_add_edit_notificacion()">
+                <i class="fa fa-plus-circle"></i> Agregar notificación
+            </button>
+        </div>        
+    </div>
+</ng-container>
+<ng-container>
+    <div class="table-responsive table-striped table-bordered table-hover">
+        <nz-table #ajaxTable class="container-table-custom" nzShowSizeChanger [nzFrontPagination]="true"
+        [nzBordered]="true" [nzData]="NotificacionesList" [nzLoading]="cargando_tabla">
+
+            <thead>
+                <tr>
+                    <th width="10">N°</th>
+                    <th width="350">TÍTULO DE NOTIFICACIÓN</th>
+                    <th width="50">FECHA</th>
+                    <th width="150">DIRIGIDO A</th>
+                    <th width="100">ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of ajaxTable.data; let i = index">
+                    <td>{{ item.idx+1 }}</td>
+                    <td>{{ item.titulo}}</td>     
+                    <td>{{ item.fecha_notificacion | date: 'dd/MM/yyyy hh:mm a'}}</td>     
+                    <td>{{ item.dirigido_texto}}</td> 
+                    <td align="center" >
+                        <ng-container>
+                            <a class="btn btn-icon"  data-tooltip="tooltip" data-placement="bottom" 
+                            title="Editar sección" (click)="md_add_edit_notificacion(item.idx,item.por_defecto)">
+                                <i class="fa fa-edit" aria-hidden="true"></i>
+                            </a>
+                        </ng-container>
+                        <ng-container>
+                            <a  class="btn btn-icon" data-tooltip="tooltip" data-placement="bottom" title="Eliminar sección" 
+                            (click)="md_delete_notificacion(item.idx)" >
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+                        </ng-container>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</ng-container>
+<div class="row" style="margin-top: 15px;">
+    <div class="col-sm-6 text-left">
+        <button type="button" class="btn btn-default-custom" (click)="send_to_datos()">
+            Retornar
+        </button>
+    </div>
+</div>
+
+
+<ng-container *ngIf="show_modal_notificacion">
+    <app-modal-registro-notificacion-extranet
+        [isVisibleModal]="show_modal_notificacion" 
+        [title]="title_modal"
+        [notificacion]="selected_notificacion"
+        [is_first]="is_first"
+        [id_encuesta]="id_encuesta"
+        (onCloseModal)="handleOnCloseModal($event)"
+        (onSaveDataSeccion)="handleOnSaveDataSeccion($event)">
+    </app-modal-registro-notificacion-extranet>
+</ng-container>

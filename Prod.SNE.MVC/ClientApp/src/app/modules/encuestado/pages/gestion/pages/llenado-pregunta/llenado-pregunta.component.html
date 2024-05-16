@@ -1,0 +1,534 @@
+
+<ng-container *ngIf="show_pregunta_llenado">
+    <div class="_container">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+                <div class="row" *ngIf="total>0">
+                    <div class="col-sm-12" align="center"><h1 style="color:#dc3545">{{title?title:''}}</h1></div>
+                    <!--<div class="col-sm-12" style="padding-top:10px" *ngIf="loaded_pagination" align="center">
+                        <nz-pagination *ngIf="loaded_pagination" [nzPageIndex]="pageIndex" [nzTotal]="50"
+                        (nzPageIndexChange)="onPageChange($event)"></nz-pagination>
+                    </div>-->
+                    <div class="col-sm-12" style="padding-top:10px; padding-bottom:10px" *ngIf="!loaded_pagination" align="center">
+                        <span style="color:#cf2a27;font-size:25px">
+                            <nz-spin nzSimple></nz-spin>
+                        </span>
+                    </div>
+                    <div class="col-sm-12" style="padding-top:10px; padding-bottom:10px" *ngIf="loaded_pagination" align="center">
+                        <!--
+                        <nz-radio-group [(ngModel)]="pageIndex" nzButtonStyle="solid" (ngModelChange)="onPageChange($event)">
+                            <label *ngFor="let page of pagination_array; let idx=index;"  
+                            nz-radio-button
+                            [ngClass]="{'btn_marked': pagination_array_resolved[idx].resolved   getResolved(page.id_pregunta)}"
+                            [nzValue]="page.page" >{{page.page}}</label>
+                        </nz-radio-group>-->
+                        <nz-radio-group [(ngModel)]="pageIndex" nzButtonStyle="solid" (ngModelChange)="onPageChange($event)">
+                            <label *ngFor="let page of getPaginationNotHidden(); let idx=index;"  
+                            nz-radio-button
+                            [ngClass]="{'btn_marked': page.resolved}"
+                            [nzValue]="page.page" >{{page.page}}</label>
+                        </nz-radio-group>
+                    </div>
+                    
+                    <div class="col-md-11 col-sm-9" *ngIf="total>0 && Pregunta">
+                        <h3><button nz-button nzType="primary" nzShape="circle">{{pageIndex}}</button>&nbsp;{{Pregunta.pregunta}}</h3>
+                    </div>
+                    <div class="col-md-1 col-sm-3 row" *ngIf="total>0 && Pregunta" align="right">
+                        <div class="col-md-2 col-sm-12 text-right">
+                            <span style="color:#cf2a27;font-size:25px" class="btn_hoverable" 
+                                (click)="start_speech()">
+                                <i class="fa fa-volume-up"></i>
+                            </span>
+                        </div>
+                        <!--
+                        <div class="col-md-10 col-sm-12">
+                            <nz-slider [(ngModel)]="volume_value_pregunta" (ngModelChange)="setVolumeOfPregunta($event)" ></nz-slider>
+                        </div>-->
+                    </div>
+
+                    <div class="col-sm-12" style="padding-top:5px" *ngIf="total>0 && Pregunta && Pregunta.descripcion && Pregunta.descripcion!=''">
+                        <p>{{Pregunta.descripcion}}</p>
+                    </div>
+                    <div class="col-sm-12" style="padding-top:5px" *ngIf="total>0" align="center">
+                        <div  *ngIf="_loaded_media_pregunta && _idYoutubeVideo_pregunta && Pregunta && Pregunta.id_tipo_archivo==_TIPO_ARCHIVO.video" align="center">
+                            <youtube-player
+                                [videoId]="_idYoutubeVideo_pregunta"
+                                (ready)="_savePlayer_pregunta($event)"
+                                [width]="'100%'"
+                                [height]="300"
+                                (change)="_onStateChange_pregunta($event)">
+                            </youtube-player>
+                        </div>
+                        <div  style="width: 100%;" *ngIf="_loaded_media_pregunta && Pregunta && Pregunta.id_tipo_archivo==_TIPO_ARCHIVO.imagen">
+                            <img [src]="_urlArchivo_pregunta" width="400px" height="415px">
+                        </div>
+                        <div  style="width: 100%;" *ngIf="_loaded_media_pregunta==false && Pregunta && Pregunta.id_tipo_archivo==_TIPO_ARCHIVO.imagen">
+                            <img src="../../../../../../../assets/images/Imagen_no_disponible.png" width="400px" height="415px">
+                        </div> 
+                    </div>
+                    <div class="col-sm-12" style="padding-top:5px" *ngIf="total>0 && JSON_PREGUNTA!=null">
+                        <div *ngIf="JSON_PREGUNTA.id_tipo==_TIPO_PREGUNTA.desplegable_institucional && JSON_PREGUNTA.tbl_data==2" class="row">
+                            <div class="col-md-4 col-sm-6">
+                                <div style="background-color:#dedede; height: 34px;">
+                                    <label style="padding-top:7px">
+                                        &nbsp;&nbsp;<strong>{{JSON_PREGUNTA.tbl_data==1?'Dependecia':'Regimen'}}</strong>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-8 col-sm-6">
+                                <nz-form-item>
+                                    <nz-form-control nzErrorTip="Debe seleccionar una alternativa!">
+                                        <nz-input-group>
+                                            <nz-select nzAllowClear nzShowSearch 
+                                            [(ngModel)]="JSON_PREGUNTA.respuesta"
+                                            style="width: 100%; "
+                                            nzPlaceHolder="--Seleccione--">
+                                                <ng-container *ngFor="let item of array_regimen_cbo">
+                                                    <nz-option [nzValue]="item.id" [nzLabel]="item.nombre"></nz-option>
+                                                </ng-container>
+                                            </nz-select>
+                                        </nz-input-group>
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                        <div *ngIf="JSON_PREGUNTA.id_tipo==_TIPO_PREGUNTA.desplegable_institucional && JSON_PREGUNTA.tbl_data==1" class="row">
+                            <div class="col-md-4 col-sm-6">
+                                <div style="background-color:#dedede; height: 34px;">
+                                    <label style="padding-top:7px">
+                                        &nbsp;&nbsp;<strong>Órgano de alta dirección</strong>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-8 col-sm-6">
+                                <nz-form-item>
+                                    <nz-form-control nzErrorTip="Debe seleccionar una alternativa!">
+                                        <nz-input-group>
+                                            <nz-select nzAllowClear nzShowSearch 
+                                            [(ngModel)]="JSON_PREGUNTA.respuesta.d1"
+                                            (ngModelChange)="getD2($event)"
+                                            style="width: 100%; "
+                                            nzPlaceHolder="--Seleccione--">
+                                                <ng-container *ngFor="let item of d1">
+                                                    <nz-option [nzValue]="item.id" [nzLabel]="item.nombre"></nz-option>
+                                                </ng-container>
+                                            </nz-select>
+                                        </nz-input-group>
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+
+                            <div class="col-md-4 col-sm-6">
+                                <div style="background-color:#dedede; height: 34px;">
+                                    <label style="padding-top:7px">
+                                        &nbsp;&nbsp;<strong>Dirección/Oficina General</strong>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-8 col-sm-6">
+                                <nz-form-item>
+                                    <nz-form-control nzErrorTip="Debe seleccionar una alternativa!">
+                                        <nz-input-group>
+                                            <nz-select nzAllowClear nzShowSearch 
+                                            [(ngModel)]="JSON_PREGUNTA.respuesta.d2"
+                                            (ngModelChange)="getD3($event)"
+                                            style="width: 100%; "
+                                            [nzDisabled]="d2_disabled"
+                                            nzPlaceHolder="--Seleccione--">
+                                                <ng-container *ngFor="let item of d2">
+                                                    <nz-option [nzValue]="item.id" [nzLabel]="item.nombre"></nz-option>
+                                                </ng-container>
+                                            </nz-select>
+                                        </nz-input-group>
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+
+
+                            <div class="col-md-4 col-sm-6">
+                                <div style="background-color:#dedede; height: 34px;">
+                                    <label style="padding-top:7px">
+                                        &nbsp;&nbsp;<strong>Unidad Orgánica</strong>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-8 col-sm-6">
+                                <nz-form-item>
+                                    <nz-form-control nzErrorTip="Debe seleccionar una alternativa!">
+                                        <nz-input-group>
+                                            <nz-select nzAllowClear nzShowSearch 
+                                            [(ngModel)]="JSON_PREGUNTA.respuesta.d3"
+                                            style="width: 100%; "
+                                            [nzDisabled]="d3_disabled"
+                                            nzPlaceHolder="--Seleccione--">
+                                                <ng-container *ngFor="let item of d3">
+                                                    <nz-option [nzValue]="item.id" [nzLabel]="item.nombre"></nz-option>
+                                                </ng-container>
+                                            </nz-select>
+                                        </nz-input-group>
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+
+
+                        </div>
+
+                        <div *ngIf="JSON_PREGUNTA.id_tipo==_TIPO_PREGUNTA.seleccion_unica">
+                            <div class="row">
+                                <div class="col-sm-6" *ngFor="let item of JSON_PREGUNTA.opciones; let idx=index">
+                                    <div  style="width:100%;min-height: 40px;text-align: center;border:1px solid #4f4f4f;" align="center"
+                                    [class]="JSON_PREGUNTA.respuesta[item.idx].selected?'_btn btn-primary-custom':'_btn btn-white'"
+                                    (click)="setOneClickedOnly(idx)">
+                                        {{item.descripcion}}
+                                    </div>
+                                    <!--
+                                    <button type="button" 
+                                     >
+                                    {{item.descripcion}}
+                                    </button>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="JSON_PREGUNTA.id_tipo==_TIPO_PREGUNTA.seleccion_multiple">
+                            <div class="row">
+                                <div class="col-sm-6" *ngFor="let item of JSON_PREGUNTA.opciones; let idx=index">
+                                    <div [class]="JSON_PREGUNTA.respuesta[item.idx].selected?'_btn btn-primary-custom':'_btn btn-white'"
+                                    style="width:100%;min-height: 40px;text-align: center;border:1px solid #4f4f4f;" align="center"
+                                    (click)="JSON_PREGUNTA.respuesta[item.idx].selected=!JSON_PREGUNTA.respuesta[item.idx].selected">
+                                        {{item.descripcion}}
+                                    </div>
+                                    <!--
+                                    <button type="button" [class]="JSON_PREGUNTA.respuesta[item.idx].selected?'btn btn-primary-custom':'btn btn-white'"
+                                    style="width:100%;height: 40px" align="center"
+                                    (click)="JSON_PREGUNTA.respuesta[item.idx].selected=!JSON_PREGUNTA.respuesta[item.idx].selected">
+                                    {{item.descripcion}}
+                                    </button>-->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div *ngIf="JSON_PREGUNTA.id_tipo==_TIPO_PREGUNTA.numerico_entero" class="row">
+                            <div class="col-sm-12">
+                                <nz-form-item style="width:100%">
+                                    <nz-form-control nzErrorTip="Debe seleccionar una alternativa!" style="width:100%">
+                                        <nz-input-group style="width:100%">
+                                            <input type="number" nz-input [(ngModel)]="JSON_PREGUNTA.respuesta" (keypress)="($event.charCode >= 48 && $event.charCode < 58)"/>
+                                        </nz-input-group>
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                        <div *ngIf="JSON_PREGUNTA.id_tipo==_TIPO_PREGUNTA.numerico_decimal" class="row">
+                            <div class="col-sm-12">
+                                <nz-form-item style="width:100%">
+                                    <nz-form-control nzErrorTip="Debe seleccionar un número!" style="width:100%">
+                                        <nz-input-group style="width:100%">
+                                            <nz-input-number  style="width:100%"
+                                                [(ngModel)]="JSON_PREGUNTA.respuesta" 
+                                                [nzMin]="1" 
+                                                [nzMax]="9999" 
+                                                [nzStep]="setNroDecimales(JSON_PREGUNTA.nro_decimal)">
+                                            </nz-input-number>
+                                        </nz-input-group>
+                                    </nz-form-control>
+                                </nz-form-item>
+                            </div>
+                        </div>
+                        <div *ngIf="JSON_PREGUNTA.id_tipo==_TIPO_PREGUNTA.desplegable_libre">
+                            <nz-form-item>
+                                <nz-form-control nzErrorTip="Debe seleccionar una alternativa!">
+                                    <nz-input-group>
+                                        <nz-select nzAllowClear nzShowSearch 
+                                        [(ngModel)]="JSON_PREGUNTA.respuesta[0]"
+                                        nzPlaceHolder="--Seleccione--">
+                                            <ng-container *ngFor="let item of JSON_PREGUNTA.opciones">
+                                                <nz-option [nzValue]="item.idx" [nzLabel]="item.descripcion"></nz-option>
+                                            </ng-container>
+                                        </nz-select>
+                                    </nz-input-group>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div *ngIf="JSON_PREGUNTA.id_tipo==_TIPO_PREGUNTA.matriz">
+                            <div class="table-responsive table-striped table-bordered table-hover">
+                                <nz-table #basicTable 
+                                [nzData]="JSON_PREGUNTA.respuesta"
+                                [nzFrontPagination]="false"
+                                [nzShowPagination]="false"
+                                [nzLoading]="loading_matriz"
+                                class="container-table-custom">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th *ngFor="let col of JSON_PREGUNTA.columnas" align="center">{{col.nombre_columna}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr  *ngFor="let fila of basicTable.data">
+                                            <td align="center">{{ fila.nombre_fila }}</td>
+                                            <td *ngFor="let col of fila.columnas;" align="center">
+                                                <div *ngIf="col.forma.id_tipo==_TIPO_PREGUNTA.numerico_entero">
+                                                    <nz-form-item style="width:95%">
+                                                        <nz-form-control nzErrorTip="Debe seleccionar un número!" style="width:150px">
+                                                            <nz-input-group style="width:95%">
+                                                                <nz-input-number  style="width:95%"
+                                                                    [formControl]="frmMtz[fila.idx][col.idx]"
+                                                                    [(ngModel)]="fila.respuestas[col.idx]" 
+                                                                    (ngModelChange)	="setRespuestaMatriz(fila.idx,col.idx)"
+                                                                    [nzMin]="1" 
+                                                                    [nzMax]="9999">
+                                                                </nz-input-number>
+                                                            </nz-input-group>
+                                                        </nz-form-control>
+                                                    </nz-form-item>
+                                                </div>
+                                                <div *ngIf="col.forma.id_tipo==_TIPO_PREGUNTA.numerico_decimal">
+                                                    <nz-form-item style="width: 95%">
+                                                        <nz-form-control nzErrorTip="Debe seleccionar un número!" style="width:150px">
+                                                            <nz-input-group style="width:95%">
+                                                                <nz-input-number  style="width:95%"
+                                                                    [formControl]="frmMtz[fila.idx][col.idx]"
+                                                                    [(ngModel)]="fila.respuestas[col.idx]" 
+                                                                    (ngModelChange)="setRespuestaMatriz(fila.idx,col.idx)"
+                                                                    [nzMin]="1" 
+                                                                    [nzMax]="9999" 
+                                                                    [nzStep]="setNroDecimales(col.forma.nro_decimal)">
+                                                                </nz-input-number>
+                                                            </nz-input-group>
+                                                        </nz-form-control>
+                                                    </nz-form-item>
+                                                </div>
+                                                <div *ngIf="col.forma.id_tipo==_TIPO_PREGUNTA.seleccion_unica">
+                                                    <nz-form-item>
+                                                        <nz-form-control nzErrorTip="Debe seleccionar una alternativa!" style="width:150px">
+                                                            <nz-input-group>
+                                                                <nz-select nzAllowClear nzShowSearch
+                                                                (ngModelChange)	="setRespuestaMatriz(fila.idx,col.idx,true)"
+                                                                [formControl]="frmMtz[fila.idx][col.idx]"
+                                                                [(ngModel)]="fila.respuestas[col.idx]" 
+                                                                style="width: 95%; "
+                                                                nzPlaceHolder="--Seleccione--">
+                                                                    <ng-container *ngFor="let _item of col.forma.opciones">
+                                                                        <nz-option [nzValue]="_item.descripcion" [nzLabel]="_item.descripcion"></nz-option>
+                                                                    </ng-container>
+                                                                </nz-select>
+                                                            </nz-input-group>
+                                                        </nz-form-control>
+                                                    </nz-form-item>
+                                                </div>
+                                                <div *ngIf="col.forma.id_tipo==_TIPO_PREGUNTA.seleccion_multiple ||
+                                                col.forma.id_tipo==_TIPO_PREGUNTA.desplegable_libre">
+                                                    <nz-form-item>
+                                                        <nz-form-control nzErrorTip="Debe seleccionar una alternativa!" style="width:150px">
+                                                            <nz-input-group>
+                                                                <nz-select nzAllowClear nzShowSearch 
+                                                                [formControl]="frmMtz[fila.idx][col.idx]"
+                                                                [(ngModel)]="fila.respuestas[col.idx]" 
+                                                                (ngModelChange)	="setRespuestaMatriz(fila.idx,col.idx)"
+                                                                style="width: 95%; "
+                                                                nzMode="multiple"
+                                                                nzPlaceHolder="--Seleccione--">
+                                                                    <ng-container *ngFor="let _item of col.forma.opciones">
+                                                                        <nz-option [nzValue]="_item.descripcion" [nzLabel]="_item.descripcion"></nz-option>
+                                                                    </ng-container>
+                                                                </nz-select>
+                                                            </nz-input-group>
+                                                        </nz-form-control>
+                                                    </nz-form-item>
+                                                </div>
+                                                <div *ngIf="col.forma.id_tipo==_TIPO_PREGUNTA.desplegable_institucional && col.forma.tbl_data==2" class="row">
+                                                    <nz-form-item>
+                                                        <nz-form-control nzErrorTip="Debe seleccionar una alternativa!" style="width:150px">
+                                                            <nz-input-group>
+                                                                <nz-select nzAllowClear nzShowSearch 
+                                                                [formControl]="frmMtz[fila.idx][col.idx]"
+                                                                [(ngModel)]="fila.respuestas[col.idx]" 
+                                                                (ngModelChange)	="setRespuestaMatriz(fila.idx,col.idx)"
+                                                                style="width: 100%; "
+                                                                nzPlaceHolder="--Seleccione--">
+                                                                    <ng-container *ngFor="let item of array_regimen_cbo">
+                                                                        <nz-option [nzValue]="item.id" [nzLabel]="item.nombre"></nz-option>
+                                                                    </ng-container>
+                                                                </nz-select>
+                                                            </nz-input-group>
+                                                        </nz-form-control>
+                                                    </nz-form-item>
+                                                </div>
+
+                                                <div *ngIf="col.forma.id_tipo==_TIPO_PREGUNTA.desplegable_institucional && col.forma.tbl_data==1" class="row">
+                                                    <nz-form-item>
+                                                        <nz-form-control nzErrorTip="Debe seleccionar una alternativa!" style="width:150px">
+                                                            <nz-input-group>
+                                                                <nz-select nzAllowClear nzShowSearch 
+                                                                [formControl]="frmMtz[fila.idx][col.idx]"
+                                                                [(ngModel)]="fila.respuestas[col.idx]" 
+                                                                (ngModelChange)	="setRespuestaMatriz(fila.idx,col.idx)"
+                                                                style="width: 100%; "
+                                                                nzPlaceHolder="--Seleccione--">
+                                                                    <ng-container *ngFor="let item of array_d_gen">
+                                                                        <nz-option [nzValue]="item.id" [nzLabel]="item.nombre"></nz-option>
+                                                                    </ng-container>
+                                                                </nz-select>
+                                                            </nz-input-group>
+                                                        </nz-form-control>
+                                                    </nz-form-item>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </nz-table>
+                            </div>
+                        </div>
+                        <div *ngIf="JSON_PREGUNTA.id_tipo==_TIPO_PREGUNTA.fecha">
+                            <div class="row">
+                                <div class="col-md-5 col-sm-6">
+                                    <div style="background-color:#EAEFF5; height: 40px;">
+                                        <label style="padding-top:9px">
+                                            &nbsp;&nbsp;<strong>Selecciona fecha</strong>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 col-sm-6">
+                                    <div class="form-group">
+                                        <nz-date-picker 
+                                        [(ngModel)]="JSON_PREGUNTA.respuesta" 
+                                        nzFormat="{{formato_fecha}}"
+                                        nzPlaceHolder="{{formato_fecha}}">
+                                        </nz-date-picker>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <div *ngIf="JSON_PREGUNTA.id_tipo==_TIPO_PREGUNTA.texto" >
+                            <div class="form-group">
+                                <nz-form-item>
+                                    <nz-form-control nzErrorTip="Debe ingresar un texto.">
+                                        <nz-input-group>
+                                            <textarea nz-input class="form-control" 
+                                            maxlength="{{cantidad_caracteres}}"
+                                            [(ngModel)]="JSON_PREGUNTA.respuesta"  placeholder="Ingresar indicaciones"></textarea>
+                                        </nz-input-group>
+                                    </nz-form-control>
+                                </nz-form-item>   
+                            </div>
+                            <span class="text-caracteres">Caracteres max: {{cantidad_caracteres}}</span>
+                        </div> 
+                        <div *ngIf="JSON_PREGUNTA.id_tipo==_TIPO_PREGUNTA.archivo">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <label for="">Adjunta tu archivo</label>
+                                    <app-file-uploader-custom  
+                                    [fileInfo]="true"  
+                                    [id]="JSON_PREGUNTA.respuesta" 
+                                    [(Files)]="_imagen_archivo" 
+                                    [(Uploading)]="estaGuardando"
+                                    [pesoMaximoEnMB]="pesoMaximoEnMB" 
+                                    [esBorrador]="false" 
+                                    (FileChange)="set_imagen_iden($event)"
+                                    (onRemovedIdFile)="handleRemovedFilePresentacion($event)"
+                                    [extensionAceptados]="_imagen_extensionAceptados"   
+                                    [tiposMimePermitidos]="_imagen_MimePermitidos" 
+                                    [view_width]="600"
+                                    [puedeVerArchivo]="true"
+                                    [puedeEliminarArchivo]="true"
+                                    [puedeDescargarArchivo] = "true"
+                                    [url]="url" 
+                                    [loading]="estaGuardando">
+                                </app-file-uploader-custom>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>        
+                </div>
+                <div class="row" style="padding-top: 10px">
+                    <div class="col-sm-6 text-left">
+                        <button type="button" class="btn btn-default-custom" (click)="GoBackEncuesta()" *ngIf="pageIndex==1" >
+                            <i class="fa fa-reply"></i> Volver
+                        </button>
+                        <button type="button" class="btn btn-default-custom" (click)="onPageChangePrev()" *ngIf="pageIndex>1">
+                            <i class="fa fa-caret-left"></i> Atrás
+                        </button>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <button type="button" class="btn btn-primary-custom" (click)="goFinalizarEncuesta()" *ngIf="pageIndex>=total" style="margin-right: 0px;">
+                            Finalizar <i class="fa fa-caret-right"></i></button>
+                        <button type="button" class="btn btn-primary-custom" (click)="onPageChangeNext()" *ngIf="total>pageIndex"  style="margin-right: 0px;">
+                            Siguiente <i class="fa fa-caret-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+</ng-container>
+
+
+<ng-container *ngIf="show_final_envio">
+    <div class="_container">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10 row">
+                <div class="col-sm-12" align="center">
+                    <br><h1 style="color:#dc3545">{{title?title:''}}</h1>
+                </div>
+                <div class="col-sm-12" align="center">
+                    <br><br><br>
+                    <p style="font-size:15px">Usted ha completado y enviado su encuesta con fecha {{fecha_envio | date:'dd/MM/yyyy hh:mm:ss a'}}</p>
+                </div>
+                <div class="col-sm-12" align="center">
+                    <br>
+                    <button type="button" class="btn btn-primary-custom" (click)="show_agradecimientos()" style="font-size:15px">
+                        <i class="fa fa-check"></i> Aceptar</button>
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="show_pantalla_agradecimiento">
+    <div class="_container">
+        <div class="row">
+            <div class="col-sm-12">
+                <br><h1 style="color:#dc3545">{{title?title:''}}</h1>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10 row">
+                <div class="col-sm-11">
+                    <h3 style="color:#dc3545">{{agradecimiento_data?agradecimiento_data.mensaje_agradecimiento:''}}</h3>
+                </div>
+                <div class="col-sm-1" align="right"></div>
+                
+                <div class="col-sm-12" align="center">
+                    <br>
+                    <div  *ngIf="_loaded_media_agradecimiento && _idYoutubeVideo_agradecimiento 
+                    && agradecimiento_data 
+                    && agradecimiento_data.id_tipo_archivo==_TIPO_ARCHIVO.video" align="center">
+                        <youtube-player
+                            [videoId]="_idYoutubeVideo_agradecimiento"
+                            (ready)="_savePlayer_agradecimiento($event)"
+                            [width]="'100%'"
+                            [height]="400"
+                            (change)="_onStateChange_agradecimiento($event)">
+                        </youtube-player>
+                    </div>
+                    <div  style="width: 100%;" *ngIf="_loaded_media_agradecimiento && agradecimiento_data && agradecimiento_data.id_tipo_archivo==_TIPO_ARCHIVO.imagen">
+                        <img [src]="_urlArchivo_agradecimiento" width="400px" height="415px">
+                    </div>
+                    <div  style="width: 100%;" *ngIf="_loaded_media_agradecimiento==false && agradecimiento_data && agradecimiento_data.id_tipo_archivo==_TIPO_ARCHIVO.imagen">
+                        <img src="../../../../../../../assets/images/Imagen_no_disponible.png" width="400px" height="415px">
+                    </div> 
+                </div>
+                <div class="col-sm-12" align="center">
+                    <br>
+                    <button type="button" class="btn btn-primary-custom" (click)="goBackToInicio()" style="font-size:15px">
+                        Volver al inicio <i class="fa fa-share"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+</ng-container>

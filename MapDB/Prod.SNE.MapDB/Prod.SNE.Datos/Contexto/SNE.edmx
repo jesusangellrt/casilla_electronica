@@ -1,0 +1,2834 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Modelo.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CAT_ARCHIVO_TIPO_ARCHIVO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="es_eliminado" Type="bit" />
+        </EntityType>
+        <EntityType Name="CAT_CATEGORIA">
+          <Key>
+            <PropertyRef Name="id_categoria" />
+          </Key>
+          <Property Name="id_categoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="es_eliminado" Type="bit" Nullable="false" />
+          <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+          <Property Name="usuario_registro" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="fecha_edicion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="CAT_CATEGORIA_EXTRANET">
+          <Key>
+            <PropertyRef Name="id_categoria_extranet" />
+          </Key>
+          <Property Name="id_categoria_extranet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="es_eliminado" Type="bit" Nullable="false" />
+          <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+          <Property Name="usuario_registro" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="fecha_edicion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="CAT_CONFIGURACION_INICIAL">
+          <Key>
+            <PropertyRef Name="id_configuracion" />
+          </Key>
+          <Property Name="id_configuracion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_tipo_encuesta" Type="int" Nullable="false" />
+          <Property Name="texto_bienvenida" Type="varchar(max)" Nullable="false" />
+          <Property Name="iden_audio_fondo" Type="varchar" MaxLength="50" />
+          <Property Name="id_tipo_archivo" Type="int" Nullable="false" />
+          <Property Name="url_video" Type="varchar" MaxLength="500" />
+          <Property Name="iden_imagen" Type="varchar" MaxLength="100" />
+          <Property Name="es_eliminado" Type="bit" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="30" />
+          <Property Name="ip_creacion" Type="varchar" MaxLength="15" />
+          <Property Name="ip_modificacion" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="CAT_DIRIGIDO_NOTIFICACION">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="es_eliminado" Type="bit" />
+        </EntityType>
+        <EntityType Name="CAT_ESTADO_ADMINISTRADO">
+          <Key>
+            <PropertyRef Name="id_estado_administrado" />
+          </Key>
+          <Property Name="id_estado_administrado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="es_eliminado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CAT_ESTADO_ENCUESTA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="es_eliminado" Type="bit" />
+        </EntityType>
+        <EntityType Name="CAT_ESTADO_RESPUESTA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="es_eliminado" Type="bit" />
+        </EntityType>
+        <EntityType Name="CAT_SEXOS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="es_eliminado" Type="bit" />
+        </EntityType>
+        <EntityType Name="CAT_SUB_CATEGORIA">
+          <Key>
+            <PropertyRef Name="id_sub_categoria" />
+          </Key>
+          <Property Name="id_sub_categoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_categoria" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" />
+          <Property Name="es_eliminado" Type="bit" Nullable="false" />
+          <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+          <Property Name="usuario_registro" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="fecha_edicion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="CAT_SUB_CATEGORIA_EXTRANET">
+          <Key>
+            <PropertyRef Name="id_sub_categoria_extranet" />
+          </Key>
+          <Property Name="id_sub_categoria_extranet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_categoria_extranet" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" />
+          <Property Name="es_eliminado" Type="bit" Nullable="false" />
+          <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+          <Property Name="usuario_registro" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="fecha_edicion" Type="datetime" />
+          <Property Name="usuario_edicion" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="CAT_TIPO_ARCHIVO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="es_eliminado" Type="bit" />
+        </EntityType>
+        <EntityType Name="CAT_TIPO_ENCUESTA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="es_eliminado" Type="bit" />
+        </EntityType>
+        <EntityType Name="CAT_TIPO_FECHA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="es_eliminado" Type="bit" />
+        </EntityType>
+        <EntityType Name="CAT_TIPO_MAESTRO_INSTITUCIONAL">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="es_eliminado" Type="bit" />
+        </EntityType>
+        <EntityType Name="CAT_TIPO_PREGUNTA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="es_eliminado" Type="bit" />
+        </EntityType>
+        <EntityType Name="DAT_ENCUESTA">
+          <Key>
+            <PropertyRef Name="id_encuesta" />
+          </Key>
+          <Property Name="id_encuesta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_tipo_encuesta" Type="int" Nullable="false" />
+          <Property Name="id_dependendia" Type="int" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="encabezado" Type="varchar" MaxLength="350" />
+          <Property Name="objetivo" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="350" Nullable="false" />
+          <Property Name="fecha_inicio" Type="datetime" Nullable="false" />
+          <Property Name="fecha_fin" Type="datetime" Nullable="false" />
+          <Property Name="tiempo_estimado" Type="int" Nullable="false" />
+          <Property Name="es_anonima" Type="bit" Nullable="false" />
+          <Property Name="es_todos" Type="bit" Nullable="false" />
+          <Property Name="iden_imagen_presentacion" Type="varchar" MaxLength="50" />
+          <Property Name="mensaje_corto_presentacion" Type="varchar" MaxLength="500" />
+          <Property Name="id_estado" Type="int" Nullable="false" />
+          <Property Name="es_eliminado" Type="bit" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="30" />
+          <Property Name="mensaje_es_anonima" Type="varchar" MaxLength="500" />
+          <Property Name="fecha_publicacion" Type="datetime" />
+          <Property Name="iden_pdf_resultados" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_resultados" Type="datetime" />
+          <Property Name="nro_informe" Type="varchar" MaxLength="50" />
+          <Property Name="iden_pdf_resultados_completo" Type="varchar" MaxLength="50" />
+          <Property Name="ip_creacion" Type="varchar" MaxLength="15" />
+          <Property Name="ip_modificacion" Type="varchar" MaxLength="15" />
+          <Property Name="es_con_seccion_pregunta" Type="bit" Nullable="false" />
+          <Property Name="es_autorizado_datos" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DAT_ENCUESTA_ADMINISTRADO">
+          <Key>
+            <PropertyRef Name="id_encuesta_administrado" />
+          </Key>
+          <Property Name="id_encuesta_administrado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_encuesta" Type="int" Nullable="false" />
+          <Property Name="id_estado_administrado" Type="int" Nullable="false" />
+          <Property Name="fecha_resuelto" Type="datetime" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="30" />
+          <Property Name="es_eliminado" Type="bit" Nullable="false" />
+          <Property Name="ruc_administrado" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="DAT_ENCUESTA_AGRADECIMIENTO">
+          <Key>
+            <PropertyRef Name="id_encuesta_agradecimiento" />
+          </Key>
+          <Property Name="id_encuesta_agradecimiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_encuesta" Type="int" Nullable="false" />
+          <Property Name="mensaje_agradecimiento" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="iden_audio" Type="varchar" MaxLength="50" />
+          <Property Name="id_tipo_archivo" Type="int" />
+          <Property Name="iden_imagen" Type="varchar" MaxLength="50" />
+          <Property Name="url_video" Type="varchar" MaxLength="500" />
+          <Property Name="es_eliminado" Type="bit" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="30" />
+          <Property Name="es_activar_audio" Type="bit" />
+        </EntityType>
+        <EntityType Name="DAT_ENCUESTA_BIENVENIDA">
+          <Key>
+            <PropertyRef Name="id_encuesta_bienvenida" />
+          </Key>
+          <Property Name="id_encuesta_bienvenida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_encuesta" Type="int" Nullable="false" />
+          <Property Name="indicaciones" Type="varchar(max)" Nullable="false" />
+          <Property Name="iden_audio" Type="varchar" MaxLength="50" />
+          <Property Name="id_tipo_archivo" Type="int" />
+          <Property Name="iden_imagen" Type="varchar" MaxLength="50" />
+          <Property Name="url_video" Type="varchar" MaxLength="500" />
+          <Property Name="es_eliminado" Type="bit" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="30" />
+          <Property Name="es_activar_audio" Type="bit" />
+          <Property Name="iden_terminos_condiciones" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DAT_ENCUESTA_ENCUESTADO">
+          <Key>
+            <PropertyRef Name="id_grupo_encuestado" />
+          </Key>
+          <Property Name="id_grupo_encuestado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_encuesta" Type="int" Nullable="false" />
+          <Property Name="id_trabajador" Type="int" />
+          <Property Name="id_dependendia" Type="int" />
+          <Property Name="id_regimen" Type="int" />
+          <Property Name="resuelto" Type="bit" Nullable="false" />
+          <Property Name="es_eliminado" Type="bit" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="30" />
+          <Property Name="dni_trabajador" Type="varchar" MaxLength="12" />
+          <Property Name="id_estado" Type="int" />
+          <Property Name="fecha_resuelto" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DAT_ENCUESTA_NOTIFICACION">
+          <Key>
+            <PropertyRef Name="id_encuesta_notificacion" />
+          </Key>
+          <Property Name="id_encuesta_notificacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_encuesta" Type="int" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="fecha_notificacion" Type="datetime" Nullable="false" />
+          <Property Name="dirigido" Type="varchar(max)" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="30" />
+          <Property Name="es_eliminado" Type="bit" Nullable="false" />
+          <Property Name="asunto" Type="varchar" MaxLength="500" />
+          <Property Name="mensaje" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="DAT_ENCUESTA_PREGUNTA">
+          <Key>
+            <PropertyRef Name="id_pregunta" />
+          </Key>
+          <Property Name="id_pregunta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_encuesta" Type="int" Nullable="false" />
+          <Property Name="pregunta" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="es_obligatorio" Type="bit" Nullable="false" />
+          <Property Name="id_tipo_pregunta" Type="int" Nullable="false" />
+          <Property Name="id_categoria" Type="int" />
+          <Property Name="id_sub_categoria" Type="int" />
+          <Property Name="descripcion" Type="varchar" MaxLength="500" />
+          <Property Name="id_tipo_archivo" Type="int" />
+          <Property Name="iden_imagen" Type="varchar" MaxLength="50" />
+          <Property Name="url_video" Type="varchar" MaxLength="500" />
+          <Property Name="json_alternativas" Type="varchar(max)" Nullable="false" />
+          <Property Name="es_eliminado" Type="bit" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="30" />
+          <Property Name="por_defecto" Type="bit" />
+          <Property Name="es_condicional" Type="bit" />
+          <Property Name="es_condicionada" Type="bit" />
+          <Property Name="id_pregunta_condicional" Type="int" />
+          <Property Name="json_respuesta_condicional" Type="varchar(max)" />
+          <Property Name="json_archivo_tipo_archivo" Type="varchar(max)" />
+          <Property Name="es_agregar_pregunta" Type="bit" Nullable="false" />
+          <Property Name="orden" Type="int" />
+          <Property Name="es_finaliza_encuesta" Type="bit" Nullable="false" />
+          <Property Name="id_encuesta_seccion" Type="int" />
+          <Property Name="json_tipo_fecha" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="DAT_ENCUESTA_SECCION">
+          <Key>
+            <PropertyRef Name="id_encuesta_seccion" />
+          </Key>
+          <Property Name="id_encuesta_seccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_encuesta" Type="int" Nullable="false" />
+          <Property Name="seccion" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="orden" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="30" />
+          <Property Name="es_eliminado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DAT_RESPUESTA">
+          <Key>
+            <PropertyRef Name="id_respuesta" />
+          </Key>
+          <Property Name="id_respuesta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_encuesta" Type="int" Nullable="false" />
+          <Property Name="id_trabajador" Type="int" />
+          <Property Name="id_dependendia" Type="int" />
+          <Property Name="id_regimen" Type="int" />
+          <Property Name="edad" Type="int" />
+          <Property Name="id_sexo" Type="int" />
+          <Property Name="nro_pregunta_actual" Type="int" Nullable="false" />
+          <Property Name="id_estado" Type="int" Nullable="false" />
+          <Property Name="es_eliminado" Type="bit" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="30" />
+          <Property Name="json_paginado" Type="varchar(max)" />
+          <Property Name="nro_seccion_actual" Type="int" />
+          <Property Name="ruc_administrado" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="DAT_RESPUESTA_PREGUNTA">
+          <Key>
+            <PropertyRef Name="id_respuesta_pregunta" />
+          </Key>
+          <Property Name="id_respuesta_pregunta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_respuesta" Type="int" Nullable="false" />
+          <Property Name="json_respuestas" Type="varchar(max)" Nullable="false" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="usuario_creacion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_modificacion" Type="datetime" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="30" />
+          <Property Name="id_pregunta" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_ENCUESTA.dbo.vw_aplicacion' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_aplicacion">
+          <Key>
+            <PropertyRef Name="id_aplicacion" />
+            <PropertyRef Name="nombre" />
+            <PropertyRef Name="descripcion" />
+            <PropertyRef Name="id_categoria" />
+            <PropertyRef Name="es_intranet" />
+            <PropertyRef Name="es_extranet" />
+            <PropertyRef Name="libre_intranet" />
+            <PropertyRef Name="libre_extranet" />
+            <PropertyRef Name="es_vusp" />
+            <PropertyRef Name="estado" />
+            <PropertyRef Name="usuario_registro" />
+            <PropertyRef Name="fecha_registro" />
+            <PropertyRef Name="usuario_modificacion" />
+            <PropertyRef Name="fecha_modificacion" />
+          </Key>
+          <Property Name="id_aplicacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="detalle" Type="varchar" MaxLength="600" />
+          <Property Name="id_categoria" Type="int" Nullable="false" />
+          <Property Name="es_intranet" Type="bit" Nullable="false" />
+          <Property Name="es_extranet" Type="bit" Nullable="false" />
+          <Property Name="libre_intranet" Type="bit" Nullable="false" />
+          <Property Name="libre_extranet" Type="bit" Nullable="false" />
+          <Property Name="es_vusp" Type="bit" Nullable="false" />
+          <Property Name="url_intranet" Type="nvarchar" MaxLength="400" />
+          <Property Name="url_extranet" Type="nvarchar" MaxLength="400" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+          <Property Name="usuario_registro" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="fecha_modificacion" Type="datetime" Nullable="false" />
+          <Property Name="BD" Type="varchar" MaxLength="50" />
+          <Property Name="SRV" Type="varchar" MaxLength="50" />
+          <Property Name="SRVAPP" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_ENCUESTA.dbo.vw_departamento' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_departamento">
+          <Key>
+            <PropertyRef Name="CODIGO_DEPARTAMENTO" />
+            <PropertyRef Name="DEPARTAMENTO" />
+          </Key>
+          <Property Name="CODIGO_DEPARTAMENTO" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="DEPARTAMENTO" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_ENCUESTA.dbo.vw_dependencia' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_dependencia">
+          <Key>
+            <PropertyRef Name="CODIGO_DEPENDENCIA" />
+            <PropertyRef Name="RUC_ENTIDAD" />
+          </Key>
+          <Property Name="CODIGO_DEPENDENCIA" Type="int" Nullable="false" />
+          <Property Name="DEPENDENCIA" Type="varchar" MaxLength="255" />
+          <Property Name="PISO" Type="varchar" MaxLength="50" />
+          <Property Name="SIGLAS" Type="varchar" MaxLength="100" />
+          <Property Name="AUDIT_MOD" Type="smalldatetime" />
+          <Property Name="AUDIT_CREA" Type="datetime" />
+          <Property Name="CONDICION" Type="varchar" MaxLength="15" />
+          <Property Name="DIRECTO" Type="varchar" MaxLength="100" />
+          <Property Name="ANEXO" Type="varchar" MaxLength="100" />
+          <Property Name="SECCION" Type="varchar" MaxLength="1" />
+          <Property Name="CENTRAL" Type="varchar" MaxLength="100" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+          <Property Name="FAX" Type="varchar" MaxLength="100" />
+          <Property Name="EQUIVALENCIA" Type="varchar" MaxLength="10" />
+          <Property Name="PRIORIDAD" Type="int" />
+          <Property Name="TIPO_DEPENDENCIA" Type="int" />
+          <Property Name="CODDEP_PUB" Type="int" />
+          <Property Name="PUBLICADO_WEB" Type="varchar" MaxLength="1" />
+          <Property Name="USUARIO_CREACION" Type="varchar" MaxLength="50" />
+          <Property Name="USUARIO_MODIFICACION" Type="varchar" MaxLength="50" />
+          <Property Name="CODDEP_RESPONSABLE" Type="int" />
+          <Property Name="ID_TIPO_DEPENDENCIA" Type="int" />
+          <Property Name="PUBLICADO_EXTRANET" Type="varchar" MaxLength="1" />
+          <Property Name="CODDEP_PRINCIPAL" Type="int" />
+          <Property Name="ES_DEPGENERAL" Type="bit" />
+          <Property Name="RUC_ENTIDAD" Type="varchar" MaxLength="11" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_ENCUESTA.dbo.vw_distrito' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_distrito">
+          <Key>
+            <PropertyRef Name="CODIGO_DEPARTAMENTO" />
+            <PropertyRef Name="CODIGO_PROVINCIA" />
+            <PropertyRef Name="CODIGO_DISTRITO" />
+            <PropertyRef Name="DISTRITO" />
+          </Key>
+          <Property Name="CODIGO_DEPARTAMENTO" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="CODIGO_PROVINCIA" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="CODIGO_DISTRITO" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="DISTRITO" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_ENCUESTA.dbo.vw_persona' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_persona">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ID_SECTOR" />
+            <PropertyRef Name="ID_TIPO_PERSONA" />
+            <PropertyRef Name="CODIGO_DEPARTAMENTO" />
+            <PropertyRef Name="CODIGO_PROVINCIA" />
+            <PropertyRef Name="CODIGO_DISTRITO" />
+            <PropertyRef Name="ID_TIPO_IDENTIFICACION" />
+            <PropertyRef Name="RUBRO" />
+            <PropertyRef Name="RAZON_SOCIAL" />
+            <PropertyRef Name="NOMBRES" />
+            <PropertyRef Name="APELLIDOS" />
+            <PropertyRef Name="NRO_DOCUMENTO" />
+            <PropertyRef Name="AUDIT_MOD" />
+            <PropertyRef Name="FLAG" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_SECTOR" Type="int" Nullable="false" />
+          <Property Name="ID_TIPO_PERSONA" Type="int" Nullable="false" />
+          <Property Name="CODIGO_DEPARTAMENTO" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="CODIGO_PROVINCIA" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="CODIGO_DISTRITO" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="ID_TIPO_IDENTIFICACION" Type="int" Nullable="false" />
+          <Property Name="RUBRO" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="RAZON_SOCIAL" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="NOMBRES" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="APELLIDOS" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="NRO_DOCUMENTO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="400" />
+          <Property Name="TELEFONO" Type="varchar" MaxLength="50" />
+          <Property Name="FAX" Type="varchar" MaxLength="50" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="100" />
+          <Property Name="AUDIT_MOD" Type="datetime" Nullable="false" />
+          <Property Name="REPRESENTANTE_LEGAL" Type="varchar" MaxLength="255" />
+          <Property Name="NRO_DOCUMENTO_REPRESENTANTE" Type="varchar" MaxLength="50" />
+          <Property Name="ID_TIPO_IDENTIFICACION_REP_LEG" Type="int" />
+          <Property Name="CODIGO_PUERTO" Type="int" />
+          <Property Name="FLAG" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="255" />
+          <Property Name="OBSERVACIONES" Type="varchar" MaxLength="255" />
+          <Property Name="CELULAR" Type="varchar" MaxLength="50" />
+          <Property Name="ID_AURA" Type="int" />
+          <Property Name="FLAG_OEC" Type="char" MaxLength="1" />
+          <Property Name="ID_TIPO_ORGANIZACION" Type="int" />
+          <Property Name="NRO_DOCPERNATURAL" Type="varchar" MaxLength="12" />
+          <Property Name="USUARIO_MOD" Type="varchar" MaxLength="255" />
+          <Property Name="FECHA_MOD" Type="datetime" />
+          <Property Name="COD_GENERO" Type="varchar" MaxLength="1" />
+          <Property Name="NO_TIENE_RUC" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_ENCUESTA.dbo.vw_provincia' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_provincia">
+          <Key>
+            <PropertyRef Name="CODIGO_DEPARTAMENTO" />
+            <PropertyRef Name="CODIGO_PROVINCIA" />
+          </Key>
+          <Property Name="CODIGO_DEPARTAMENTO" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="CODIGO_PROVINCIA" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="PROVINCIA" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_ENCUESTA.dbo.vw_regimen' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_regimen">
+          <Key>
+            <PropertyRef Name="ID_REGIMEN" />
+          </Key>
+          <Property Name="ID_REGIMEN" Type="int" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="250" />
+          <Property Name="AUDIT_MOD" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_ENCUESTA.dbo.vw_rol' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_rol">
+          <Key>
+            <PropertyRef Name="id_rol" />
+            <PropertyRef Name="id_aplicacion" />
+            <PropertyRef Name="nombre" />
+            <PropertyRef Name="tipo_rol" />
+            <PropertyRef Name="estado" />
+            <PropertyRef Name="usuario_registro" />
+            <PropertyRef Name="fecha_registro" />
+            <PropertyRef Name="usuario_modificacion" />
+            <PropertyRef Name="fecha_modificacion" />
+          </Key>
+          <Property Name="id_rol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_aplicacion" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="tipo_rol" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+          <Property Name="usuario_registro" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="fecha_registro" Type="datetime" Nullable="false" />
+          <Property Name="usuario_modificacion" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="fecha_modificacion" Type="datetime" Nullable="false" />
+          <Property Name="es_default" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_ENCUESTA.dbo.vw_trabajador' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_trabajador">
+          <Key>
+            <PropertyRef Name="CODIGO_TRABAJADOR" />
+            <PropertyRef Name="CODIGO_DEPENDENCIA" />
+            <PropertyRef Name="CONDICION" />
+            <PropertyRef Name="lockout_enable" />
+            <PropertyRef Name="access_failed_count" />
+          </Key>
+          <Property Name="CODIGO_TRABAJADOR" Type="int" Nullable="false" />
+          <Property Name="CODIGO_DEPENDENCIA" Type="int" Nullable="false" />
+          <Property Name="APELLIDOS_TRABAJADOR" Type="varchar" MaxLength="50" />
+          <Property Name="NOMBRES_TRABAJADOR" Type="varchar" MaxLength="50" />
+          <Property Name="CONDICION" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_NACIMIENTO" Type="varchar" MaxLength="10" />
+          <Property Name="IDENTIFICADOR" Type="varchar" MaxLength="30" />
+          <Property Name="DNI" Type="varchar" MaxLength="20" />
+          <Property Name="TELEFONO" Type="varchar" MaxLength="10" />
+          <Property Name="ESTADO" Type="varchar" MaxLength="20" />
+          <Property Name="CODDEP" Type="int" />
+          <Property Name="AUDIT_MOD" Type="datetime" />
+          <Property Name="AUDIT_CREA" Type="datetime" />
+          <Property Name="PUBLICADO" Type="int" />
+          <Property Name="IDPROFESION" Type="int" />
+          <Property Name="IDSUBDEPENDENCIA" Type="int" />
+          <Property Name="CODDEP_PUB" Type="int" />
+          <Property Name="CODIGO_MAESTRO" Type="varchar" MaxLength="10" />
+          <Property Name="DIRECTOR" Type="int" />
+          <Property Name="PUBLICADO_INTRANET" Type="int" />
+          <Property Name="ANEXO" Type="varchar" MaxLength="50" />
+          <Property Name="PUBLICADO_CONTACTO" Type="varchar" MaxLength="1" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="255" />
+          <Property Name="USUARIO_CREACION" Type="varchar" MaxLength="50" />
+          <Property Name="USUARIO_MODIFICACION" Type="varchar" MaxLength="50" />
+          <Property Name="NUMERO_TARJETA" Type="varchar" MaxLength="255" />
+          <Property Name="ID_REGIMEN" Type="int" />
+          <Property Name="DOMINIO" Type="varchar" MaxLength="32" />
+          <Property Name="security_stamp" Type="varchar" MaxLength="100" />
+          <Property Name="lockout_end_date" Type="datetime" />
+          <Property Name="lockout_enable" Type="bit" Nullable="false" />
+          <Property Name="access_failed_count" Type="int" Nullable="false" />
+          <Property Name="GENERO" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_ENCUESTA.dbo.vw_usuario_rol_intranet' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_usuario_rol_intranet">
+          <Key>
+            <PropertyRef Name="id_rol" />
+            <PropertyRef Name="codigo_trabajador" />
+            <PropertyRef Name="nombre" />
+          </Key>
+          <Property Name="id_rol" Type="int" Nullable="false" />
+          <Property Name="codigo_trabajador" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__DAT_ENCUE__id_en__48CFD27E">
+          <End Role="DAT_ENCUESTA" Type="Self.DAT_ENCUESTA" Multiplicity="1" />
+          <End Role="DAT_ENCUESTA_BIENVENIDA" Type="Self.DAT_ENCUESTA_BIENVENIDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ENCUESTA">
+              <PropertyRef Name="id_encuesta" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_BIENVENIDA">
+              <PropertyRef Name="id_encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DAT_ENCUE__id_en__4D94879B">
+          <End Role="DAT_ENCUESTA" Type="Self.DAT_ENCUESTA" Multiplicity="1" />
+          <End Role="DAT_ENCUESTA_AGRADECIMIENTO" Type="Self.DAT_ENCUESTA_AGRADECIMIENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ENCUESTA">
+              <PropertyRef Name="id_encuesta" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_AGRADECIMIENTO">
+              <PropertyRef Name="id_encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DAT_GRUPO__id_en__5812160E">
+          <End Role="DAT_ENCUESTA" Type="Self.DAT_ENCUESTA" Multiplicity="1" />
+          <End Role="DAT_ENCUESTA_ENCUESTADO" Type="Self.DAT_ENCUESTA_ENCUESTADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ENCUESTA">
+              <PropertyRef Name="id_encuesta" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_ENCUESTADO">
+              <PropertyRef Name="id_encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DAT_PREGU__id_en__52593CB8">
+          <End Role="DAT_ENCUESTA" Type="Self.DAT_ENCUESTA" Multiplicity="1" />
+          <End Role="DAT_ENCUESTA_PREGUNTA" Type="Self.DAT_ENCUESTA_PREGUNTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ENCUESTA">
+              <PropertyRef Name="id_encuesta" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_PREGUNTA">
+              <PropertyRef Name="id_encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DAT_RESPU__id_en__5DCAEF64">
+          <End Role="DAT_ENCUESTA" Type="Self.DAT_ENCUESTA" Multiplicity="1" />
+          <End Role="DAT_RESPUESTA" Type="Self.DAT_RESPUESTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ENCUESTA">
+              <PropertyRef Name="id_encuesta" />
+            </Principal>
+            <Dependent Role="DAT_RESPUESTA">
+              <PropertyRef Name="id_encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DAT_RESPU__id_re__6383C8BA">
+          <End Role="DAT_RESPUESTA" Type="Self.DAT_RESPUESTA" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DAT_RESPUESTA_PREGUNTA" Type="Self.DAT_RESPUESTA_PREGUNTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_RESPUESTA">
+              <PropertyRef Name="id_respuesta" />
+            </Principal>
+            <Dependent Role="DAT_RESPUESTA_PREGUNTA">
+              <PropertyRef Name="id_respuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_CONFIGURACION_INICIAL_CAT_TIPO_ENCUESTA">
+          <End Role="CAT_TIPO_ENCUESTA" Type="Self.CAT_TIPO_ENCUESTA" Multiplicity="1" />
+          <End Role="CAT_CONFIGURACION_INICIAL" Type="Self.CAT_CONFIGURACION_INICIAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_TIPO_ENCUESTA">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CAT_CONFIGURACION_INICIAL">
+              <PropertyRef Name="id_tipo_encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_SUB_CATEGORIA_CAT_CATEGORIA">
+          <End Role="CAT_CATEGORIA" Type="Self.CAT_CATEGORIA" Multiplicity="1" />
+          <End Role="CAT_SUB_CATEGORIA" Type="Self.CAT_SUB_CATEGORIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_CATEGORIA">
+              <PropertyRef Name="id_categoria" />
+            </Principal>
+            <Dependent Role="CAT_SUB_CATEGORIA">
+              <PropertyRef Name="id_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CAT_SUB_CATEGORIA_EXTRANET_CAT_CATEGORIA_EXTRANET">
+          <End Role="CAT_CATEGORIA_EXTRANET" Type="Self.CAT_CATEGORIA_EXTRANET" Multiplicity="1" />
+          <End Role="CAT_SUB_CATEGORIA_EXTRANET" Type="Self.CAT_SUB_CATEGORIA_EXTRANET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_CATEGORIA_EXTRANET">
+              <PropertyRef Name="id_categoria_extranet" />
+            </Principal>
+            <Dependent Role="CAT_SUB_CATEGORIA_EXTRANET">
+              <PropertyRef Name="id_categoria_extranet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_ENCUESTA_AGRADECIMIENTO_CAT_TIPO_ARCHIVO">
+          <End Role="CAT_TIPO_ARCHIVO" Type="Self.CAT_TIPO_ARCHIVO" Multiplicity="0..1" />
+          <End Role="DAT_ENCUESTA_AGRADECIMIENTO" Type="Self.DAT_ENCUESTA_AGRADECIMIENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_TIPO_ARCHIVO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_AGRADECIMIENTO">
+              <PropertyRef Name="id_tipo_archivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_ENCUESTA_CAT_ESTADO_ENCUESTA">
+          <End Role="CAT_ESTADO_ENCUESTA" Type="Self.CAT_ESTADO_ENCUESTA" Multiplicity="1" />
+          <End Role="DAT_ENCUESTA" Type="Self.DAT_ENCUESTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_ESTADO_ENCUESTA">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA">
+              <PropertyRef Name="id_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_ENCUESTA_CAT_TIPO_ENCUESTA">
+          <End Role="CAT_TIPO_ENCUESTA" Type="Self.CAT_TIPO_ENCUESTA" Multiplicity="1" />
+          <End Role="DAT_ENCUESTA" Type="Self.DAT_ENCUESTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_TIPO_ENCUESTA">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA">
+              <PropertyRef Name="id_tipo_encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_ENCUESTA_PREGUNTA_CAT_CATEGORIA">
+          <End Role="CAT_CATEGORIA" Type="Self.CAT_CATEGORIA" Multiplicity="0..1" />
+          <End Role="DAT_ENCUESTA_PREGUNTA" Type="Self.DAT_ENCUESTA_PREGUNTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_CATEGORIA">
+              <PropertyRef Name="id_categoria" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_PREGUNTA">
+              <PropertyRef Name="id_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_ENCUESTA_PREGUNTA_CAT_SUB_CATEGORIA">
+          <End Role="CAT_SUB_CATEGORIA" Type="Self.CAT_SUB_CATEGORIA" Multiplicity="0..1" />
+          <End Role="DAT_ENCUESTA_PREGUNTA" Type="Self.DAT_ENCUESTA_PREGUNTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_SUB_CATEGORIA">
+              <PropertyRef Name="id_sub_categoria" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_PREGUNTA">
+              <PropertyRef Name="id_sub_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_ENCUESTA_PREGUNTA_CAT_TIPO_ARCHIVO">
+          <End Role="CAT_TIPO_ARCHIVO" Type="Self.CAT_TIPO_ARCHIVO" Multiplicity="0..1" />
+          <End Role="DAT_ENCUESTA_PREGUNTA" Type="Self.DAT_ENCUESTA_PREGUNTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_TIPO_ARCHIVO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_PREGUNTA">
+              <PropertyRef Name="id_tipo_archivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_ENCUESTA_PREGUNTA_CAT_TIPO_PREGUNTA">
+          <End Role="CAT_TIPO_PREGUNTA" Type="Self.CAT_TIPO_PREGUNTA" Multiplicity="1" />
+          <End Role="DAT_ENCUESTA_PREGUNTA" Type="Self.DAT_ENCUESTA_PREGUNTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_TIPO_PREGUNTA">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_PREGUNTA">
+              <PropertyRef Name="id_tipo_pregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_RESPUESTA_CAT_ESTADO_RESPUESTA">
+          <End Role="CAT_ESTADO_RESPUESTA" Type="Self.CAT_ESTADO_RESPUESTA" Multiplicity="1" />
+          <End Role="DAT_RESPUESTA" Type="Self.DAT_RESPUESTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_ESTADO_RESPUESTA">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DAT_RESPUESTA">
+              <PropertyRef Name="id_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_RESPUESTA_PREGUNTA_DAT_ENCUESTA_PREGUNTA">
+          <End Role="DAT_ENCUESTA_PREGUNTA" Type="Self.DAT_ENCUESTA_PREGUNTA" Multiplicity="0..1" />
+          <End Role="DAT_RESPUESTA_PREGUNTA" Type="Self.DAT_RESPUESTA_PREGUNTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ENCUESTA_PREGUNTA">
+              <PropertyRef Name="id_pregunta" />
+            </Principal>
+            <Dependent Role="DAT_RESPUESTA_PREGUNTA">
+              <PropertyRef Name="id_pregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_encuesta_administrado_encuesta">
+          <End Role="DAT_ENCUESTA" Type="Self.DAT_ENCUESTA" Multiplicity="1" />
+          <End Role="DAT_ENCUESTA_ADMINISTRADO" Type="Self.DAT_ENCUESTA_ADMINISTRADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ENCUESTA">
+              <PropertyRef Name="id_encuesta" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_ADMINISTRADO">
+              <PropertyRef Name="id_encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_encuesta_administrado_estado_administrado">
+          <End Role="CAT_ESTADO_ADMINISTRADO" Type="Self.CAT_ESTADO_ADMINISTRADO" Multiplicity="1" />
+          <End Role="DAT_ENCUESTA_ADMINISTRADO" Type="Self.DAT_ENCUESTA_ADMINISTRADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_ESTADO_ADMINISTRADO">
+              <PropertyRef Name="id_estado_administrado" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_ADMINISTRADO">
+              <PropertyRef Name="id_estado_administrado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_encuesta_notificacion_encuesta">
+          <End Role="DAT_ENCUESTA" Type="Self.DAT_ENCUESTA" Multiplicity="1" />
+          <End Role="DAT_ENCUESTA_NOTIFICACION" Type="Self.DAT_ENCUESTA_NOTIFICACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ENCUESTA">
+              <PropertyRef Name="id_encuesta" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_NOTIFICACION">
+              <PropertyRef Name="id_encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_encuesta_seccion_encuesta">
+          <End Role="DAT_ENCUESTA" Type="Self.DAT_ENCUESTA" Multiplicity="1" />
+          <End Role="DAT_ENCUESTA_SECCION" Type="Self.DAT_ENCUESTA_SECCION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ENCUESTA">
+              <PropertyRef Name="id_encuesta" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_SECCION">
+              <PropertyRef Name="id_encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModeloStoreContainer">
+          <EntitySet Name="CAT_ARCHIVO_TIPO_ARCHIVO" EntityType="Self.CAT_ARCHIVO_TIPO_ARCHIVO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_CATEGORIA" EntityType="Self.CAT_CATEGORIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_CATEGORIA_EXTRANET" EntityType="Self.CAT_CATEGORIA_EXTRANET" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_CONFIGURACION_INICIAL" EntityType="Self.CAT_CONFIGURACION_INICIAL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_DIRIGIDO_NOTIFICACION" EntityType="Self.CAT_DIRIGIDO_NOTIFICACION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_ESTADO_ADMINISTRADO" EntityType="Self.CAT_ESTADO_ADMINISTRADO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_ESTADO_ENCUESTA" EntityType="Self.CAT_ESTADO_ENCUESTA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_ESTADO_RESPUESTA" EntityType="Self.CAT_ESTADO_RESPUESTA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_SEXOS" EntityType="Self.CAT_SEXOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_SUB_CATEGORIA" EntityType="Self.CAT_SUB_CATEGORIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_SUB_CATEGORIA_EXTRANET" EntityType="Self.CAT_SUB_CATEGORIA_EXTRANET" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_TIPO_ARCHIVO" EntityType="Self.CAT_TIPO_ARCHIVO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_TIPO_ENCUESTA" EntityType="Self.CAT_TIPO_ENCUESTA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_TIPO_FECHA" EntityType="Self.CAT_TIPO_FECHA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_TIPO_MAESTRO_INSTITUCIONAL" EntityType="Self.CAT_TIPO_MAESTRO_INSTITUCIONAL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CAT_TIPO_PREGUNTA" EntityType="Self.CAT_TIPO_PREGUNTA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAT_ENCUESTA" EntityType="Self.DAT_ENCUESTA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAT_ENCUESTA_ADMINISTRADO" EntityType="Self.DAT_ENCUESTA_ADMINISTRADO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAT_ENCUESTA_AGRADECIMIENTO" EntityType="Self.DAT_ENCUESTA_AGRADECIMIENTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAT_ENCUESTA_BIENVENIDA" EntityType="Self.DAT_ENCUESTA_BIENVENIDA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAT_ENCUESTA_ENCUESTADO" EntityType="Self.DAT_ENCUESTA_ENCUESTADO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAT_ENCUESTA_NOTIFICACION" EntityType="Self.DAT_ENCUESTA_NOTIFICACION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAT_ENCUESTA_PREGUNTA" EntityType="Self.DAT_ENCUESTA_PREGUNTA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAT_ENCUESTA_SECCION" EntityType="Self.DAT_ENCUESTA_SECCION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAT_RESPUESTA" EntityType="Self.DAT_RESPUESTA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAT_RESPUESTA_PREGUNTA" EntityType="Self.DAT_RESPUESTA_PREGUNTA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_aplicacion" EntityType="Self.vw_aplicacion" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_aplicacion].[id_aplicacion] AS [id_aplicacion], 
+    [vw_aplicacion].[nombre] AS [nombre], 
+    [vw_aplicacion].[descripcion] AS [descripcion], 
+    [vw_aplicacion].[detalle] AS [detalle], 
+    [vw_aplicacion].[id_categoria] AS [id_categoria], 
+    [vw_aplicacion].[es_intranet] AS [es_intranet], 
+    [vw_aplicacion].[es_extranet] AS [es_extranet], 
+    [vw_aplicacion].[libre_intranet] AS [libre_intranet], 
+    [vw_aplicacion].[libre_extranet] AS [libre_extranet], 
+    [vw_aplicacion].[es_vusp] AS [es_vusp], 
+    [vw_aplicacion].[url_intranet] AS [url_intranet], 
+    [vw_aplicacion].[url_extranet] AS [url_extranet], 
+    [vw_aplicacion].[estado] AS [estado], 
+    [vw_aplicacion].[usuario_registro] AS [usuario_registro], 
+    [vw_aplicacion].[fecha_registro] AS [fecha_registro], 
+    [vw_aplicacion].[usuario_modificacion] AS [usuario_modificacion], 
+    [vw_aplicacion].[fecha_modificacion] AS [fecha_modificacion], 
+    [vw_aplicacion].[BD] AS [BD], 
+    [vw_aplicacion].[SRV] AS [SRV], 
+    [vw_aplicacion].[SRVAPP] AS [SRVAPP]
+    FROM [dbo].[vw_aplicacion] AS [vw_aplicacion]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_departamento" EntityType="Self.vw_departamento" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_departamento].[CODIGO_DEPARTAMENTO] AS [CODIGO_DEPARTAMENTO], 
+    [vw_departamento].[DEPARTAMENTO] AS [DEPARTAMENTO]
+    FROM [dbo].[vw_departamento] AS [vw_departamento]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_dependencia" EntityType="Self.vw_dependencia" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_dependencia].[CODIGO_DEPENDENCIA] AS [CODIGO_DEPENDENCIA], 
+    [vw_dependencia].[DEPENDENCIA] AS [DEPENDENCIA], 
+    [vw_dependencia].[PISO] AS [PISO], 
+    [vw_dependencia].[SIGLAS] AS [SIGLAS], 
+    [vw_dependencia].[AUDIT_MOD] AS [AUDIT_MOD], 
+    [vw_dependencia].[AUDIT_CREA] AS [AUDIT_CREA], 
+    [vw_dependencia].[CONDICION] AS [CONDICION], 
+    [vw_dependencia].[DIRECTO] AS [DIRECTO], 
+    [vw_dependencia].[ANEXO] AS [ANEXO], 
+    [vw_dependencia].[SECCION] AS [SECCION], 
+    [vw_dependencia].[CENTRAL] AS [CENTRAL], 
+    [vw_dependencia].[EMAIL] AS [EMAIL], 
+    [vw_dependencia].[FAX] AS [FAX], 
+    [vw_dependencia].[EQUIVALENCIA] AS [EQUIVALENCIA], 
+    [vw_dependencia].[PRIORIDAD] AS [PRIORIDAD], 
+    [vw_dependencia].[TIPO_DEPENDENCIA] AS [TIPO_DEPENDENCIA], 
+    [vw_dependencia].[CODDEP_PUB] AS [CODDEP_PUB], 
+    [vw_dependencia].[PUBLICADO_WEB] AS [PUBLICADO_WEB], 
+    [vw_dependencia].[USUARIO_CREACION] AS [USUARIO_CREACION], 
+    [vw_dependencia].[USUARIO_MODIFICACION] AS [USUARIO_MODIFICACION], 
+    [vw_dependencia].[CODDEP_RESPONSABLE] AS [CODDEP_RESPONSABLE], 
+    [vw_dependencia].[ID_TIPO_DEPENDENCIA] AS [ID_TIPO_DEPENDENCIA], 
+    [vw_dependencia].[PUBLICADO_EXTRANET] AS [PUBLICADO_EXTRANET], 
+    [vw_dependencia].[CODDEP_PRINCIPAL] AS [CODDEP_PRINCIPAL], 
+    [vw_dependencia].[ES_DEPGENERAL] AS [ES_DEPGENERAL], 
+    [vw_dependencia].[RUC_ENTIDAD] AS [RUC_ENTIDAD]
+    FROM [dbo].[vw_dependencia] AS [vw_dependencia]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_distrito" EntityType="Self.vw_distrito" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_distrito].[CODIGO_DEPARTAMENTO] AS [CODIGO_DEPARTAMENTO], 
+    [vw_distrito].[CODIGO_PROVINCIA] AS [CODIGO_PROVINCIA], 
+    [vw_distrito].[CODIGO_DISTRITO] AS [CODIGO_DISTRITO], 
+    [vw_distrito].[DISTRITO] AS [DISTRITO]
+    FROM [dbo].[vw_distrito] AS [vw_distrito]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_persona" EntityType="Self.vw_persona" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_persona].[ID] AS [ID], 
+    [vw_persona].[ID_SECTOR] AS [ID_SECTOR], 
+    [vw_persona].[ID_TIPO_PERSONA] AS [ID_TIPO_PERSONA], 
+    [vw_persona].[CODIGO_DEPARTAMENTO] AS [CODIGO_DEPARTAMENTO], 
+    [vw_persona].[CODIGO_PROVINCIA] AS [CODIGO_PROVINCIA], 
+    [vw_persona].[CODIGO_DISTRITO] AS [CODIGO_DISTRITO], 
+    [vw_persona].[ID_TIPO_IDENTIFICACION] AS [ID_TIPO_IDENTIFICACION], 
+    [vw_persona].[RUBRO] AS [RUBRO], 
+    [vw_persona].[RAZON_SOCIAL] AS [RAZON_SOCIAL], 
+    [vw_persona].[NOMBRES] AS [NOMBRES], 
+    [vw_persona].[APELLIDOS] AS [APELLIDOS], 
+    [vw_persona].[NRO_DOCUMENTO] AS [NRO_DOCUMENTO], 
+    [vw_persona].[DIRECCION] AS [DIRECCION], 
+    [vw_persona].[TELEFONO] AS [TELEFONO], 
+    [vw_persona].[FAX] AS [FAX], 
+    [vw_persona].[EMAIL] AS [EMAIL], 
+    [vw_persona].[AUDIT_MOD] AS [AUDIT_MOD], 
+    [vw_persona].[REPRESENTANTE_LEGAL] AS [REPRESENTANTE_LEGAL], 
+    [vw_persona].[NRO_DOCUMENTO_REPRESENTANTE] AS [NRO_DOCUMENTO_REPRESENTANTE], 
+    [vw_persona].[ID_TIPO_IDENTIFICACION_REP_LEG] AS [ID_TIPO_IDENTIFICACION_REP_LEG], 
+    [vw_persona].[CODIGO_PUERTO] AS [CODIGO_PUERTO], 
+    [vw_persona].[FLAG] AS [FLAG], 
+    [vw_persona].[usuario] AS [usuario], 
+    [vw_persona].[OBSERVACIONES] AS [OBSERVACIONES], 
+    [vw_persona].[CELULAR] AS [CELULAR], 
+    [vw_persona].[ID_AURA] AS [ID_AURA], 
+    [vw_persona].[FLAG_OEC] AS [FLAG_OEC], 
+    [vw_persona].[ID_TIPO_ORGANIZACION] AS [ID_TIPO_ORGANIZACION], 
+    [vw_persona].[NRO_DOCPERNATURAL] AS [NRO_DOCPERNATURAL], 
+    [vw_persona].[USUARIO_MOD] AS [USUARIO_MOD], 
+    [vw_persona].[FECHA_MOD] AS [FECHA_MOD], 
+    [vw_persona].[COD_GENERO] AS [COD_GENERO], 
+    [vw_persona].[NO_TIENE_RUC] AS [NO_TIENE_RUC]
+    FROM [dbo].[vw_persona] AS [vw_persona]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_provincia" EntityType="Self.vw_provincia" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_provincia].[CODIGO_DEPARTAMENTO] AS [CODIGO_DEPARTAMENTO], 
+    [vw_provincia].[CODIGO_PROVINCIA] AS [CODIGO_PROVINCIA], 
+    [vw_provincia].[PROVINCIA] AS [PROVINCIA]
+    FROM [dbo].[vw_provincia] AS [vw_provincia]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_regimen" EntityType="Self.vw_regimen" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_regimen].[ID_REGIMEN] AS [ID_REGIMEN], 
+    [vw_regimen].[DESCRIPCION] AS [DESCRIPCION], 
+    [vw_regimen].[AUDIT_MOD] AS [AUDIT_MOD]
+    FROM [dbo].[vw_regimen] AS [vw_regimen]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_rol" EntityType="Self.vw_rol" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_rol].[id_rol] AS [id_rol], 
+    [vw_rol].[id_aplicacion] AS [id_aplicacion], 
+    [vw_rol].[nombre] AS [nombre], 
+    [vw_rol].[tipo_rol] AS [tipo_rol], 
+    [vw_rol].[estado] AS [estado], 
+    [vw_rol].[usuario_registro] AS [usuario_registro], 
+    [vw_rol].[fecha_registro] AS [fecha_registro], 
+    [vw_rol].[usuario_modificacion] AS [usuario_modificacion], 
+    [vw_rol].[fecha_modificacion] AS [fecha_modificacion], 
+    [vw_rol].[es_default] AS [es_default]
+    FROM [dbo].[vw_rol] AS [vw_rol]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_trabajador" EntityType="Self.vw_trabajador" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_trabajador].[CODIGO_TRABAJADOR] AS [CODIGO_TRABAJADOR], 
+    [vw_trabajador].[CODIGO_DEPENDENCIA] AS [CODIGO_DEPENDENCIA], 
+    [vw_trabajador].[APELLIDOS_TRABAJADOR] AS [APELLIDOS_TRABAJADOR], 
+    [vw_trabajador].[NOMBRES_TRABAJADOR] AS [NOMBRES_TRABAJADOR], 
+    [vw_trabajador].[CONDICION] AS [CONDICION], 
+    [vw_trabajador].[EMAIL] AS [EMAIL], 
+    [vw_trabajador].[FECHA_NACIMIENTO] AS [FECHA_NACIMIENTO], 
+    [vw_trabajador].[IDENTIFICADOR] AS [IDENTIFICADOR], 
+    [vw_trabajador].[DNI] AS [DNI], 
+    [vw_trabajador].[TELEFONO] AS [TELEFONO], 
+    [vw_trabajador].[ESTADO] AS [ESTADO], 
+    [vw_trabajador].[CODDEP] AS [CODDEP], 
+    [vw_trabajador].[AUDIT_MOD] AS [AUDIT_MOD], 
+    [vw_trabajador].[AUDIT_CREA] AS [AUDIT_CREA], 
+    [vw_trabajador].[PUBLICADO] AS [PUBLICADO], 
+    [vw_trabajador].[IDPROFESION] AS [IDPROFESION], 
+    [vw_trabajador].[IDSUBDEPENDENCIA] AS [IDSUBDEPENDENCIA], 
+    [vw_trabajador].[CODDEP_PUB] AS [CODDEP_PUB], 
+    [vw_trabajador].[CODIGO_MAESTRO] AS [CODIGO_MAESTRO], 
+    [vw_trabajador].[DIRECTOR] AS [DIRECTOR], 
+    [vw_trabajador].[PUBLICADO_INTRANET] AS [PUBLICADO_INTRANET], 
+    [vw_trabajador].[ANEXO] AS [ANEXO], 
+    [vw_trabajador].[PUBLICADO_CONTACTO] AS [PUBLICADO_CONTACTO], 
+    [vw_trabajador].[PASSWORD] AS [PASSWORD], 
+    [vw_trabajador].[USUARIO_CREACION] AS [USUARIO_CREACION], 
+    [vw_trabajador].[USUARIO_MODIFICACION] AS [USUARIO_MODIFICACION], 
+    [vw_trabajador].[NUMERO_TARJETA] AS [NUMERO_TARJETA], 
+    [vw_trabajador].[ID_REGIMEN] AS [ID_REGIMEN], 
+    [vw_trabajador].[DOMINIO] AS [DOMINIO], 
+    [vw_trabajador].[security_stamp] AS [security_stamp], 
+    [vw_trabajador].[lockout_end_date] AS [lockout_end_date], 
+    [vw_trabajador].[lockout_enable] AS [lockout_enable], 
+    [vw_trabajador].[access_failed_count] AS [access_failed_count], 
+    [vw_trabajador].[GENERO] AS [GENERO]
+    FROM [dbo].[vw_trabajador] AS [vw_trabajador]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_usuario_rol_intranet" EntityType="Self.vw_usuario_rol_intranet" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_usuario_rol_intranet].[id_rol] AS [id_rol], 
+    [vw_usuario_rol_intranet].[codigo_trabajador] AS [codigo_trabajador], 
+    [vw_usuario_rol_intranet].[nombre] AS [nombre]
+    FROM [dbo].[vw_usuario_rol_intranet] AS [vw_usuario_rol_intranet]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__DAT_ENCUE__id_en__48CFD27E" Association="Self.FK__DAT_ENCUE__id_en__48CFD27E">
+            <End Role="DAT_ENCUESTA" EntitySet="DAT_ENCUESTA" />
+            <End Role="DAT_ENCUESTA_BIENVENIDA" EntitySet="DAT_ENCUESTA_BIENVENIDA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DAT_ENCUE__id_en__4D94879B" Association="Self.FK__DAT_ENCUE__id_en__4D94879B">
+            <End Role="DAT_ENCUESTA" EntitySet="DAT_ENCUESTA" />
+            <End Role="DAT_ENCUESTA_AGRADECIMIENTO" EntitySet="DAT_ENCUESTA_AGRADECIMIENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DAT_GRUPO__id_en__5812160E" Association="Self.FK__DAT_GRUPO__id_en__5812160E">
+            <End Role="DAT_ENCUESTA" EntitySet="DAT_ENCUESTA" />
+            <End Role="DAT_ENCUESTA_ENCUESTADO" EntitySet="DAT_ENCUESTA_ENCUESTADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DAT_PREGU__id_en__52593CB8" Association="Self.FK__DAT_PREGU__id_en__52593CB8">
+            <End Role="DAT_ENCUESTA" EntitySet="DAT_ENCUESTA" />
+            <End Role="DAT_ENCUESTA_PREGUNTA" EntitySet="DAT_ENCUESTA_PREGUNTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DAT_RESPU__id_en__5DCAEF64" Association="Self.FK__DAT_RESPU__id_en__5DCAEF64">
+            <End Role="DAT_ENCUESTA" EntitySet="DAT_ENCUESTA" />
+            <End Role="DAT_RESPUESTA" EntitySet="DAT_RESPUESTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DAT_RESPU__id_re__6383C8BA" Association="Self.FK__DAT_RESPU__id_re__6383C8BA">
+            <End Role="DAT_RESPUESTA" EntitySet="DAT_RESPUESTA" />
+            <End Role="DAT_RESPUESTA_PREGUNTA" EntitySet="DAT_RESPUESTA_PREGUNTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_CONFIGURACION_INICIAL_CAT_TIPO_ENCUESTA" Association="Self.FK_CAT_CONFIGURACION_INICIAL_CAT_TIPO_ENCUESTA">
+            <End Role="CAT_TIPO_ENCUESTA" EntitySet="CAT_TIPO_ENCUESTA" />
+            <End Role="CAT_CONFIGURACION_INICIAL" EntitySet="CAT_CONFIGURACION_INICIAL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_SUB_CATEGORIA_CAT_CATEGORIA" Association="Self.FK_CAT_SUB_CATEGORIA_CAT_CATEGORIA">
+            <End Role="CAT_CATEGORIA" EntitySet="CAT_CATEGORIA" />
+            <End Role="CAT_SUB_CATEGORIA" EntitySet="CAT_SUB_CATEGORIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CAT_SUB_CATEGORIA_EXTRANET_CAT_CATEGORIA_EXTRANET" Association="Self.FK_CAT_SUB_CATEGORIA_EXTRANET_CAT_CATEGORIA_EXTRANET">
+            <End Role="CAT_CATEGORIA_EXTRANET" EntitySet="CAT_CATEGORIA_EXTRANET" />
+            <End Role="CAT_SUB_CATEGORIA_EXTRANET" EntitySet="CAT_SUB_CATEGORIA_EXTRANET" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_ENCUESTA_AGRADECIMIENTO_CAT_TIPO_ARCHIVO" Association="Self.FK_DAT_ENCUESTA_AGRADECIMIENTO_CAT_TIPO_ARCHIVO">
+            <End Role="CAT_TIPO_ARCHIVO" EntitySet="CAT_TIPO_ARCHIVO" />
+            <End Role="DAT_ENCUESTA_AGRADECIMIENTO" EntitySet="DAT_ENCUESTA_AGRADECIMIENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_ENCUESTA_CAT_ESTADO_ENCUESTA" Association="Self.FK_DAT_ENCUESTA_CAT_ESTADO_ENCUESTA">
+            <End Role="CAT_ESTADO_ENCUESTA" EntitySet="CAT_ESTADO_ENCUESTA" />
+            <End Role="DAT_ENCUESTA" EntitySet="DAT_ENCUESTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_ENCUESTA_CAT_TIPO_ENCUESTA" Association="Self.FK_DAT_ENCUESTA_CAT_TIPO_ENCUESTA">
+            <End Role="CAT_TIPO_ENCUESTA" EntitySet="CAT_TIPO_ENCUESTA" />
+            <End Role="DAT_ENCUESTA" EntitySet="DAT_ENCUESTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_ENCUESTA_PREGUNTA_CAT_CATEGORIA" Association="Self.FK_DAT_ENCUESTA_PREGUNTA_CAT_CATEGORIA">
+            <End Role="CAT_CATEGORIA" EntitySet="CAT_CATEGORIA" />
+            <End Role="DAT_ENCUESTA_PREGUNTA" EntitySet="DAT_ENCUESTA_PREGUNTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_ENCUESTA_PREGUNTA_CAT_SUB_CATEGORIA" Association="Self.FK_DAT_ENCUESTA_PREGUNTA_CAT_SUB_CATEGORIA">
+            <End Role="CAT_SUB_CATEGORIA" EntitySet="CAT_SUB_CATEGORIA" />
+            <End Role="DAT_ENCUESTA_PREGUNTA" EntitySet="DAT_ENCUESTA_PREGUNTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_ENCUESTA_PREGUNTA_CAT_TIPO_ARCHIVO" Association="Self.FK_DAT_ENCUESTA_PREGUNTA_CAT_TIPO_ARCHIVO">
+            <End Role="CAT_TIPO_ARCHIVO" EntitySet="CAT_TIPO_ARCHIVO" />
+            <End Role="DAT_ENCUESTA_PREGUNTA" EntitySet="DAT_ENCUESTA_PREGUNTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_ENCUESTA_PREGUNTA_CAT_TIPO_PREGUNTA" Association="Self.FK_DAT_ENCUESTA_PREGUNTA_CAT_TIPO_PREGUNTA">
+            <End Role="CAT_TIPO_PREGUNTA" EntitySet="CAT_TIPO_PREGUNTA" />
+            <End Role="DAT_ENCUESTA_PREGUNTA" EntitySet="DAT_ENCUESTA_PREGUNTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_RESPUESTA_CAT_ESTADO_RESPUESTA" Association="Self.FK_DAT_RESPUESTA_CAT_ESTADO_RESPUESTA">
+            <End Role="CAT_ESTADO_RESPUESTA" EntitySet="CAT_ESTADO_RESPUESTA" />
+            <End Role="DAT_RESPUESTA" EntitySet="DAT_RESPUESTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_RESPUESTA_PREGUNTA_DAT_ENCUESTA_PREGUNTA" Association="Self.FK_DAT_RESPUESTA_PREGUNTA_DAT_ENCUESTA_PREGUNTA">
+            <End Role="DAT_ENCUESTA_PREGUNTA" EntitySet="DAT_ENCUESTA_PREGUNTA" />
+            <End Role="DAT_RESPUESTA_PREGUNTA" EntitySet="DAT_RESPUESTA_PREGUNTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_encuesta_administrado_encuesta" Association="Self.FK_encuesta_administrado_encuesta">
+            <End Role="DAT_ENCUESTA" EntitySet="DAT_ENCUESTA" />
+            <End Role="DAT_ENCUESTA_ADMINISTRADO" EntitySet="DAT_ENCUESTA_ADMINISTRADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_encuesta_administrado_estado_administrado" Association="Self.FK_encuesta_administrado_estado_administrado">
+            <End Role="CAT_ESTADO_ADMINISTRADO" EntitySet="CAT_ESTADO_ADMINISTRADO" />
+            <End Role="DAT_ENCUESTA_ADMINISTRADO" EntitySet="DAT_ENCUESTA_ADMINISTRADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_encuesta_notificacion_encuesta" Association="Self.FK_encuesta_notificacion_encuesta">
+            <End Role="DAT_ENCUESTA" EntitySet="DAT_ENCUESTA" />
+            <End Role="DAT_ENCUESTA_NOTIFICACION" EntitySet="DAT_ENCUESTA_NOTIFICACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_encuesta_seccion_encuesta" Association="Self.FK_encuesta_seccion_encuesta">
+            <End Role="DAT_ENCUESTA" EntitySet="DAT_ENCUESTA" />
+            <End Role="DAT_ENCUESTA_SECCION" EntitySet="DAT_ENCUESTA_SECCION" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Modelo" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ClimaOrganizacionalDbContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CAT_CATEGORIA" EntityType="Modelo.CAT_CATEGORIA" />
+          <EntitySet Name="CAT_CONFIGURACION_INICIAL" EntityType="Modelo.CAT_CONFIGURACION_INICIAL" />
+          <EntitySet Name="CAT_SUB_CATEGORIA" EntityType="Modelo.CAT_SUB_CATEGORIA" />
+          <EntitySet Name="DAT_ENCUESTA_AGRADECIMIENTO" EntityType="Modelo.DAT_ENCUESTA_AGRADECIMIENTO" />
+          <EntitySet Name="DAT_ENCUESTA_BIENVENIDA" EntityType="Modelo.DAT_ENCUESTA_BIENVENIDA" />
+          <EntitySet Name="DAT_ENCUESTA_ENCUESTADO" EntityType="Modelo.DAT_ENCUESTA_ENCUESTADO" />
+          <EntitySet Name="DAT_RESPUESTA" EntityType="Modelo.DAT_RESPUESTA" />
+          <EntitySet Name="DAT_RESPUESTA_PREGUNTA" EntityType="Modelo.DAT_RESPUESTA_PREGUNTA" />
+          <EntitySet Name="vw_aplicacion" EntityType="Modelo.vw_aplicacion" />
+          <EntitySet Name="vw_dependencia" EntityType="Modelo.vw_dependencia" />
+          <EntitySet Name="vw_persona" EntityType="Modelo.vw_persona" />
+          <EntitySet Name="vw_regimen" EntityType="Modelo.vw_regimen" />
+          <EntitySet Name="vw_rol" EntityType="Modelo.vw_rol" />
+          <EntitySet Name="vw_trabajador" EntityType="Modelo.vw_trabajador" />
+          <AssociationSet Name="FK__CAT_SUB_C__id_ca__3A81B327" Association="Modelo.FK__CAT_SUB_C__id_ca__3A81B327">
+            <End Role="CAT_CATEGORIA" EntitySet="CAT_CATEGORIA" />
+            <End Role="CAT_SUB_CATEGORIA" EntitySet="CAT_SUB_CATEGORIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DAT_RESPU__id_re__6383C8BA" Association="Modelo.FK__DAT_RESPU__id_re__6383C8BA">
+            <End Role="DAT_RESPUESTA" EntitySet="DAT_RESPUESTA" />
+            <End Role="DAT_RESPUESTA_PREGUNTA" EntitySet="DAT_RESPUESTA_PREGUNTA" />
+          </AssociationSet>
+          <EntitySet Name="CAT_ESTADO_ENCUESTA" EntityType="Modelo.CAT_ESTADO_ENCUESTA" />
+          <EntitySet Name="CAT_ESTADO_RESPUESTA" EntityType="Modelo.CAT_ESTADO_RESPUESTA" />
+          <EntitySet Name="CAT_SEXOS" EntityType="Modelo.CAT_SEXOS" />
+          <EntitySet Name="CAT_TIPO_MAESTRO_INSTITUCIONAL" EntityType="Modelo.CAT_TIPO_MAESTRO_INSTITUCIONAL" />
+          <EntitySet Name="CAT_TIPO_PREGUNTA" EntityType="Modelo.CAT_TIPO_PREGUNTA" />
+          <AssociationSet Name="FK_DAT_RESPUESTA_CAT_ESTADO_RESPUESTA" Association="Modelo.FK_DAT_RESPUESTA_CAT_ESTADO_RESPUESTA">
+            <End Role="CAT_ESTADO_RESPUESTA" EntitySet="CAT_ESTADO_RESPUESTA" />
+            <End Role="DAT_RESPUESTA" EntitySet="DAT_RESPUESTA" />
+          </AssociationSet>
+          <EntitySet Name="CAT_ARCHIVO_TIPO_ARCHIVO" EntityType="Modelo.CAT_ARCHIVO_TIPO_ARCHIVO" />
+          <EntitySet Name="CAT_TIPO_ENCUESTA" EntityType="Modelo.CAT_TIPO_ENCUESTA" />
+          <AssociationSet Name="FK_CAT_CONFIGURACION_INICIAL_CAT_TIPO_ENCUESTA" Association="Modelo.FK_CAT_CONFIGURACION_INICIAL_CAT_TIPO_ENCUESTA">
+            <End Role="CAT_TIPO_ENCUESTA" EntitySet="CAT_TIPO_ENCUESTA" />
+            <End Role="CAT_CONFIGURACION_INICIAL" EntitySet="CAT_CONFIGURACION_INICIAL" />
+          </AssociationSet>
+          <EntitySet Name="CAT_ESTADO_ADMINISTRADO" EntityType="Modelo.CAT_ESTADO_ADMINISTRADO" />
+          <EntitySet Name="DAT_ENCUESTA_ADMINISTRADO" EntityType="Modelo.DAT_ENCUESTA_ADMINISTRADO" />
+          <AssociationSet Name="FK_encuesta_administrado_estado_administrado" Association="Modelo.FK_encuesta_administrado_estado_administrado">
+            <End Role="CAT_ESTADO_ADMINISTRADO" EntitySet="CAT_ESTADO_ADMINISTRADO" />
+            <End Role="DAT_ENCUESTA_ADMINISTRADO" EntitySet="DAT_ENCUESTA_ADMINISTRADO" />
+          </AssociationSet>
+          <EntitySet Name="DAT_ENCUESTA_SECCION" EntityType="Modelo.DAT_ENCUESTA_SECCION" />
+          <EntitySet Name="CAT_TIPO_FECHA" EntityType="Modelo.CAT_TIPO_FECHA" />
+          <EntitySet Name="DAT_ENCUESTA_NOTIFICACION" EntityType="Modelo.DAT_ENCUESTA_NOTIFICACION" />
+          <EntitySet Name="CAT_DIRIGIDO_NOTIFICACION" EntityType="Modelo.CAT_DIRIGIDO_NOTIFICACION" />
+          <EntitySet Name="CAT_CATEGORIA_EXTRANET" EntityType="Modelo.CAT_CATEGORIA_EXTRANET" />
+          <EntitySet Name="CAT_SUB_CATEGORIA_EXTRANET" EntityType="Modelo.CAT_SUB_CATEGORIA_EXTRANET" />
+          <AssociationSet Name="FK_CAT_SUB_CATEGORIA_EXTRANET_CAT_CATEGORIA_EXTRANET" Association="Modelo.FK_CAT_SUB_CATEGORIA_EXTRANET_CAT_CATEGORIA_EXTRANET">
+            <End Role="CAT_CATEGORIA_EXTRANET" EntitySet="CAT_CATEGORIA_EXTRANET" />
+            <End Role="CAT_SUB_CATEGORIA_EXTRANET" EntitySet="CAT_SUB_CATEGORIA_EXTRANET" />
+          </AssociationSet>
+          <EntitySet Name="vw_departamento" EntityType="Modelo.vw_departamento" />
+          <EntitySet Name="vw_distrito" EntityType="Modelo.vw_distrito" />
+          <EntitySet Name="vw_provincia" EntityType="Modelo.vw_provincia" />
+          <EntitySet Name="CAT_TIPO_ARCHIVO" EntityType="Modelo.CAT_TIPO_ARCHIVO" />
+          <EntitySet Name="DAT_ENCUESTA" EntityType="Modelo.DAT_ENCUESTA" />
+          <EntitySet Name="DAT_ENCUESTA_PREGUNTA" EntityType="Modelo.DAT_ENCUESTA_PREGUNTA" />
+          <AssociationSet Name="FK_DAT_ENCUESTA_PREGUNTA_CAT_CATEGORIA" Association="Modelo.FK_DAT_ENCUESTA_PREGUNTA_CAT_CATEGORIA">
+            <End Role="CAT_CATEGORIA" EntitySet="CAT_CATEGORIA" />
+            <End Role="DAT_ENCUESTA_PREGUNTA" EntitySet="DAT_ENCUESTA_PREGUNTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_ENCUESTA_CAT_ESTADO_ENCUESTA" Association="Modelo.FK_DAT_ENCUESTA_CAT_ESTADO_ENCUESTA">
+            <End Role="CAT_ESTADO_ENCUESTA" EntitySet="CAT_ESTADO_ENCUESTA" />
+            <End Role="DAT_ENCUESTA" EntitySet="DAT_ENCUESTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_ENCUESTA_PREGUNTA_CAT_SUB_CATEGORIA" Association="Modelo.FK_DAT_ENCUESTA_PREGUNTA_CAT_SUB_CATEGORIA">
+            <End Role="CAT_SUB_CATEGORIA" EntitySet="CAT_SUB_CATEGORIA" />
+            <End Role="DAT_ENCUESTA_PREGUNTA" EntitySet="DAT_ENCUESTA_PREGUNTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_ENCUESTA_AGRADECIMIENTO_CAT_TIPO_ARCHIVO" Association="Modelo.FK_DAT_ENCUESTA_AGRADECIMIENTO_CAT_TIPO_ARCHIVO">
+            <End Role="CAT_TIPO_ARCHIVO" EntitySet="CAT_TIPO_ARCHIVO" />
+            <End Role="DAT_ENCUESTA_AGRADECIMIENTO" EntitySet="DAT_ENCUESTA_AGRADECIMIENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_ENCUESTA_PREGUNTA_CAT_TIPO_ARCHIVO" Association="Modelo.FK_DAT_ENCUESTA_PREGUNTA_CAT_TIPO_ARCHIVO">
+            <End Role="CAT_TIPO_ARCHIVO" EntitySet="CAT_TIPO_ARCHIVO" />
+            <End Role="DAT_ENCUESTA_PREGUNTA" EntitySet="DAT_ENCUESTA_PREGUNTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_ENCUESTA_PREGUNTA_CAT_TIPO_PREGUNTA" Association="Modelo.FK_DAT_ENCUESTA_PREGUNTA_CAT_TIPO_PREGUNTA">
+            <End Role="CAT_TIPO_PREGUNTA" EntitySet="CAT_TIPO_PREGUNTA" />
+            <End Role="DAT_ENCUESTA_PREGUNTA" EntitySet="DAT_ENCUESTA_PREGUNTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DAT_ENCUE__id_en__48CFD27E" Association="Modelo.FK__DAT_ENCUE__id_en__48CFD27E">
+            <End Role="DAT_ENCUESTA" EntitySet="DAT_ENCUESTA" />
+            <End Role="DAT_ENCUESTA_BIENVENIDA" EntitySet="DAT_ENCUESTA_BIENVENIDA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DAT_ENCUE__id_en__4D94879B" Association="Modelo.FK__DAT_ENCUE__id_en__4D94879B">
+            <End Role="DAT_ENCUESTA" EntitySet="DAT_ENCUESTA" />
+            <End Role="DAT_ENCUESTA_AGRADECIMIENTO" EntitySet="DAT_ENCUESTA_AGRADECIMIENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DAT_GRUPO__id_en__5812160E" Association="Modelo.FK__DAT_GRUPO__id_en__5812160E">
+            <End Role="DAT_ENCUESTA" EntitySet="DAT_ENCUESTA" />
+            <End Role="DAT_ENCUESTA_ENCUESTADO" EntitySet="DAT_ENCUESTA_ENCUESTADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DAT_PREGU__id_en__52593CB8" Association="Modelo.FK__DAT_PREGU__id_en__52593CB8">
+            <End Role="DAT_ENCUESTA" EntitySet="DAT_ENCUESTA" />
+            <End Role="DAT_ENCUESTA_PREGUNTA" EntitySet="DAT_ENCUESTA_PREGUNTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DAT_RESPU__id_en__5DCAEF64" Association="Modelo.FK__DAT_RESPU__id_en__5DCAEF64">
+            <End Role="DAT_ENCUESTA" EntitySet="DAT_ENCUESTA" />
+            <End Role="DAT_RESPUESTA" EntitySet="DAT_RESPUESTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_encuesta_administrado_encuesta" Association="Modelo.FK_encuesta_administrado_encuesta">
+            <End Role="DAT_ENCUESTA" EntitySet="DAT_ENCUESTA" />
+            <End Role="DAT_ENCUESTA_ADMINISTRADO" EntitySet="DAT_ENCUESTA_ADMINISTRADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_encuesta_notificacion_encuesta" Association="Modelo.FK_encuesta_notificacion_encuesta">
+            <End Role="DAT_ENCUESTA" EntitySet="DAT_ENCUESTA" />
+            <End Role="DAT_ENCUESTA_NOTIFICACION" EntitySet="DAT_ENCUESTA_NOTIFICACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_encuesta_seccion_encuesta" Association="Modelo.FK_encuesta_seccion_encuesta">
+            <End Role="DAT_ENCUESTA" EntitySet="DAT_ENCUESTA" />
+            <End Role="DAT_ENCUESTA_SECCION" EntitySet="DAT_ENCUESTA_SECCION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_RESPUESTA_PREGUNTA_DAT_ENCUESTA_PREGUNTA" Association="Modelo.FK_DAT_RESPUESTA_PREGUNTA_DAT_ENCUESTA_PREGUNTA">
+            <End Role="DAT_ENCUESTA_PREGUNTA" EntitySet="DAT_ENCUESTA_PREGUNTA" />
+            <End Role="DAT_RESPUESTA_PREGUNTA" EntitySet="DAT_RESPUESTA_PREGUNTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_ENCUESTA_CAT_TIPO_ENCUESTA" Association="Modelo.FK_DAT_ENCUESTA_CAT_TIPO_ENCUESTA">
+            <End Role="CAT_TIPO_ENCUESTA" EntitySet="CAT_TIPO_ENCUESTA" />
+            <End Role="DAT_ENCUESTA" EntitySet="DAT_ENCUESTA" />
+          </AssociationSet>
+          <EntitySet Name="vw_usuario_rol_intranet" EntityType="Modelo.vw_usuario_rol_intranet" />
+          </EntityContainer>
+        <EntityType Name="CAT_CATEGORIA">
+          <Key>
+            <PropertyRef Name="id_categoria" />
+          </Key>
+          <Property Name="id_categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="es_eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="fecha_registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_registro" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CAT_SUB_CATEGORIA" Relationship="Modelo.FK__CAT_SUB_C__id_ca__3A81B327" FromRole="CAT_CATEGORIA" ToRole="CAT_SUB_CATEGORIA" />
+          <NavigationProperty Name="DAT_ENCUESTA_PREGUNTA" Relationship="Modelo.FK_DAT_ENCUESTA_PREGUNTA_CAT_CATEGORIA" FromRole="CAT_CATEGORIA" ToRole="DAT_ENCUESTA_PREGUNTA" />
+        </EntityType>
+        <EntityType Name="CAT_CONFIGURACION_INICIAL">
+          <Key>
+            <PropertyRef Name="id_configuracion" />
+          </Key>
+          <Property Name="id_configuracion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="texto_bienvenida" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="iden_audio_fondo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_tipo_archivo" Type="Int32" Nullable="false" />
+          <Property Name="url_video" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="iden_imagen" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="es_eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_creacion" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_modificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ip_creacion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ip_modificacion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="id_tipo_encuesta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CAT_TIPO_ENCUESTA" Relationship="Modelo.FK_CAT_CONFIGURACION_INICIAL_CAT_TIPO_ENCUESTA" FromRole="CAT_CONFIGURACION_INICIAL" ToRole="CAT_TIPO_ENCUESTA" />
+        </EntityType>
+        <EntityType Name="CAT_SUB_CATEGORIA">
+          <Key>
+            <PropertyRef Name="id_sub_categoria" />
+          </Key>
+          <Property Name="id_sub_categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_categoria" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="es_eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="fecha_registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_registro" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CAT_CATEGORIA" Relationship="Modelo.FK__CAT_SUB_C__id_ca__3A81B327" FromRole="CAT_SUB_CATEGORIA" ToRole="CAT_CATEGORIA" />
+          <NavigationProperty Name="DAT_ENCUESTA_PREGUNTA" Relationship="Modelo.FK_DAT_ENCUESTA_PREGUNTA_CAT_SUB_CATEGORIA" FromRole="CAT_SUB_CATEGORIA" ToRole="DAT_ENCUESTA_PREGUNTA" />
+        </EntityType>
+        <EntityType Name="DAT_ENCUESTA_AGRADECIMIENTO">
+          <Key>
+            <PropertyRef Name="id_encuesta_agradecimiento" />
+          </Key>
+          <Property Name="id_encuesta_agradecimiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_encuesta" Type="Int32" Nullable="false" />
+          <Property Name="mensaje_agradecimiento" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="iden_audio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_tipo_archivo" Type="Int32" />
+          <Property Name="iden_imagen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="url_video" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="es_eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_creacion" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_modificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="es_activar_audio" Type="Boolean" />
+          <NavigationProperty Name="CAT_TIPO_ARCHIVO" Relationship="Modelo.FK_DAT_ENCUESTA_AGRADECIMIENTO_CAT_TIPO_ARCHIVO" FromRole="DAT_ENCUESTA_AGRADECIMIENTO" ToRole="CAT_TIPO_ARCHIVO" />
+          <NavigationProperty Name="DAT_ENCUESTA" Relationship="Modelo.FK__DAT_ENCUE__id_en__4D94879B" FromRole="DAT_ENCUESTA_AGRADECIMIENTO" ToRole="DAT_ENCUESTA" />
+        </EntityType>
+        <EntityType Name="DAT_ENCUESTA_BIENVENIDA">
+          <Key>
+            <PropertyRef Name="id_encuesta_bienvenida" />
+          </Key>
+          <Property Name="id_encuesta_bienvenida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_encuesta" Type="Int32" Nullable="false" />
+          <Property Name="indicaciones" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="iden_audio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_tipo_archivo" Type="Int32" />
+          <Property Name="iden_imagen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="url_video" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="es_eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_creacion" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_modificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="es_activar_audio" Type="Boolean" />
+          <Property Name="iden_terminos_condiciones" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DAT_ENCUESTA" Relationship="Modelo.FK__DAT_ENCUE__id_en__48CFD27E" FromRole="DAT_ENCUESTA_BIENVENIDA" ToRole="DAT_ENCUESTA" />
+        </EntityType>
+        <EntityType Name="DAT_ENCUESTA_ENCUESTADO">
+          <Key>
+            <PropertyRef Name="id_grupo_encuestado" />
+          </Key>
+          <Property Name="id_grupo_encuestado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_encuesta" Type="Int32" Nullable="false" />
+          <Property Name="id_trabajador" Type="Int32" />
+          <Property Name="id_dependendia" Type="Int32" />
+          <Property Name="id_regimen" Type="Int32" />
+          <Property Name="resuelto" Type="Boolean" Nullable="false" />
+          <Property Name="es_eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_creacion" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_modificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dni_trabajador" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="id_estado" Type="Int32" />
+          <Property Name="fecha_resuelto" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DAT_ENCUESTA" Relationship="Modelo.FK__DAT_GRUPO__id_en__5812160E" FromRole="DAT_ENCUESTA_ENCUESTADO" ToRole="DAT_ENCUESTA" />
+        </EntityType>
+        <EntityType Name="DAT_RESPUESTA">
+          <Key>
+            <PropertyRef Name="id_respuesta" />
+          </Key>
+          <Property Name="id_respuesta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_encuesta" Type="Int32" Nullable="false" />
+          <Property Name="id_trabajador" Type="Int32" />
+          <Property Name="id_dependendia" Type="Int32" />
+          <Property Name="id_regimen" Type="Int32" />
+          <Property Name="edad" Type="Int32" />
+          <Property Name="id_sexo" Type="Int32" />
+          <Property Name="nro_pregunta_actual" Type="Int32" Nullable="false" />
+          <Property Name="id_estado" Type="Int32" Nullable="false" />
+          <Property Name="es_eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_modificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DAT_RESPUESTA_PREGUNTA" Relationship="Modelo.FK__DAT_RESPU__id_re__6383C8BA" FromRole="DAT_RESPUESTA" ToRole="DAT_RESPUESTA_PREGUNTA" />
+          <NavigationProperty Name="CAT_ESTADO_RESPUESTA" Relationship="Modelo.FK_DAT_RESPUESTA_CAT_ESTADO_RESPUESTA" FromRole="DAT_RESPUESTA" ToRole="CAT_ESTADO_RESPUESTA" />
+          <Property Name="json_paginado" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="nro_seccion_actual" Type="Int32" />
+          <Property Name="ruc_administrado" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DAT_ENCUESTA" Relationship="Modelo.FK__DAT_RESPU__id_en__5DCAEF64" FromRole="DAT_RESPUESTA" ToRole="DAT_ENCUESTA" />
+        </EntityType>
+        <EntityType Name="DAT_RESPUESTA_PREGUNTA">
+          <Key>
+            <PropertyRef Name="id_respuesta_pregunta" />
+          </Key>
+          <Property Name="id_respuesta_pregunta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_respuesta" Type="Int32" Nullable="false" />
+          <Property Name="json_respuestas" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_creacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_modificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DAT_RESPUESTA" Relationship="Modelo.FK__DAT_RESPU__id_re__6383C8BA" FromRole="DAT_RESPUESTA_PREGUNTA" ToRole="DAT_RESPUESTA" />
+          <Property Name="id_pregunta" Type="Int32" />
+          <NavigationProperty Name="DAT_ENCUESTA_PREGUNTA" Relationship="Modelo.FK_DAT_RESPUESTA_PREGUNTA_DAT_ENCUESTA_PREGUNTA" FromRole="DAT_RESPUESTA_PREGUNTA" ToRole="DAT_ENCUESTA_PREGUNTA" />
+        </EntityType>
+        <EntityType Name="vw_aplicacion">
+          <Key>
+            <PropertyRef Name="id_aplicacion" />
+            <PropertyRef Name="nombre" />
+            <PropertyRef Name="descripcion" />
+            <PropertyRef Name="id_categoria" />
+            <PropertyRef Name="es_intranet" />
+            <PropertyRef Name="es_extranet" />
+            <PropertyRef Name="libre_intranet" />
+            <PropertyRef Name="libre_extranet" />
+            <PropertyRef Name="es_vusp" />
+            <PropertyRef Name="estado" />
+            <PropertyRef Name="usuario_registro" />
+            <PropertyRef Name="fecha_registro" />
+            <PropertyRef Name="usuario_modificacion" />
+            <PropertyRef Name="fecha_modificacion" />
+          </Key>
+          <Property Name="id_aplicacion" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="detalle" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
+          <Property Name="id_categoria" Type="Int32" Nullable="false" />
+          <Property Name="es_intranet" Type="Boolean" Nullable="false" />
+          <Property Name="es_extranet" Type="Boolean" Nullable="false" />
+          <Property Name="libre_intranet" Type="Boolean" Nullable="false" />
+          <Property Name="libre_extranet" Type="Boolean" Nullable="false" />
+          <Property Name="es_vusp" Type="Boolean" Nullable="false" />
+          <Property Name="url_intranet" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="url_extranet" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <Property Name="usuario_registro" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_modificacion" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SRV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SRVAPP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SRVAPP1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_dependencia">
+          <Key>
+            <PropertyRef Name="CODIGO_DEPENDENCIA" />
+            <PropertyRef Name="RUC_ENTIDAD" />
+          </Key>
+          <Property Name="CODIGO_DEPENDENCIA" Type="Int32" Nullable="false" />
+          <Property Name="DEPENDENCIA" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PISO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SIGLAS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AUDIT_MOD" Type="DateTime" Precision="0" />
+          <Property Name="AUDIT_CREA" Type="DateTime" Precision="3" />
+          <Property Name="CONDICION" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DIRECTO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ANEXO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SECCION" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CENTRAL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FAX" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EQUIVALENCIA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PRIORIDAD" Type="Int32" />
+          <Property Name="TIPO_DEPENDENCIA" Type="Int32" />
+          <Property Name="CODDEP_PUB" Type="Int32" />
+          <Property Name="PUBLICADO_WEB" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="USUARIO_CREACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USUARIO_MODIFICACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CODDEP_RESPONSABLE" Type="Int32" />
+          <Property Name="ID_TIPO_DEPENDENCIA" Type="Int32" />
+          <Property Name="PUBLICADO_EXTRANET" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="CODDEP_PRINCIPAL" Type="Int32" />
+          <Property Name="ES_DEPGENERAL" Type="Boolean" />
+          <Property Name="RUC_ENTIDAD" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_persona">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ID_SECTOR" />
+            <PropertyRef Name="ID_TIPO_PERSONA" />
+            <PropertyRef Name="CODIGO_DEPARTAMENTO" />
+            <PropertyRef Name="CODIGO_PROVINCIA" />
+            <PropertyRef Name="CODIGO_DISTRITO" />
+            <PropertyRef Name="ID_TIPO_IDENTIFICACION" />
+            <PropertyRef Name="RUBRO" />
+            <PropertyRef Name="RAZON_SOCIAL" />
+            <PropertyRef Name="NOMBRES" />
+            <PropertyRef Name="APELLIDOS" />
+            <PropertyRef Name="NRO_DOCUMENTO" />
+            <PropertyRef Name="AUDIT_MOD" />
+            <PropertyRef Name="FLAG" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID_SECTOR" Type="Int32" Nullable="false" />
+          <Property Name="ID_TIPO_PERSONA" Type="Int32" Nullable="false" />
+          <Property Name="CODIGO_DEPARTAMENTO" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="CODIGO_PROVINCIA" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="CODIGO_DISTRITO" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="ID_TIPO_IDENTIFICACION" Type="Int32" Nullable="false" />
+          <Property Name="RUBRO" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="RAZON_SOCIAL" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRES" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDOS" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NRO_DOCUMENTO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FAX" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AUDIT_MOD" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="REPRESENTANTE_LEGAL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NRO_DOCUMENTO_REPRESENTANTE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_TIPO_IDENTIFICACION_REP_LEG" Type="Int32" />
+          <Property Name="CODIGO_PUERTO" Type="Int32" />
+          <Property Name="FLAG" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="usuario" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="OBSERVACIONES" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CELULAR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_AURA" Type="Int32" />
+          <Property Name="FLAG_OEC" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ID_TIPO_ORGANIZACION" Type="Int32" />
+          <Property Name="NRO_DOCPERNATURAL" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="USUARIO_MOD" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_MOD" Type="DateTime" Precision="3" />
+          <Property Name="COD_GENERO" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="NO_TIENE_RUC" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="vw_regimen">
+          <Key>
+            <PropertyRef Name="ID_REGIMEN" />
+          </Key>
+          <Property Name="ID_REGIMEN" Type="Int32" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="AUDIT_MOD" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="vw_rol">
+          <Key>
+            <PropertyRef Name="id_rol" />
+            <PropertyRef Name="id_aplicacion" />
+            <PropertyRef Name="nombre" />
+            <PropertyRef Name="tipo_rol" />
+            <PropertyRef Name="estado" />
+            <PropertyRef Name="usuario_registro" />
+            <PropertyRef Name="fecha_registro" />
+            <PropertyRef Name="usuario_modificacion" />
+            <PropertyRef Name="fecha_modificacion" />
+          </Key>
+          <Property Name="id_rol" Type="Int32" Nullable="false" />
+          <Property Name="id_aplicacion" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="tipo_rol" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <Property Name="usuario_registro" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_modificacion" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="es_default" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="vw_trabajador">
+          <Key>
+            <PropertyRef Name="CODIGO_TRABAJADOR" />
+            <PropertyRef Name="CODIGO_DEPENDENCIA" />
+            <PropertyRef Name="CONDICION" />
+            <PropertyRef Name="lockout_enable" />
+            <PropertyRef Name="access_failed_count" />
+          </Key>
+          <Property Name="CODIGO_TRABAJADOR" Type="Int32" Nullable="false" />
+          <Property Name="CODIGO_DEPENDENCIA" Type="Int32" Nullable="false" />
+          <Property Name="APELLIDOS_TRABAJADOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRES_TRABAJADOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CONDICION" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_NACIMIENTO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IDENTIFICADOR" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DNI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CODDEP" Type="Int32" />
+          <Property Name="AUDIT_MOD" Type="DateTime" Precision="3" />
+          <Property Name="AUDIT_CREA" Type="DateTime" Precision="3" />
+          <Property Name="PUBLICADO" Type="Int32" />
+          <Property Name="IDPROFESION" Type="Int32" />
+          <Property Name="IDSUBDEPENDENCIA" Type="Int32" />
+          <Property Name="CODDEP_PUB" Type="Int32" />
+          <Property Name="CODIGO_MAESTRO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DIRECTOR" Type="Int32" />
+          <Property Name="PUBLICADO_INTRANET" Type="Int32" />
+          <Property Name="ANEXO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PUBLICADO_CONTACTO" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="USUARIO_CREACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USUARIO_MODIFICACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NUMERO_TARJETA" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ID_REGIMEN" Type="Int32" />
+          <Property Name="DOMINIO" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="security_stamp" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="lockout_end_date" Type="DateTime" Precision="3" />
+          <Property Name="lockout_enable" Type="Boolean" Nullable="false" />
+          <Property Name="access_failed_count" Type="Int32" Nullable="false" />
+          <Property Name="GENERO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__CAT_SUB_C__id_ca__3A81B327">
+          <End Type="Modelo.CAT_CATEGORIA" Role="CAT_CATEGORIA" Multiplicity="1" />
+          <End Type="Modelo.CAT_SUB_CATEGORIA" Role="CAT_SUB_CATEGORIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_CATEGORIA">
+              <PropertyRef Name="id_categoria" />
+            </Principal>
+            <Dependent Role="CAT_SUB_CATEGORIA">
+              <PropertyRef Name="id_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DAT_RESPU__id_re__6383C8BA">
+          <End Type="Modelo.DAT_RESPUESTA" Role="DAT_RESPUESTA" Multiplicity="1" />
+          <End Type="Modelo.DAT_RESPUESTA_PREGUNTA" Role="DAT_RESPUESTA_PREGUNTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_RESPUESTA">
+              <PropertyRef Name="id_respuesta" />
+            </Principal>
+            <Dependent Role="DAT_RESPUESTA_PREGUNTA">
+              <PropertyRef Name="id_respuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CAT_ESTADO_ENCUESTA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="es_eliminado" Type="Boolean" />
+          <NavigationProperty Name="DAT_ENCUESTA" Relationship="Modelo.FK_DAT_ENCUESTA_CAT_ESTADO_ENCUESTA" FromRole="CAT_ESTADO_ENCUESTA" ToRole="DAT_ENCUESTA" />
+        </EntityType>
+        <EntityType Name="CAT_ESTADO_RESPUESTA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="es_eliminado" Type="Boolean" />
+          <NavigationProperty Name="DAT_RESPUESTA" Relationship="Modelo.FK_DAT_RESPUESTA_CAT_ESTADO_RESPUESTA" FromRole="CAT_ESTADO_RESPUESTA" ToRole="DAT_RESPUESTA" />
+        </EntityType>
+        <EntityType Name="CAT_SEXOS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="es_eliminado" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="CAT_TIPO_MAESTRO_INSTITUCIONAL">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="es_eliminado" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="CAT_TIPO_PREGUNTA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="es_eliminado" Type="Boolean" />
+          <NavigationProperty Name="DAT_ENCUESTA_PREGUNTA" Relationship="Modelo.FK_DAT_ENCUESTA_PREGUNTA_CAT_TIPO_PREGUNTA" FromRole="CAT_TIPO_PREGUNTA" ToRole="DAT_ENCUESTA_PREGUNTA" />
+        </EntityType>
+        <Association Name="FK_DAT_RESPUESTA_CAT_ESTADO_RESPUESTA">
+          <End Type="Modelo.CAT_ESTADO_RESPUESTA" Role="CAT_ESTADO_RESPUESTA" Multiplicity="1" />
+          <End Type="Modelo.DAT_RESPUESTA" Role="DAT_RESPUESTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_ESTADO_RESPUESTA">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DAT_RESPUESTA">
+              <PropertyRef Name="id_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CAT_ARCHIVO_TIPO_ARCHIVO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="es_eliminado" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="CAT_TIPO_ENCUESTA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="es_eliminado" Type="Boolean" />
+          <NavigationProperty Name="CAT_CONFIGURACION_INICIAL" Relationship="Modelo.FK_CAT_CONFIGURACION_INICIAL_CAT_TIPO_ENCUESTA" FromRole="CAT_TIPO_ENCUESTA" ToRole="CAT_CONFIGURACION_INICIAL" />
+          <NavigationProperty Name="DAT_ENCUESTA" Relationship="Modelo.FK_DAT_ENCUESTA_CAT_TIPO_ENCUESTA" FromRole="CAT_TIPO_ENCUESTA" ToRole="DAT_ENCUESTA" />
+        </EntityType>
+        <Association Name="FK_CAT_CONFIGURACION_INICIAL_CAT_TIPO_ENCUESTA">
+          <End Type="Modelo.CAT_TIPO_ENCUESTA" Role="CAT_TIPO_ENCUESTA" Multiplicity="1" />
+          <End Type="Modelo.CAT_CONFIGURACION_INICIAL" Role="CAT_CONFIGURACION_INICIAL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_TIPO_ENCUESTA">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CAT_CONFIGURACION_INICIAL">
+              <PropertyRef Name="id_tipo_encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CAT_ESTADO_ADMINISTRADO">
+          <Key>
+            <PropertyRef Name="id_estado_administrado" />
+          </Key>
+          <Property Name="id_estado_administrado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="es_eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="DAT_ENCUESTA_ADMINISTRADO" Relationship="Modelo.FK_encuesta_administrado_estado_administrado" FromRole="CAT_ESTADO_ADMINISTRADO" ToRole="DAT_ENCUESTA_ADMINISTRADO" />
+        </EntityType>
+        <EntityType Name="DAT_ENCUESTA_ADMINISTRADO">
+          <Key>
+            <PropertyRef Name="id_encuesta_administrado" />
+          </Key>
+          <Property Name="id_encuesta_administrado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_encuesta" Type="Int32" Nullable="false" />
+          <Property Name="id_estado_administrado" Type="Int32" Nullable="false" />
+          <Property Name="fecha_resuelto" Type="DateTime" Precision="3" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_creacion" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_modificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="es_eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CAT_ESTADO_ADMINISTRADO" Relationship="Modelo.FK_encuesta_administrado_estado_administrado" FromRole="DAT_ENCUESTA_ADMINISTRADO" ToRole="CAT_ESTADO_ADMINISTRADO" />
+          <Property Name="ruc_administrado" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DAT_ENCUESTA" Relationship="Modelo.FK_encuesta_administrado_encuesta" FromRole="DAT_ENCUESTA_ADMINISTRADO" ToRole="DAT_ENCUESTA" />
+        </EntityType>
+        <Association Name="FK_encuesta_administrado_estado_administrado">
+          <End Type="Modelo.CAT_ESTADO_ADMINISTRADO" Role="CAT_ESTADO_ADMINISTRADO" Multiplicity="1" />
+          <End Type="Modelo.DAT_ENCUESTA_ADMINISTRADO" Role="DAT_ENCUESTA_ADMINISTRADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_ESTADO_ADMINISTRADO">
+              <PropertyRef Name="id_estado_administrado" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_ADMINISTRADO">
+              <PropertyRef Name="id_estado_administrado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DAT_ENCUESTA_SECCION">
+          <Key>
+            <PropertyRef Name="id_encuesta_seccion" />
+          </Key>
+          <Property Name="id_encuesta_seccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_encuesta" Type="Int32" Nullable="false" />
+          <Property Name="seccion" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_creacion" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_modificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="es_eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="orden" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DAT_ENCUESTA" Relationship="Modelo.FK_encuesta_seccion_encuesta" FromRole="DAT_ENCUESTA_SECCION" ToRole="DAT_ENCUESTA" />
+        </EntityType>
+        <EntityType Name="CAT_TIPO_FECHA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="es_eliminado" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="DAT_ENCUESTA_NOTIFICACION">
+          <Key>
+            <PropertyRef Name="id_encuesta_notificacion" />
+          </Key>
+          <Property Name="id_encuesta_notificacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_encuesta" Type="Int32" Nullable="false" />
+          <Property Name="titulo" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_notificacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dirigido" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_creacion" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_modificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="es_eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="asunto" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="mensaje" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DAT_ENCUESTA" Relationship="Modelo.FK_encuesta_notificacion_encuesta" FromRole="DAT_ENCUESTA_NOTIFICACION" ToRole="DAT_ENCUESTA" />
+        </EntityType>
+        <EntityType Name="CAT_DIRIGIDO_NOTIFICACION">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="es_eliminado" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="CAT_CATEGORIA_EXTRANET">
+          <Key>
+            <PropertyRef Name="id_categoria_extranet" />
+          </Key>
+          <Property Name="id_categoria_extranet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="es_eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="fecha_registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_registro" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CAT_SUB_CATEGORIA_EXTRANET" Relationship="Modelo.FK_CAT_SUB_CATEGORIA_EXTRANET_CAT_CATEGORIA_EXTRANET" FromRole="CAT_CATEGORIA_EXTRANET" ToRole="CAT_SUB_CATEGORIA_EXTRANET" />
+        </EntityType>
+        <EntityType Name="CAT_SUB_CATEGORIA_EXTRANET">
+          <Key>
+            <PropertyRef Name="id_sub_categoria_extranet" />
+          </Key>
+          <Property Name="id_sub_categoria_extranet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_categoria_extranet" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="es_eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="fecha_registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_registro" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_edicion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_edicion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CAT_CATEGORIA_EXTRANET" Relationship="Modelo.FK_CAT_SUB_CATEGORIA_EXTRANET_CAT_CATEGORIA_EXTRANET" FromRole="CAT_SUB_CATEGORIA_EXTRANET" ToRole="CAT_CATEGORIA_EXTRANET" />
+        </EntityType>
+        <Association Name="FK_CAT_SUB_CATEGORIA_EXTRANET_CAT_CATEGORIA_EXTRANET">
+          <End Type="Modelo.CAT_CATEGORIA_EXTRANET" Role="CAT_CATEGORIA_EXTRANET" Multiplicity="1" />
+          <End Type="Modelo.CAT_SUB_CATEGORIA_EXTRANET" Role="CAT_SUB_CATEGORIA_EXTRANET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_CATEGORIA_EXTRANET">
+              <PropertyRef Name="id_categoria_extranet" />
+            </Principal>
+            <Dependent Role="CAT_SUB_CATEGORIA_EXTRANET">
+              <PropertyRef Name="id_categoria_extranet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vw_departamento">
+          <Key>
+            <PropertyRef Name="CODIGO_DEPARTAMENTO" />
+            <PropertyRef Name="DEPARTAMENTO" />
+          </Key>
+          <Property Name="CODIGO_DEPARTAMENTO" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="DEPARTAMENTO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_distrito">
+          <Key>
+            <PropertyRef Name="CODIGO_DEPARTAMENTO" />
+            <PropertyRef Name="CODIGO_PROVINCIA" />
+            <PropertyRef Name="CODIGO_DISTRITO" />
+            <PropertyRef Name="DISTRITO" />
+          </Key>
+          <Property Name="CODIGO_DEPARTAMENTO" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="CODIGO_PROVINCIA" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="CODIGO_DISTRITO" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="DISTRITO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_provincia">
+          <Key>
+            <PropertyRef Name="CODIGO_DEPARTAMENTO" />
+            <PropertyRef Name="CODIGO_PROVINCIA" />
+          </Key>
+          <Property Name="CODIGO_DEPARTAMENTO" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="CODIGO_PROVINCIA" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="PROVINCIA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CAT_TIPO_ARCHIVO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="es_eliminado" Type="Boolean" />
+          <NavigationProperty Name="DAT_ENCUESTA_AGRADECIMIENTO" Relationship="Modelo.FK_DAT_ENCUESTA_AGRADECIMIENTO_CAT_TIPO_ARCHIVO" FromRole="CAT_TIPO_ARCHIVO" ToRole="DAT_ENCUESTA_AGRADECIMIENTO" />
+          <NavigationProperty Name="DAT_ENCUESTA_PREGUNTA" Relationship="Modelo.FK_DAT_ENCUESTA_PREGUNTA_CAT_TIPO_ARCHIVO" FromRole="CAT_TIPO_ARCHIVO" ToRole="DAT_ENCUESTA_PREGUNTA" />
+        </EntityType>
+        <EntityType Name="DAT_ENCUESTA">
+          <Key>
+            <PropertyRef Name="id_encuesta" />
+          </Key>
+          <Property Name="id_encuesta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_dependendia" Type="Int32" Nullable="false" />
+          <Property Name="titulo" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="encabezado" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="objetivo" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_inicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fecha_fin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="tiempo_estimado" Type="Int32" Nullable="false" />
+          <Property Name="es_anonima" Type="Boolean" Nullable="false" />
+          <Property Name="es_todos" Type="Boolean" Nullable="false" />
+          <Property Name="iden_imagen_presentacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mensaje_corto_presentacion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="id_estado" Type="Int32" Nullable="false" />
+          <Property Name="es_eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_creacion" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_modificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="mensaje_es_anonima" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_publicacion" Type="DateTime" Precision="3" />
+          <Property Name="iden_pdf_resultados" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_resultados" Type="DateTime" Precision="3" />
+          <Property Name="nro_informe" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="iden_pdf_resultados_completo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ip_creacion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ip_modificacion" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="id_tipo_encuesta" Type="Int32" Nullable="false" />
+          <Property Name="es_con_seccion_pregunta" Type="Boolean" Nullable="false" />
+          <Property Name="es_autorizado_datos" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CAT_ESTADO_ENCUESTA" Relationship="Modelo.FK_DAT_ENCUESTA_CAT_ESTADO_ENCUESTA" FromRole="DAT_ENCUESTA" ToRole="CAT_ESTADO_ENCUESTA" />
+          <NavigationProperty Name="DAT_ENCUESTA_BIENVENIDA" Relationship="Modelo.FK__DAT_ENCUE__id_en__48CFD27E" FromRole="DAT_ENCUESTA" ToRole="DAT_ENCUESTA_BIENVENIDA" />
+          <NavigationProperty Name="DAT_ENCUESTA_AGRADECIMIENTO" Relationship="Modelo.FK__DAT_ENCUE__id_en__4D94879B" FromRole="DAT_ENCUESTA" ToRole="DAT_ENCUESTA_AGRADECIMIENTO" />
+          <NavigationProperty Name="DAT_ENCUESTA_ENCUESTADO" Relationship="Modelo.FK__DAT_GRUPO__id_en__5812160E" FromRole="DAT_ENCUESTA" ToRole="DAT_ENCUESTA_ENCUESTADO" />
+          <NavigationProperty Name="DAT_ENCUESTA_PREGUNTA" Relationship="Modelo.FK__DAT_PREGU__id_en__52593CB8" FromRole="DAT_ENCUESTA" ToRole="DAT_ENCUESTA_PREGUNTA" />
+          <NavigationProperty Name="DAT_RESPUESTA" Relationship="Modelo.FK__DAT_RESPU__id_en__5DCAEF64" FromRole="DAT_ENCUESTA" ToRole="DAT_RESPUESTA" />
+          <NavigationProperty Name="DAT_ENCUESTA_ADMINISTRADO" Relationship="Modelo.FK_encuesta_administrado_encuesta" FromRole="DAT_ENCUESTA" ToRole="DAT_ENCUESTA_ADMINISTRADO" />
+          <NavigationProperty Name="DAT_ENCUESTA_NOTIFICACION" Relationship="Modelo.FK_encuesta_notificacion_encuesta" FromRole="DAT_ENCUESTA" ToRole="DAT_ENCUESTA_NOTIFICACION" />
+          <NavigationProperty Name="DAT_ENCUESTA_SECCION" Relationship="Modelo.FK_encuesta_seccion_encuesta" FromRole="DAT_ENCUESTA" ToRole="DAT_ENCUESTA_SECCION" />
+          <NavigationProperty Name="CAT_TIPO_ENCUESTA" Relationship="Modelo.FK_DAT_ENCUESTA_CAT_TIPO_ENCUESTA" FromRole="DAT_ENCUESTA" ToRole="CAT_TIPO_ENCUESTA" />
+        </EntityType>
+        <EntityType Name="DAT_ENCUESTA_PREGUNTA">
+          <Key>
+            <PropertyRef Name="id_pregunta" />
+          </Key>
+          <Property Name="id_pregunta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_encuesta" Type="Int32" Nullable="false" />
+          <Property Name="pregunta" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="es_obligatorio" Type="Boolean" Nullable="false" />
+          <Property Name="id_tipo_pregunta" Type="Int32" Nullable="false" />
+          <Property Name="id_categoria" Type="Int32" />
+          <Property Name="id_sub_categoria" Type="Int32" />
+          <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="id_tipo_archivo" Type="Int32" />
+          <Property Name="iden_imagen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="url_video" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="json_alternativas" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="es_eliminado" Type="Boolean" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_creacion" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_modificacion" Type="DateTime" Precision="3" />
+          <Property Name="usuario_modificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="por_defecto" Type="Boolean" />
+          <Property Name="es_condicional" Type="Boolean" />
+          <Property Name="es_condicionada" Type="Boolean" />
+          <Property Name="id_pregunta_condicional" Type="Int32" />
+          <Property Name="json_respuesta_condicional" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="json_archivo_tipo_archivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="es_agregar_pregunta" Type="Boolean" Nullable="false" />
+          <Property Name="orden" Type="Int32" />
+          <Property Name="es_finaliza_encuesta" Type="Boolean" Nullable="false" />
+          <Property Name="id_encuesta_seccion" Type="Int32" />
+          <Property Name="json_tipo_fecha" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CAT_CATEGORIA" Relationship="Modelo.FK_DAT_ENCUESTA_PREGUNTA_CAT_CATEGORIA" FromRole="DAT_ENCUESTA_PREGUNTA" ToRole="CAT_CATEGORIA" />
+          <NavigationProperty Name="CAT_SUB_CATEGORIA" Relationship="Modelo.FK_DAT_ENCUESTA_PREGUNTA_CAT_SUB_CATEGORIA" FromRole="DAT_ENCUESTA_PREGUNTA" ToRole="CAT_SUB_CATEGORIA" />
+          <NavigationProperty Name="CAT_TIPO_ARCHIVO" Relationship="Modelo.FK_DAT_ENCUESTA_PREGUNTA_CAT_TIPO_ARCHIVO" FromRole="DAT_ENCUESTA_PREGUNTA" ToRole="CAT_TIPO_ARCHIVO" />
+          <NavigationProperty Name="CAT_TIPO_PREGUNTA" Relationship="Modelo.FK_DAT_ENCUESTA_PREGUNTA_CAT_TIPO_PREGUNTA" FromRole="DAT_ENCUESTA_PREGUNTA" ToRole="CAT_TIPO_PREGUNTA" />
+          <NavigationProperty Name="DAT_ENCUESTA" Relationship="Modelo.FK__DAT_PREGU__id_en__52593CB8" FromRole="DAT_ENCUESTA_PREGUNTA" ToRole="DAT_ENCUESTA" />
+          <NavigationProperty Name="DAT_RESPUESTA_PREGUNTA" Relationship="Modelo.FK_DAT_RESPUESTA_PREGUNTA_DAT_ENCUESTA_PREGUNTA" FromRole="DAT_ENCUESTA_PREGUNTA" ToRole="DAT_RESPUESTA_PREGUNTA" />
+        </EntityType>
+        <Association Name="FK_DAT_ENCUESTA_PREGUNTA_CAT_CATEGORIA">
+          <End Type="Modelo.CAT_CATEGORIA" Role="CAT_CATEGORIA" Multiplicity="0..1" />
+          <End Type="Modelo.DAT_ENCUESTA_PREGUNTA" Role="DAT_ENCUESTA_PREGUNTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_CATEGORIA">
+              <PropertyRef Name="id_categoria" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_PREGUNTA">
+              <PropertyRef Name="id_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_ENCUESTA_CAT_ESTADO_ENCUESTA">
+          <End Type="Modelo.CAT_ESTADO_ENCUESTA" Role="CAT_ESTADO_ENCUESTA" Multiplicity="1" />
+          <End Type="Modelo.DAT_ENCUESTA" Role="DAT_ENCUESTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_ESTADO_ENCUESTA">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA">
+              <PropertyRef Name="id_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_ENCUESTA_PREGUNTA_CAT_SUB_CATEGORIA">
+          <End Type="Modelo.CAT_SUB_CATEGORIA" Role="CAT_SUB_CATEGORIA" Multiplicity="0..1" />
+          <End Type="Modelo.DAT_ENCUESTA_PREGUNTA" Role="DAT_ENCUESTA_PREGUNTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_SUB_CATEGORIA">
+              <PropertyRef Name="id_sub_categoria" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_PREGUNTA">
+              <PropertyRef Name="id_sub_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_ENCUESTA_AGRADECIMIENTO_CAT_TIPO_ARCHIVO">
+          <End Type="Modelo.CAT_TIPO_ARCHIVO" Role="CAT_TIPO_ARCHIVO" Multiplicity="0..1" />
+          <End Type="Modelo.DAT_ENCUESTA_AGRADECIMIENTO" Role="DAT_ENCUESTA_AGRADECIMIENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_TIPO_ARCHIVO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_AGRADECIMIENTO">
+              <PropertyRef Name="id_tipo_archivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_ENCUESTA_PREGUNTA_CAT_TIPO_ARCHIVO">
+          <End Type="Modelo.CAT_TIPO_ARCHIVO" Role="CAT_TIPO_ARCHIVO" Multiplicity="0..1" />
+          <End Type="Modelo.DAT_ENCUESTA_PREGUNTA" Role="DAT_ENCUESTA_PREGUNTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_TIPO_ARCHIVO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_PREGUNTA">
+              <PropertyRef Name="id_tipo_archivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_ENCUESTA_PREGUNTA_CAT_TIPO_PREGUNTA">
+          <End Type="Modelo.CAT_TIPO_PREGUNTA" Role="CAT_TIPO_PREGUNTA" Multiplicity="1" />
+          <End Type="Modelo.DAT_ENCUESTA_PREGUNTA" Role="DAT_ENCUESTA_PREGUNTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_TIPO_PREGUNTA">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_PREGUNTA">
+              <PropertyRef Name="id_tipo_pregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DAT_ENCUE__id_en__48CFD27E">
+          <End Type="Modelo.DAT_ENCUESTA" Role="DAT_ENCUESTA" Multiplicity="1" />
+          <End Type="Modelo.DAT_ENCUESTA_BIENVENIDA" Role="DAT_ENCUESTA_BIENVENIDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ENCUESTA">
+              <PropertyRef Name="id_encuesta" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_BIENVENIDA">
+              <PropertyRef Name="id_encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DAT_ENCUE__id_en__4D94879B">
+          <End Type="Modelo.DAT_ENCUESTA" Role="DAT_ENCUESTA" Multiplicity="1" />
+          <End Type="Modelo.DAT_ENCUESTA_AGRADECIMIENTO" Role="DAT_ENCUESTA_AGRADECIMIENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ENCUESTA">
+              <PropertyRef Name="id_encuesta" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_AGRADECIMIENTO">
+              <PropertyRef Name="id_encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DAT_GRUPO__id_en__5812160E">
+          <End Type="Modelo.DAT_ENCUESTA" Role="DAT_ENCUESTA" Multiplicity="1" />
+          <End Type="Modelo.DAT_ENCUESTA_ENCUESTADO" Role="DAT_ENCUESTA_ENCUESTADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ENCUESTA">
+              <PropertyRef Name="id_encuesta" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_ENCUESTADO">
+              <PropertyRef Name="id_encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DAT_PREGU__id_en__52593CB8">
+          <End Type="Modelo.DAT_ENCUESTA" Role="DAT_ENCUESTA" Multiplicity="1" />
+          <End Type="Modelo.DAT_ENCUESTA_PREGUNTA" Role="DAT_ENCUESTA_PREGUNTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ENCUESTA">
+              <PropertyRef Name="id_encuesta" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_PREGUNTA">
+              <PropertyRef Name="id_encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DAT_RESPU__id_en__5DCAEF64">
+          <End Type="Modelo.DAT_ENCUESTA" Role="DAT_ENCUESTA" Multiplicity="1" />
+          <End Type="Modelo.DAT_RESPUESTA" Role="DAT_RESPUESTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ENCUESTA">
+              <PropertyRef Name="id_encuesta" />
+            </Principal>
+            <Dependent Role="DAT_RESPUESTA">
+              <PropertyRef Name="id_encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_encuesta_administrado_encuesta">
+          <End Type="Modelo.DAT_ENCUESTA" Role="DAT_ENCUESTA" Multiplicity="1" />
+          <End Type="Modelo.DAT_ENCUESTA_ADMINISTRADO" Role="DAT_ENCUESTA_ADMINISTRADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ENCUESTA">
+              <PropertyRef Name="id_encuesta" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_ADMINISTRADO">
+              <PropertyRef Name="id_encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_encuesta_notificacion_encuesta">
+          <End Type="Modelo.DAT_ENCUESTA" Role="DAT_ENCUESTA" Multiplicity="1" />
+          <End Type="Modelo.DAT_ENCUESTA_NOTIFICACION" Role="DAT_ENCUESTA_NOTIFICACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ENCUESTA">
+              <PropertyRef Name="id_encuesta" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_NOTIFICACION">
+              <PropertyRef Name="id_encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_encuesta_seccion_encuesta">
+          <End Type="Modelo.DAT_ENCUESTA" Role="DAT_ENCUESTA" Multiplicity="1" />
+          <End Type="Modelo.DAT_ENCUESTA_SECCION" Role="DAT_ENCUESTA_SECCION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ENCUESTA">
+              <PropertyRef Name="id_encuesta" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA_SECCION">
+              <PropertyRef Name="id_encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_RESPUESTA_PREGUNTA_DAT_ENCUESTA_PREGUNTA">
+          <End Type="Modelo.DAT_ENCUESTA_PREGUNTA" Role="DAT_ENCUESTA_PREGUNTA" Multiplicity="0..1" />
+          <End Type="Modelo.DAT_RESPUESTA_PREGUNTA" Role="DAT_RESPUESTA_PREGUNTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_ENCUESTA_PREGUNTA">
+              <PropertyRef Name="id_pregunta" />
+            </Principal>
+            <Dependent Role="DAT_RESPUESTA_PREGUNTA">
+              <PropertyRef Name="id_pregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_ENCUESTA_CAT_TIPO_ENCUESTA">
+          <End Type="Modelo.CAT_TIPO_ENCUESTA" Role="CAT_TIPO_ENCUESTA" Multiplicity="1" />
+          <End Type="Modelo.DAT_ENCUESTA" Role="DAT_ENCUESTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAT_TIPO_ENCUESTA">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DAT_ENCUESTA">
+              <PropertyRef Name="id_tipo_encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vw_usuario_rol_intranet">
+          <Key>
+            <PropertyRef Name="codigo_trabajador" />
+            <PropertyRef Name="id_rol" />
+            <PropertyRef Name="nombre" />
+          </Key>
+          <Property Name="codigo_trabajador" Type="Int32" Nullable="false" />
+          <Property Name="id_rol" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModeloStoreContainer" CdmEntityContainer="ClimaOrganizacionalDbContext">
+          <EntitySetMapping Name="CAT_CATEGORIA">
+            <EntityTypeMapping TypeName="Modelo.CAT_CATEGORIA">
+              <MappingFragment StoreEntitySet="CAT_CATEGORIA">
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_registro" ColumnName="usuario_registro" />
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+                <ScalarProperty Name="es_eliminado" ColumnName="es_eliminado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_CONFIGURACION_INICIAL">
+            <EntityTypeMapping TypeName="Modelo.CAT_CONFIGURACION_INICIAL">
+              <MappingFragment StoreEntitySet="CAT_CONFIGURACION_INICIAL">
+                <ScalarProperty Name="id_tipo_encuesta" ColumnName="id_tipo_encuesta" />
+                <ScalarProperty Name="ip_modificacion" ColumnName="ip_modificacion" />
+                <ScalarProperty Name="ip_creacion" ColumnName="ip_creacion" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="es_eliminado" ColumnName="es_eliminado" />
+                <ScalarProperty Name="iden_imagen" ColumnName="iden_imagen" />
+                <ScalarProperty Name="url_video" ColumnName="url_video" />
+                <ScalarProperty Name="id_tipo_archivo" ColumnName="id_tipo_archivo" />
+                <ScalarProperty Name="iden_audio_fondo" ColumnName="iden_audio_fondo" />
+                <ScalarProperty Name="texto_bienvenida" ColumnName="texto_bienvenida" />
+                <ScalarProperty Name="id_configuracion" ColumnName="id_configuracion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_SUB_CATEGORIA">
+            <EntityTypeMapping TypeName="Modelo.CAT_SUB_CATEGORIA">
+              <MappingFragment StoreEntitySet="CAT_SUB_CATEGORIA">
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_registro" ColumnName="usuario_registro" />
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+                <ScalarProperty Name="es_eliminado" ColumnName="es_eliminado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+                <ScalarProperty Name="id_sub_categoria" ColumnName="id_sub_categoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAT_ENCUESTA_AGRADECIMIENTO">
+            <EntityTypeMapping TypeName="Modelo.DAT_ENCUESTA_AGRADECIMIENTO">
+              <MappingFragment StoreEntitySet="DAT_ENCUESTA_AGRADECIMIENTO">
+                <ScalarProperty Name="es_activar_audio" ColumnName="es_activar_audio" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="es_eliminado" ColumnName="es_eliminado" />
+                <ScalarProperty Name="url_video" ColumnName="url_video" />
+                <ScalarProperty Name="iden_imagen" ColumnName="iden_imagen" />
+                <ScalarProperty Name="id_tipo_archivo" ColumnName="id_tipo_archivo" />
+                <ScalarProperty Name="iden_audio" ColumnName="iden_audio" />
+                <ScalarProperty Name="mensaje_agradecimiento" ColumnName="mensaje_agradecimiento" />
+                <ScalarProperty Name="id_encuesta" ColumnName="id_encuesta" />
+                <ScalarProperty Name="id_encuesta_agradecimiento" ColumnName="id_encuesta_agradecimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAT_ENCUESTA_BIENVENIDA">
+            <EntityTypeMapping TypeName="Modelo.DAT_ENCUESTA_BIENVENIDA">
+              <MappingFragment StoreEntitySet="DAT_ENCUESTA_BIENVENIDA">
+                <ScalarProperty Name="iden_terminos_condiciones" ColumnName="iden_terminos_condiciones" />
+                <ScalarProperty Name="es_activar_audio" ColumnName="es_activar_audio" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="es_eliminado" ColumnName="es_eliminado" />
+                <ScalarProperty Name="url_video" ColumnName="url_video" />
+                <ScalarProperty Name="iden_imagen" ColumnName="iden_imagen" />
+                <ScalarProperty Name="id_tipo_archivo" ColumnName="id_tipo_archivo" />
+                <ScalarProperty Name="iden_audio" ColumnName="iden_audio" />
+                <ScalarProperty Name="indicaciones" ColumnName="indicaciones" />
+                <ScalarProperty Name="id_encuesta" ColumnName="id_encuesta" />
+                <ScalarProperty Name="id_encuesta_bienvenida" ColumnName="id_encuesta_bienvenida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAT_ENCUESTA_ENCUESTADO">
+            <EntityTypeMapping TypeName="Modelo.DAT_ENCUESTA_ENCUESTADO">
+              <MappingFragment StoreEntitySet="DAT_ENCUESTA_ENCUESTADO">
+                <ScalarProperty Name="fecha_resuelto" ColumnName="fecha_resuelto" />
+                <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+                <ScalarProperty Name="dni_trabajador" ColumnName="dni_trabajador" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="es_eliminado" ColumnName="es_eliminado" />
+                <ScalarProperty Name="resuelto" ColumnName="resuelto" />
+                <ScalarProperty Name="id_regimen" ColumnName="id_regimen" />
+                <ScalarProperty Name="id_dependendia" ColumnName="id_dependendia" />
+                <ScalarProperty Name="id_trabajador" ColumnName="id_trabajador" />
+                <ScalarProperty Name="id_encuesta" ColumnName="id_encuesta" />
+                <ScalarProperty Name="id_grupo_encuestado" ColumnName="id_grupo_encuestado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAT_RESPUESTA">
+            <EntityTypeMapping TypeName="Modelo.DAT_RESPUESTA">
+              <MappingFragment StoreEntitySet="DAT_RESPUESTA">
+                <ScalarProperty Name="ruc_administrado" ColumnName="ruc_administrado" />
+                <ScalarProperty Name="nro_seccion_actual" ColumnName="nro_seccion_actual" />
+                <ScalarProperty Name="json_paginado" ColumnName="json_paginado" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="es_eliminado" ColumnName="es_eliminado" />
+                <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+                <ScalarProperty Name="nro_pregunta_actual" ColumnName="nro_pregunta_actual" />
+                <ScalarProperty Name="id_sexo" ColumnName="id_sexo" />
+                <ScalarProperty Name="edad" ColumnName="edad" />
+                <ScalarProperty Name="id_regimen" ColumnName="id_regimen" />
+                <ScalarProperty Name="id_dependendia" ColumnName="id_dependendia" />
+                <ScalarProperty Name="id_trabajador" ColumnName="id_trabajador" />
+                <ScalarProperty Name="id_encuesta" ColumnName="id_encuesta" />
+                <ScalarProperty Name="id_respuesta" ColumnName="id_respuesta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAT_RESPUESTA_PREGUNTA">
+            <EntityTypeMapping TypeName="Modelo.DAT_RESPUESTA_PREGUNTA">
+              <MappingFragment StoreEntitySet="DAT_RESPUESTA_PREGUNTA">
+                <ScalarProperty Name="id_pregunta" ColumnName="id_pregunta" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="json_respuestas" ColumnName="json_respuestas" />
+                <ScalarProperty Name="id_respuesta" ColumnName="id_respuesta" />
+                <ScalarProperty Name="id_respuesta_pregunta" ColumnName="id_respuesta_pregunta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_aplicacion">
+            <EntityTypeMapping TypeName="Modelo.vw_aplicacion">
+              <MappingFragment StoreEntitySet="vw_aplicacion">
+                <ScalarProperty Name="SRVAPP1" ColumnName="SRVAPP" />
+                <ScalarProperty Name="SRV" ColumnName="SRV" />
+                <ScalarProperty Name="BD" ColumnName="BD" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+                <ScalarProperty Name="usuario_registro" ColumnName="usuario_registro" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="url_extranet" ColumnName="url_extranet" />
+                <ScalarProperty Name="url_intranet" ColumnName="url_intranet" />
+                <ScalarProperty Name="es_vusp" ColumnName="es_vusp" />
+                <ScalarProperty Name="libre_extranet" ColumnName="libre_extranet" />
+                <ScalarProperty Name="libre_intranet" ColumnName="libre_intranet" />
+                <ScalarProperty Name="es_extranet" ColumnName="es_extranet" />
+                <ScalarProperty Name="es_intranet" ColumnName="es_intranet" />
+                <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+                <ScalarProperty Name="detalle" ColumnName="detalle" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_aplicacion" ColumnName="id_aplicacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_dependencia">
+            <EntityTypeMapping TypeName="Modelo.vw_dependencia">
+              <MappingFragment StoreEntitySet="vw_dependencia">
+                <ScalarProperty Name="RUC_ENTIDAD" ColumnName="RUC_ENTIDAD" />
+                <ScalarProperty Name="ES_DEPGENERAL" ColumnName="ES_DEPGENERAL" />
+                <ScalarProperty Name="CODDEP_PRINCIPAL" ColumnName="CODDEP_PRINCIPAL" />
+                <ScalarProperty Name="PUBLICADO_EXTRANET" ColumnName="PUBLICADO_EXTRANET" />
+                <ScalarProperty Name="ID_TIPO_DEPENDENCIA" ColumnName="ID_TIPO_DEPENDENCIA" />
+                <ScalarProperty Name="CODDEP_RESPONSABLE" ColumnName="CODDEP_RESPONSABLE" />
+                <ScalarProperty Name="USUARIO_MODIFICACION" ColumnName="USUARIO_MODIFICACION" />
+                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
+                <ScalarProperty Name="PUBLICADO_WEB" ColumnName="PUBLICADO_WEB" />
+                <ScalarProperty Name="CODDEP_PUB" ColumnName="CODDEP_PUB" />
+                <ScalarProperty Name="TIPO_DEPENDENCIA" ColumnName="TIPO_DEPENDENCIA" />
+                <ScalarProperty Name="PRIORIDAD" ColumnName="PRIORIDAD" />
+                <ScalarProperty Name="EQUIVALENCIA" ColumnName="EQUIVALENCIA" />
+                <ScalarProperty Name="FAX" ColumnName="FAX" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="CENTRAL" ColumnName="CENTRAL" />
+                <ScalarProperty Name="SECCION" ColumnName="SECCION" />
+                <ScalarProperty Name="ANEXO" ColumnName="ANEXO" />
+                <ScalarProperty Name="DIRECTO" ColumnName="DIRECTO" />
+                <ScalarProperty Name="CONDICION" ColumnName="CONDICION" />
+                <ScalarProperty Name="AUDIT_CREA" ColumnName="AUDIT_CREA" />
+                <ScalarProperty Name="AUDIT_MOD" ColumnName="AUDIT_MOD" />
+                <ScalarProperty Name="SIGLAS" ColumnName="SIGLAS" />
+                <ScalarProperty Name="PISO" ColumnName="PISO" />
+                <ScalarProperty Name="DEPENDENCIA" ColumnName="DEPENDENCIA" />
+                <ScalarProperty Name="CODIGO_DEPENDENCIA" ColumnName="CODIGO_DEPENDENCIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_persona">
+            <EntityTypeMapping TypeName="Modelo.vw_persona">
+              <MappingFragment StoreEntitySet="vw_persona">
+                <ScalarProperty Name="NO_TIENE_RUC" ColumnName="NO_TIENE_RUC" />
+                <ScalarProperty Name="COD_GENERO" ColumnName="COD_GENERO" />
+                <ScalarProperty Name="FECHA_MOD" ColumnName="FECHA_MOD" />
+                <ScalarProperty Name="USUARIO_MOD" ColumnName="USUARIO_MOD" />
+                <ScalarProperty Name="NRO_DOCPERNATURAL" ColumnName="NRO_DOCPERNATURAL" />
+                <ScalarProperty Name="ID_TIPO_ORGANIZACION" ColumnName="ID_TIPO_ORGANIZACION" />
+                <ScalarProperty Name="FLAG_OEC" ColumnName="FLAG_OEC" />
+                <ScalarProperty Name="ID_AURA" ColumnName="ID_AURA" />
+                <ScalarProperty Name="CELULAR" ColumnName="CELULAR" />
+                <ScalarProperty Name="OBSERVACIONES" ColumnName="OBSERVACIONES" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="FLAG" ColumnName="FLAG" />
+                <ScalarProperty Name="CODIGO_PUERTO" ColumnName="CODIGO_PUERTO" />
+                <ScalarProperty Name="ID_TIPO_IDENTIFICACION_REP_LEG" ColumnName="ID_TIPO_IDENTIFICACION_REP_LEG" />
+                <ScalarProperty Name="NRO_DOCUMENTO_REPRESENTANTE" ColumnName="NRO_DOCUMENTO_REPRESENTANTE" />
+                <ScalarProperty Name="REPRESENTANTE_LEGAL" ColumnName="REPRESENTANTE_LEGAL" />
+                <ScalarProperty Name="AUDIT_MOD" ColumnName="AUDIT_MOD" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="FAX" ColumnName="FAX" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="NRO_DOCUMENTO" ColumnName="NRO_DOCUMENTO" />
+                <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
+                <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+                <ScalarProperty Name="RAZON_SOCIAL" ColumnName="RAZON_SOCIAL" />
+                <ScalarProperty Name="RUBRO" ColumnName="RUBRO" />
+                <ScalarProperty Name="ID_TIPO_IDENTIFICACION" ColumnName="ID_TIPO_IDENTIFICACION" />
+                <ScalarProperty Name="CODIGO_DISTRITO" ColumnName="CODIGO_DISTRITO" />
+                <ScalarProperty Name="CODIGO_PROVINCIA" ColumnName="CODIGO_PROVINCIA" />
+                <ScalarProperty Name="CODIGO_DEPARTAMENTO" ColumnName="CODIGO_DEPARTAMENTO" />
+                <ScalarProperty Name="ID_TIPO_PERSONA" ColumnName="ID_TIPO_PERSONA" />
+                <ScalarProperty Name="ID_SECTOR" ColumnName="ID_SECTOR" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_regimen">
+            <EntityTypeMapping TypeName="Modelo.vw_regimen">
+              <MappingFragment StoreEntitySet="vw_regimen">
+                <ScalarProperty Name="AUDIT_MOD" ColumnName="AUDIT_MOD" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="ID_REGIMEN" ColumnName="ID_REGIMEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_rol">
+            <EntityTypeMapping TypeName="Modelo.vw_rol">
+              <MappingFragment StoreEntitySet="vw_rol">
+                <ScalarProperty Name="es_default" ColumnName="es_default" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+                <ScalarProperty Name="usuario_registro" ColumnName="usuario_registro" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="tipo_rol" ColumnName="tipo_rol" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_aplicacion" ColumnName="id_aplicacion" />
+                <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_trabajador">
+            <EntityTypeMapping TypeName="Modelo.vw_trabajador">
+              <MappingFragment StoreEntitySet="vw_trabajador">
+                <ScalarProperty Name="GENERO" ColumnName="GENERO" />
+                <ScalarProperty Name="access_failed_count" ColumnName="access_failed_count" />
+                <ScalarProperty Name="lockout_enable" ColumnName="lockout_enable" />
+                <ScalarProperty Name="lockout_end_date" ColumnName="lockout_end_date" />
+                <ScalarProperty Name="security_stamp" ColumnName="security_stamp" />
+                <ScalarProperty Name="DOMINIO" ColumnName="DOMINIO" />
+                <ScalarProperty Name="ID_REGIMEN" ColumnName="ID_REGIMEN" />
+                <ScalarProperty Name="NUMERO_TARJETA" ColumnName="NUMERO_TARJETA" />
+                <ScalarProperty Name="USUARIO_MODIFICACION" ColumnName="USUARIO_MODIFICACION" />
+                <ScalarProperty Name="USUARIO_CREACION" ColumnName="USUARIO_CREACION" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="PUBLICADO_CONTACTO" ColumnName="PUBLICADO_CONTACTO" />
+                <ScalarProperty Name="ANEXO" ColumnName="ANEXO" />
+                <ScalarProperty Name="PUBLICADO_INTRANET" ColumnName="PUBLICADO_INTRANET" />
+                <ScalarProperty Name="DIRECTOR" ColumnName="DIRECTOR" />
+                <ScalarProperty Name="CODIGO_MAESTRO" ColumnName="CODIGO_MAESTRO" />
+                <ScalarProperty Name="CODDEP_PUB" ColumnName="CODDEP_PUB" />
+                <ScalarProperty Name="IDSUBDEPENDENCIA" ColumnName="IDSUBDEPENDENCIA" />
+                <ScalarProperty Name="IDPROFESION" ColumnName="IDPROFESION" />
+                <ScalarProperty Name="PUBLICADO" ColumnName="PUBLICADO" />
+                <ScalarProperty Name="AUDIT_CREA" ColumnName="AUDIT_CREA" />
+                <ScalarProperty Name="AUDIT_MOD" ColumnName="AUDIT_MOD" />
+                <ScalarProperty Name="CODDEP" ColumnName="CODDEP" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="IDENTIFICADOR" ColumnName="IDENTIFICADOR" />
+                <ScalarProperty Name="FECHA_NACIMIENTO" ColumnName="FECHA_NACIMIENTO" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="CONDICION" ColumnName="CONDICION" />
+                <ScalarProperty Name="NOMBRES_TRABAJADOR" ColumnName="NOMBRES_TRABAJADOR" />
+                <ScalarProperty Name="APELLIDOS_TRABAJADOR" ColumnName="APELLIDOS_TRABAJADOR" />
+                <ScalarProperty Name="CODIGO_DEPENDENCIA" ColumnName="CODIGO_DEPENDENCIA" />
+                <ScalarProperty Name="CODIGO_TRABAJADOR" ColumnName="CODIGO_TRABAJADOR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_ESTADO_ENCUESTA">
+            <EntityTypeMapping TypeName="Modelo.CAT_ESTADO_ENCUESTA">
+              <MappingFragment StoreEntitySet="CAT_ESTADO_ENCUESTA">
+                <ScalarProperty Name="es_eliminado" ColumnName="es_eliminado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_ESTADO_RESPUESTA">
+            <EntityTypeMapping TypeName="Modelo.CAT_ESTADO_RESPUESTA">
+              <MappingFragment StoreEntitySet="CAT_ESTADO_RESPUESTA">
+                <ScalarProperty Name="es_eliminado" ColumnName="es_eliminado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_SEXOS">
+            <EntityTypeMapping TypeName="Modelo.CAT_SEXOS">
+              <MappingFragment StoreEntitySet="CAT_SEXOS">
+                <ScalarProperty Name="es_eliminado" ColumnName="es_eliminado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_TIPO_MAESTRO_INSTITUCIONAL">
+            <EntityTypeMapping TypeName="Modelo.CAT_TIPO_MAESTRO_INSTITUCIONAL">
+              <MappingFragment StoreEntitySet="CAT_TIPO_MAESTRO_INSTITUCIONAL">
+                <ScalarProperty Name="es_eliminado" ColumnName="es_eliminado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_TIPO_PREGUNTA">
+            <EntityTypeMapping TypeName="Modelo.CAT_TIPO_PREGUNTA">
+              <MappingFragment StoreEntitySet="CAT_TIPO_PREGUNTA">
+                <ScalarProperty Name="es_eliminado" ColumnName="es_eliminado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_ARCHIVO_TIPO_ARCHIVO">
+            <EntityTypeMapping TypeName="Modelo.CAT_ARCHIVO_TIPO_ARCHIVO">
+              <MappingFragment StoreEntitySet="CAT_ARCHIVO_TIPO_ARCHIVO">
+                <ScalarProperty Name="es_eliminado" ColumnName="es_eliminado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_TIPO_ENCUESTA">
+            <EntityTypeMapping TypeName="Modelo.CAT_TIPO_ENCUESTA">
+              <MappingFragment StoreEntitySet="CAT_TIPO_ENCUESTA">
+                <ScalarProperty Name="es_eliminado" ColumnName="es_eliminado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_ESTADO_ADMINISTRADO">
+            <EntityTypeMapping TypeName="Modelo.CAT_ESTADO_ADMINISTRADO">
+              <MappingFragment StoreEntitySet="CAT_ESTADO_ADMINISTRADO">
+                <ScalarProperty Name="es_eliminado" ColumnName="es_eliminado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_estado_administrado" ColumnName="id_estado_administrado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAT_ENCUESTA_ADMINISTRADO">
+            <EntityTypeMapping TypeName="Modelo.DAT_ENCUESTA_ADMINISTRADO">
+              <MappingFragment StoreEntitySet="DAT_ENCUESTA_ADMINISTRADO">
+                <ScalarProperty Name="ruc_administrado" ColumnName="ruc_administrado" />
+                <ScalarProperty Name="es_eliminado" ColumnName="es_eliminado" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="fecha_resuelto" ColumnName="fecha_resuelto" />
+                <ScalarProperty Name="id_estado_administrado" ColumnName="id_estado_administrado" />
+                <ScalarProperty Name="id_encuesta" ColumnName="id_encuesta" />
+                <ScalarProperty Name="id_encuesta_administrado" ColumnName="id_encuesta_administrado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAT_ENCUESTA_SECCION">
+            <EntityTypeMapping TypeName="Modelo.DAT_ENCUESTA_SECCION">
+              <MappingFragment StoreEntitySet="DAT_ENCUESTA_SECCION">
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="es_eliminado" ColumnName="es_eliminado" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="seccion" ColumnName="seccion" />
+                <ScalarProperty Name="id_encuesta" ColumnName="id_encuesta" />
+                <ScalarProperty Name="id_encuesta_seccion" ColumnName="id_encuesta_seccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_TIPO_FECHA">
+            <EntityTypeMapping TypeName="Modelo.CAT_TIPO_FECHA">
+              <MappingFragment StoreEntitySet="CAT_TIPO_FECHA">
+                <ScalarProperty Name="es_eliminado" ColumnName="es_eliminado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAT_ENCUESTA_NOTIFICACION">
+            <EntityTypeMapping TypeName="Modelo.DAT_ENCUESTA_NOTIFICACION">
+              <MappingFragment StoreEntitySet="DAT_ENCUESTA_NOTIFICACION">
+                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+                <ScalarProperty Name="asunto" ColumnName="asunto" />
+                <ScalarProperty Name="es_eliminado" ColumnName="es_eliminado" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="dirigido" ColumnName="dirigido" />
+                <ScalarProperty Name="fecha_notificacion" ColumnName="fecha_notificacion" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="id_encuesta" ColumnName="id_encuesta" />
+                <ScalarProperty Name="id_encuesta_notificacion" ColumnName="id_encuesta_notificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_DIRIGIDO_NOTIFICACION">
+            <EntityTypeMapping TypeName="Modelo.CAT_DIRIGIDO_NOTIFICACION">
+              <MappingFragment StoreEntitySet="CAT_DIRIGIDO_NOTIFICACION">
+                <ScalarProperty Name="es_eliminado" ColumnName="es_eliminado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_CATEGORIA_EXTRANET">
+            <EntityTypeMapping TypeName="Modelo.CAT_CATEGORIA_EXTRANET">
+              <MappingFragment StoreEntitySet="CAT_CATEGORIA_EXTRANET">
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_registro" ColumnName="usuario_registro" />
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+                <ScalarProperty Name="es_eliminado" ColumnName="es_eliminado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_categoria_extranet" ColumnName="id_categoria_extranet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_SUB_CATEGORIA_EXTRANET">
+            <EntityTypeMapping TypeName="Modelo.CAT_SUB_CATEGORIA_EXTRANET">
+              <MappingFragment StoreEntitySet="CAT_SUB_CATEGORIA_EXTRANET">
+                <ScalarProperty Name="usuario_edicion" ColumnName="usuario_edicion" />
+                <ScalarProperty Name="fecha_edicion" ColumnName="fecha_edicion" />
+                <ScalarProperty Name="usuario_registro" ColumnName="usuario_registro" />
+                <ScalarProperty Name="fecha_registro" ColumnName="fecha_registro" />
+                <ScalarProperty Name="es_eliminado" ColumnName="es_eliminado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_categoria_extranet" ColumnName="id_categoria_extranet" />
+                <ScalarProperty Name="id_sub_categoria_extranet" ColumnName="id_sub_categoria_extranet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_departamento">
+            <EntityTypeMapping TypeName="Modelo.vw_departamento">
+              <MappingFragment StoreEntitySet="vw_departamento">
+                <ScalarProperty Name="DEPARTAMENTO" ColumnName="DEPARTAMENTO" />
+                <ScalarProperty Name="CODIGO_DEPARTAMENTO" ColumnName="CODIGO_DEPARTAMENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_distrito">
+            <EntityTypeMapping TypeName="Modelo.vw_distrito">
+              <MappingFragment StoreEntitySet="vw_distrito">
+                <ScalarProperty Name="DISTRITO" ColumnName="DISTRITO" />
+                <ScalarProperty Name="CODIGO_DISTRITO" ColumnName="CODIGO_DISTRITO" />
+                <ScalarProperty Name="CODIGO_PROVINCIA" ColumnName="CODIGO_PROVINCIA" />
+                <ScalarProperty Name="CODIGO_DEPARTAMENTO" ColumnName="CODIGO_DEPARTAMENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_provincia">
+            <EntityTypeMapping TypeName="Modelo.vw_provincia">
+              <MappingFragment StoreEntitySet="vw_provincia">
+                <ScalarProperty Name="PROVINCIA" ColumnName="PROVINCIA" />
+                <ScalarProperty Name="CODIGO_PROVINCIA" ColumnName="CODIGO_PROVINCIA" />
+                <ScalarProperty Name="CODIGO_DEPARTAMENTO" ColumnName="CODIGO_DEPARTAMENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CAT_TIPO_ARCHIVO">
+            <EntityTypeMapping TypeName="Modelo.CAT_TIPO_ARCHIVO">
+              <MappingFragment StoreEntitySet="CAT_TIPO_ARCHIVO">
+                <ScalarProperty Name="es_eliminado" ColumnName="es_eliminado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAT_ENCUESTA">
+            <EntityTypeMapping TypeName="Modelo.DAT_ENCUESTA">
+              <MappingFragment StoreEntitySet="DAT_ENCUESTA">
+                <ScalarProperty Name="es_autorizado_datos" ColumnName="es_autorizado_datos" />
+                <ScalarProperty Name="es_con_seccion_pregunta" ColumnName="es_con_seccion_pregunta" />
+                <ScalarProperty Name="id_tipo_encuesta" ColumnName="id_tipo_encuesta" />
+                <ScalarProperty Name="ip_modificacion" ColumnName="ip_modificacion" />
+                <ScalarProperty Name="ip_creacion" ColumnName="ip_creacion" />
+                <ScalarProperty Name="iden_pdf_resultados_completo" ColumnName="iden_pdf_resultados_completo" />
+                <ScalarProperty Name="nro_informe" ColumnName="nro_informe" />
+                <ScalarProperty Name="fecha_resultados" ColumnName="fecha_resultados" />
+                <ScalarProperty Name="iden_pdf_resultados" ColumnName="iden_pdf_resultados" />
+                <ScalarProperty Name="fecha_publicacion" ColumnName="fecha_publicacion" />
+                <ScalarProperty Name="mensaje_es_anonima" ColumnName="mensaje_es_anonima" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="es_eliminado" ColumnName="es_eliminado" />
+                <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+                <ScalarProperty Name="mensaje_corto_presentacion" ColumnName="mensaje_corto_presentacion" />
+                <ScalarProperty Name="iden_imagen_presentacion" ColumnName="iden_imagen_presentacion" />
+                <ScalarProperty Name="es_todos" ColumnName="es_todos" />
+                <ScalarProperty Name="es_anonima" ColumnName="es_anonima" />
+                <ScalarProperty Name="tiempo_estimado" ColumnName="tiempo_estimado" />
+                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="objetivo" ColumnName="objetivo" />
+                <ScalarProperty Name="encabezado" ColumnName="encabezado" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="id_dependendia" ColumnName="id_dependendia" />
+                <ScalarProperty Name="id_encuesta" ColumnName="id_encuesta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAT_ENCUESTA_PREGUNTA">
+            <EntityTypeMapping TypeName="Modelo.DAT_ENCUESTA_PREGUNTA">
+              <MappingFragment StoreEntitySet="DAT_ENCUESTA_PREGUNTA">
+                <ScalarProperty Name="json_tipo_fecha" ColumnName="json_tipo_fecha" />
+                <ScalarProperty Name="id_encuesta_seccion" ColumnName="id_encuesta_seccion" />
+                <ScalarProperty Name="es_finaliza_encuesta" ColumnName="es_finaliza_encuesta" />
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="es_agregar_pregunta" ColumnName="es_agregar_pregunta" />
+                <ScalarProperty Name="json_archivo_tipo_archivo" ColumnName="json_archivo_tipo_archivo" />
+                <ScalarProperty Name="json_respuesta_condicional" ColumnName="json_respuesta_condicional" />
+                <ScalarProperty Name="id_pregunta_condicional" ColumnName="id_pregunta_condicional" />
+                <ScalarProperty Name="es_condicionada" ColumnName="es_condicionada" />
+                <ScalarProperty Name="es_condicional" ColumnName="es_condicional" />
+                <ScalarProperty Name="por_defecto" ColumnName="por_defecto" />
+                <ScalarProperty Name="usuario_modificacion" ColumnName="usuario_modificacion" />
+                <ScalarProperty Name="fecha_modificacion" ColumnName="fecha_modificacion" />
+                <ScalarProperty Name="usuario_creacion" ColumnName="usuario_creacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="es_eliminado" ColumnName="es_eliminado" />
+                <ScalarProperty Name="json_alternativas" ColumnName="json_alternativas" />
+                <ScalarProperty Name="url_video" ColumnName="url_video" />
+                <ScalarProperty Name="iden_imagen" ColumnName="iden_imagen" />
+                <ScalarProperty Name="id_tipo_archivo" ColumnName="id_tipo_archivo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id_sub_categoria" ColumnName="id_sub_categoria" />
+                <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+                <ScalarProperty Name="id_tipo_pregunta" ColumnName="id_tipo_pregunta" />
+                <ScalarProperty Name="es_obligatorio" ColumnName="es_obligatorio" />
+                <ScalarProperty Name="pregunta" ColumnName="pregunta" />
+                <ScalarProperty Name="id_encuesta" ColumnName="id_encuesta" />
+                <ScalarProperty Name="id_pregunta" ColumnName="id_pregunta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_usuario_rol_intranet">
+            <EntityTypeMapping TypeName="Modelo.vw_usuario_rol_intranet">
+              <MappingFragment StoreEntitySet="vw_usuario_rol_intranet">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+                <ScalarProperty Name="codigo_trabajador" ColumnName="codigo_trabajador" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

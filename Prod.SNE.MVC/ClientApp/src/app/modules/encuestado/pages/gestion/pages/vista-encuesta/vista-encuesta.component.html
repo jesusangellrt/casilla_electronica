@@ -1,0 +1,145 @@
+<ng-container *ngIf="show_selected_encuesta">
+    <div class="_container">
+        <div>
+            <div class="row">
+                <div class="col-sm-12 row">
+                    <div class="col-sm-9"><h3 style="color:#dc3545">{{main_data?main_data.titulo:''}}</h3></div>
+                    <div class="col-sm-3" align="right">
+                        <button [hidden]="true" #btnPlayWelcomeAudio id="btnPlayWelcomeAudio" 
+                        class="btnPlayWelcomeAudio" (click)="this.welcome_audio.muted = false;this.welcome_audio.play()">Play</button>
+                        <div align="right" *ngIf="_loading_audio" style="margin-top: 2px">
+                            <div class="col-md-2 col-sm-12">
+                                <span style="color:#cf2a27;font-size:25px">
+                                    <nz-spin nzSimple></nz-spin>
+                                </span>
+                            </div>
+                        </div>
+                        <div  align="right" *ngIf="_audio_loaded && _audio_exists" style="margin-top: 2px">
+                            <div class="col-md-3 col-sm-12">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <span style="color:#cf2a27;font-size:25px" 
+                                            class="btn_hoverable" (click)="_handleWelcomeEncuestaClick()">
+                                                <i [class]="_volume_value>0?(_volume_value>30?'fa fa-volume-up':'fa fa-volume-down'):'fa fa-volume-off'"></i>
+                                            </span>
+                                        </td>
+                                        <td style="padding-left:5px">
+                                            <span style="color:#cf2a27;font-size:25px" 
+                                            class="btn_hoverable" (click)="handleAudioPauseEncuesta()">
+                                                <i [class]="audio_paused_encuesta?'fa fa-play-circle-o':'fa fa-pause-circle-o'"></i>
+                                        </span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-md-7 col-sm-12" [hidden]="!_show_control_audio">
+                                <nz-slider [(ngModel)]="_volume_value" (ngModelChange)="_setVolumeOfObject($event)" ></nz-slider>
+                            </div>
+                        </div>
+                        <div  align="right" *ngIf="!_audio_loaded && _audio_exists" style="margin-top: 2px">
+                            <div class="col-md-2 col-sm-12">
+                                <span *ngIf="_audio_exists" style="color:#cf2a27;font-size:25px" 
+                                class="btn_disabled" >
+                                <i class="fa fa-volume-off"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12" style="padding-top:5px">
+                    <div class="row" *ngIf="main_data.es_anonima">
+                        <div class="col-md-3 col-sm-6">Tipo:</div>
+                        <div class="col-md-9 col-sm-6">
+                            <strong>Anónima</strong>
+                            <p>{{main_data.mensaje_es_anonima}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">Tiempo estimado:</div>
+                        <div class="col-md-9 col-sm-6">{{main_data.tiempo_estimado}} minutos</div>
+                    </div>
+                    <div class="row" style="padding-top:5px">
+                        <div class="col-md-3 col-sm-6">Nro de preguntas:</div>
+                        <div class="col-md-9 col-sm-6">{{PreguntasList.length}} preguntas</div>
+                    </div>
+                    <div class="row" style="padding-top:5px">
+                        <div class="col-sm-12"><strong><u>Indicaciones</u></strong></div>
+                        <div class="col-sm-12">
+                            <app-my-chk-editor [(ngModel)]="indicaciones" [configEditor]="{}" [readonly]="true"></app-my-chk-editor>
+                        </div>
+                    </div>
+                    <div align="right" class="row" *ngIf="_loading_audio" style="margin-top: 2px">
+                        <div class="col-sm-12">
+                            <span style="color:#cf2a27;font-size:25px">
+                                <nz-spin nzSimple></nz-spin>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 20px" *ngIf="!_loading_audio">
+                        <div class="col-sm-6 text-left">
+                            <button type="button" class="btn btn-default-custom" (click)="goInicio()" >
+                                <i class="fa fa-reply"></i> Volver al inicio
+                            </button>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <button type="button" class="btn btn-primary-custom" (click)="goEncuesta()">
+                                Iniciar encuesta <i class="fa fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div align="center" *ngIf="show_loader_encuesta" style="margin-top: 5px">
+                        <div>
+                            <span style="color:#cf2a27;">
+                                <nz-spin nzSimple [nzSize]="'large'"></nz-spin>
+                            </span>
+                        </div>
+                    </div>
+                    <div  style="width: 100%;" *ngIf="!show_loader_encuesta && _loaded_media && _idYoutubeVideo" align="center">
+                        <youtube-player
+                            [videoId]="_idYoutubeVideo"
+                            (ready)="_savePlayer($event)"
+                            [width]="'100%'"
+                            [height]="400"
+                            (change)="_onStateChange($event)">
+                        </youtube-player>
+                    </div>
+                    <div  style="width: 100%;" *ngIf="!show_loader_encuesta && _loaded_media && welcome_data.url_video==null">
+                        <img [src]="_urlArchivo" width="95%">
+                    </div>
+                    <div  style="width: 100%;" *ngIf="!show_loader_encuesta && _loaded_media==false && welcome_data.url_video==null">
+                        <img src="../../../../../../../assets/images/Imagen_no_disponible.png" width="95%">
+                    </div>
+                </div>
+                <div class="col-md-12" style="padding: 0px;">
+                    <div class="col-md-4" style="padding: 0px; text-align-last: left;">
+                        <img src="../../../../../../../assets/images/logo-produce2.png" width="65%">
+                    </div>
+                    <div class="col-md-4" style="padding: 0px; text-align-last: center;">
+                        <img src="../../../../../../../assets/images/logo-proinnovate.png" width="60%">
+                    </div>
+                    <div class="col-md-4" style="padding: 0px; text-align-last: right;">
+                        <img src="../../../../../../../assets/images/logo-pecap.png" width="60%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<ng-container *ngIf="show_preguntas">
+    <app-llenado-pregunta *ngIf="show_preguntas"
+    (onEmitDataToHeader)="handleOnEmitDataToHeader($event)"
+    (onGoBackEncuesta)="handleGoBackEncuesta($event)"
+    (onGoToInicio)="handleGoBackInicio($event)"
+    [agradecimiento_data]="agradecimiento_data"
+    [es_anonima]="main_data?main_data.es_anonima:true"
+    [disparadoresRespuestas]="disparadoresRespuestas"
+    [paginado_registrado]="paginado_registrado"
+    [_total_preguntas]="_total_preguntas"
+    [total]="total" [pageIndex]="pageIndex"
+    [presetIndex]="presetIndex"
+    [id_encuesta]="id_encuesta" 
+    [title]="main_data?main_data.titulo:''"
+   ></app-llenado-pregunta>
+</ng-container>

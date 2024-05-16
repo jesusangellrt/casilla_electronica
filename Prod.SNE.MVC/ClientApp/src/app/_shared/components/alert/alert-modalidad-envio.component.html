@@ -1,0 +1,35 @@
+<app-modal-envelope [header]="false" [footer]="false">
+    <div body class="text-center">
+        <span class="fa-stack fa-4x">
+            <i class="fa fa-stack-1x" [ngClass]="theme.icon"></i>
+            <i class="fa fa-circle-thin fa-stack-2x" [ngClass]="theme.circle"></i>
+        </span>
+        <h2 *ngIf="title">{{title}}</h2>
+        <div class="form-group">
+            <h4>{{msg}}</h4>
+            <div class="form-group">
+                <p><strong>Debe seleccionar su modalidad de envío:</strong></p>
+                <button type="button" name="tipo_envio" class="btn btn-secondary-custom" (click)="setTipo(2)">Entrega por OGACI</button>
+                <button type="button" name="tipo_envio" class="btn btn-secondary-custom" (click)="setTipo(3)">Entrega directa</button>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': tipo_envio_error}">
+                <span class="help-block" *ngIf="tipo_envio_error">Debe seleccionar una modalidad de envío</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn" 
+                    *ngIf="okButton"
+                    [ngClass]="theme.button" 
+                    (click)="handleOk()">
+                <i class="fa fa-check" aria-hidden="true" *ngIf="type=='success'||type=='warning'"></i>
+                Aceptar
+            </button>
+            <button type="button" class="btn btn-default-custom"
+                    *ngIf="cancelButton" 
+                    (click)="handleCancel()"
+                    ><i class="fa fa-ban" aria-hidden="true"></i>
+                Cancelar
+            </button>
+        </div>
+    </div>
+</app-modal-envelope>

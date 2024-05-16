@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <_WebToolingArtifacts Remove="Properties\PublishProfiles\PublicadorHost.pubxml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Serilog" Version="2.10.0" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1" />
+    <PackageReference Include="Serilog.Sinks.Seq" Version="5.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Prod.SNE.Core..Datos\Prod.SNE.Core.Datos.csproj" />
+    <ProjectReference Include="..\Prod.SNE.Core\Prod.SNE.Core.csproj" />
+  </ItemGroup>
+
+
+	<ItemGroup>
+		<Content Update="appsettings.Development.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="appsettings.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="appsettings.Production.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Log\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="Prod.MS.GestorArchivos.Proxy">
+	    <HintPath>..\DllExternos\prod.ms.gestorarchivos.proxy\1.0.4\Prod.MS.GestorArchivos.Proxy.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+</Project>

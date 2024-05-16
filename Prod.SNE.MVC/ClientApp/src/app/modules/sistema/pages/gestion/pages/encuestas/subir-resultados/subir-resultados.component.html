@@ -1,0 +1,144 @@
+<nz-modal 
+  [(nzVisible)]="visible" 
+  nzTitle="Subir resultados de data analizada" 
+  [nzWidth]="900" 
+  nzClosable="false"
+  [nzFooter]="extraTemplate">
+    <ng-container >
+        <div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for=""><span class="span_required">*</span> Buscar número de informe</label>
+                        <div class="input-group">
+                            <input  nz-input class="form-control" 
+                            placeholder="--Ingresar número de informe--"
+                            [(ngModel)]="frm.nro_informe">
+                            <div class="file-input-wrapper input-group-btn">
+                                <button type="button" class="btn btn-primary-custom btn-file-input"  
+                                    (click)="search_nro_SITRADOC()">
+                                    <i class="fa fa-search"></i>
+                                </button> 
+                                <button type="button" class="btn btn-primary-custom btn-file-input"  
+                                    (click)="clean_nro()">
+                                    <i class="fa fa-times"></i>
+                                </button>      
+                            </div>
+                        </div>
+                        <div *ngIf="error_nro_informe" class="has-error">
+                            <div class="ant-form-explain">
+                            Debe ingresar un número de informe de SITRADOC válido.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="">Ver informe</label>
+                        <div class="input-group">
+                            <div class="file-input-wrapper input-group-btn">
+                                <button type="button" class="btn btn-primary-custom btn-file-input"  
+                                [disabled]="disabled_view_btn"
+                                (click)="see_documento()">
+                                    <i class="fa fa-eye"></i>
+                                </button>      
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for=""><span class="span_required">*</span> Resultados de data analizada completo</label>
+                        <app-file-uploader-custom  
+                        [fileInfo]="true"  
+                        [id]="frm.iden_completo" 
+                        [(Files)]="_imagen_archivo" 
+                        [(Uploading)]="estaGuardando"
+                        [pesoMaximoEnMB]="pesoMaximoEnMB" 
+                        [esBorrador]="false" 
+                        (FileChange)="set_imagen_iden($event,1)"
+                        (onRemovedIdFile)="handleRemovedFilePresentacion($event,1)"
+                        [extensionAceptados]="imagen_extensionAceptados" 
+                        [tiposMimePermitidos]="imagen_MimePermitidos"
+                        [error_msg]="'Debe adjuntar un pdf.'"
+                        [view_width]="600"
+                        [puedeVerArchivo]="true"
+                        [url]="url" 
+                        [loading]="estaGuardando">
+                        </app-file-uploader-custom>
+                        <div *ngIf="error_completo" class="has-error">
+                            <div class="ant-form-explain">
+                            Debe ingresar un archivo pdf.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label for=""><span class="span_required">*</span> Resultados de data analizada para encuestado</label>
+                        <app-file-uploader-custom  
+                        [fileInfo]="true"  
+                        [id]="frm.iden_encuestado" 
+                        [(Files)]="_imagen_archivo" 
+                        [(Uploading)]="estaGuardando"
+                        [pesoMaximoEnMB]="pesoMaximoEnMB" 
+                        [esBorrador]="false" 
+                        (FileChange)="set_imagen_iden($event,2)"
+                        (onRemovedIdFile)="handleRemovedFilePresentacion($event,2)"
+                        [extensionAceptados]="imagen_extensionAceptados" 
+                        [tiposMimePermitidos]="imagen_MimePermitidos"
+                        [error_msg]="'Debe adjuntar un pdf.'"
+                        [view_width]="600"
+                        [puedeVerArchivo]="true"
+                        [url]="url" 
+                        [loading]="estaGuardando">
+                        </app-file-uploader-custom>
+                        <div *ngIf="error_encuestado" class="has-error">
+                            <div class="ant-form-explain">
+                            Debe ingresar un archivo pdf.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #extraTemplate>      
+        <div class="row">
+            <div class="col-sm-6 text-left"><button type="button" class="btn btn-default-custom" (click)="close_modal()"> Cancelar</button></div>
+            <div class="col-sm-6 text-right"><button type="button" class="btn btn-primary-custom" (click)="save_and_close()" ><i class="fa fa-save" aria-hidden="true"></i> Guardar</button></div>
+        </div>  
+    </ng-template>
+</nz-modal>
+
+
+
+<nz-modal 
+  [(nzVisible)]="show_modal_pdf" 
+  [nzStyle]="{ top: '20px' }"
+  nzTitle="Informe {{frm.nro_informe}}" 
+  [nzWidth]="700" 
+  nzClosable="false"
+  [nzFooter]="footerTempPDF">
+    <ng-container >
+        <div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <ng-container *ngIf="_loaded_pdf_informe_sitradoc">
+                        <iframe width="100%" height="450px" frameBorder="0" [src]="_urlArchivo_sitradoc"></iframe>
+                    </ng-container>   
+                    <ng-container *ngIf="!_loaded_pdf_informe_sitradoc">
+                        <img src="../../../../../../../../assets/images/Imagen_no_disponible.png" width="80%" >
+                    </ng-container>   
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #footerTempPDF>      
+        <div class="row">
+            <div class="col-sm-6 text-left"><button type="button" class="btn btn-default-custom" (click)="close_modal_pdf()"> Cerrar</button></div>
+        </div>  
+    </ng-template>
+</nz-modal>

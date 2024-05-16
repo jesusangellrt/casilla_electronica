@@ -1,0 +1,24 @@
+<app-header *ngIf="!esEncuestadoExtranet"
+    [menuOptions]="menuOptions" 
+    [userFullname]="userFullname" 
+    [roles]="user.RolesUsuario" 
+    [rol]="role" 
+    [loginPath]="loginPath" 
+    (onCambioRol)="handleChangeRol($event)">
+</app-header>
+<app-header-ext *ngIf="esEncuestadoExtranet"
+    [menuOptions]="menuOptions" 
+    [userFullname]="userFullname" 
+    [roles]="user.RolesUsuario" 
+    [rol]="role" 
+    [loginPath]="loginPath" 
+    (onCambioRol)="handleChangeRol($event)"
+    [usuario] = "user.Usuario">
+</app-header-ext>
+<div style="padding-bottom: 60px;">
+
+    <router-outlet (onEmitDataToHeader)="handleOnEmitDataToHeader($event)"></router-outlet>
+    <ngx-loading-bar [color]="loadingBarColor"></ngx-loading-bar>
+</div>
+<app-footer *ngIf="!esEncuestadoExtranet"></app-footer>
+<app-footer-ext *ngIf="esEncuestadoExtranet"></app-footer-ext>

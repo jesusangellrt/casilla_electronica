@@ -1,0 +1,57 @@
+<nz-modal 
+  [(nzVisible)]="isVisibleModal" 
+  nzTitle="Reordenar preguntas" 
+  nzClosable="false"
+  [nzWidth]="850"
+  [nzFooter]="extraTemplateOrder">
+    <ng-container>
+        <div class="row">
+            <div class="col-md-12">
+                <p><b>Selecciona la pregunta y arrástrala para ubicarlo en el orden que desees</b></p>
+            </div>            
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table table-custom table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col" width="10">N°</th>
+                  <th scope="col" width="350">PREGUNTA</th>
+                  <th scope="col" width="200">TIPO</th>
+                  <th scope="col" width="100">CONDICIONAL</th>
+                  <th scope="col" width="100">CONDICIONADA</th>
+                </tr>
+              </thead>
+            </table>
+            <table class="table table table-custom table-bordered">
+              <tbody *ngFor="let sec of arraySecciones;let i = index">
+                <tr>
+                  <th colspan="5" style="background: #E5E5E5;">Sección {{sec.orden}}: {{sec.seccion}}</th> 
+                </tr>
+                <tr>
+                  <table class="table table table-custom table-bordered">
+                    <tbody cdkDropList id="{{ 'cdk-drop-list-' + sec.orden }}" (cdkDropListDropped)="drop($event)">
+                      <tr *ngFor="let item of sec.preguntas;let i = index" cdkDrag>
+                        <th width="10">
+                          {{i+1}}
+                        </th>
+                        <th width="360">{{item.pregunta}}</th>
+                                <th width="150">{{item.tipo_pregunta}}</th>
+                                <th width="100">{{item.condicional}}</th>
+                                <th width="100">{{item.condicionada}}</th> 
+                      </tr>
+                    </tbody>   
+                  </table>                  
+                </tr>
+              </tbody>
+            </table>
+          </div>            
+        </div>
+    </ng-container>
+    <ng-template #extraTemplateOrder>
+        <div class="row">
+            <div class="col-sm-6 text-left"><button type="button" class="btn btn-default-custom" (click)="handleCancelarModal()"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button></div>
+            <div class="col-sm-6 text-right"><button type="button" class="btn btn-primary-custom" (click)="handleSaveModal()"><i class="fa fa-save" aria-hidden="true"></i> Guardar</button></div>
+        </div>  
+    </ng-template>
+</nz-modal>

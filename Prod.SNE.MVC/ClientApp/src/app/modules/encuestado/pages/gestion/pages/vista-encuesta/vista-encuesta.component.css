@@ -1,0 +1,7 @@
+.btn_hoverable:hover{
+  cursor: pointer;
+}
+
+.btn_disabled:hover{
+  cursor: not-allowed;
+}

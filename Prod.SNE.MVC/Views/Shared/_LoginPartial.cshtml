@@ -1,0 +1,71 @@
+﻿@using Release.Helper.WebKoMvc.Extensions
+@using Prod.SNE.MVC.Controllers
+@using Prod.Seguridad.Auth;
+@{
+    var sc = SecurityConfig.Settings;
+
+ 
+    var rol = CustomBaseController.UserAuth.RolesUsuario;
+ 
+}
+
+
+<nav class="navbar navbar-principal navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand visible-xs" href="#">STD</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="@Html.ResourcePath("Home/Index")">INICIO</a></li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    var admin = CustomBaseController.UserAuth.RolesUsuario.FirstOrDefault(x => x.DescRol == "Administrador");
+                    
+                    if (admin != null)
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FAMILIARES <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Html.ResourcePath("Administrador/Index")">Registro</a></li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CONSULTAS <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Html.ResourcePath("Consulta/Index")">Familiares por Persona Natural</a></li>
+                                <li><a href="@Html.ResourcePath("Consulta/Juridica")">Familiares por Persona Jurídica</a></li>
+                            </ul>
+                        </li>
+                    }
+                }
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        var user = CustomBaseController.UserAuth;
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-user-circle-o fa-lg"></i> @user.Usuario.Nombres - @rol.FirstOrDefault().DescRol<span class="caret"></span>
+                    </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Html.ResourcePath("account/logout")"><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
+                        </ul>
+                    }
+                </li>
+
+            </ul>
+
+
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>

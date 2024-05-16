@@ -1,0 +1,62 @@
+<div class="container contenido-interno">
+    <nz-layout class="app-layout app-layout-interno">
+        <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md">
+            <ul nz-menu nzMode="inline">
+              <!--
+              <ng-container *hasRole="[_roles.Administrado,_roles.EspecialistaNucleo,_roles.AdministradorGeneral, _roles.Administrador, _roles.AsistenteInformatico, _roles.EspecialistaInformatico, 
+              _roles.Evaluador, _roles.InspectorGeneral, _roles.InspectorTecnico, _roles.SupervisorGeneral, _roles.SupervisorTecnico, _roles.AsistenteAdministrativo]">
+                <li nz-submenu nzOpen nzTitle="Configuración" nzIcon="dashboard" *hasPermission="[_permisos.VerNucleoEjecutor]">
+                  <ul>
+                    <ng-container *hasRole="[_roles.Administrado,_roles.AdministradorGeneral, _roles.AsistenteInformatico, _roles.EspecialistaInformatico, _roles.Evaluador]">
+                      <li nz-menu-item nzMatchRouter>
+                        <a routerLink="/nec/gestion/integrante">Plataforma</a>
+                      </li>
+                    </ng-container>
+                    <ng-container *hasRole="[_roles.Administrado,_roles.AdministradorGeneral, _roles.AsistenteInformatico, _roles.EspecialistaInformatico, _roles.InspectorTecnico, _roles.Evaluador]">
+                      <li nz-menu-item nzMatchRouter>
+                        <a routerLink="/nec/gestion/lugar-entrega">Encuestas</a>
+                      </li>
+                    </ng-container>
+                  </ul>
+                </li>
+              </ng-container>-->
+              <ng-container>
+                <li nz-submenu nzOpen nzTitle="Configuración" nzIcon="dashboard">
+                  <ul>
+                    <ng-container>
+                      <li nz-menu-item nzMatchRouter>
+                        <a routerLink="/sistema/gestion/plataforma">Plataforma</a>
+                      </li>
+                    </ng-container>
+                    <ng-container>
+                      <li nz-menu-item nzMatchRouter>
+                        <a routerLink="/sistema/gestion/gestor-encuestas">Encuestas</a>
+                      </li>
+                    </ng-container>  
+                    <ng-container>
+                      <li nz-menu-item nzMatchRouter>
+                        <a routerLink="/sistema/gestion/categorias">Categorías</a>
+                      </li>
+                    </ng-container>                    
+                  </ul>
+                </li>
+              </ng-container>
+            </ul>
+        </nz-sider>
+        <nz-layout>
+            <!--
+            <nz-header>
+                <div class="app-header">
+                    <div class="app-header-title">
+                        PLATAFORMA DE ENCUESTAS
+                    </div>
+                </div>
+            </nz-header>-->
+            <nz-content>
+                <div class="inner-content internal-content">
+                    <router-outlet></router-outlet>
+                </div>
+            </nz-content>
+        </nz-layout>
+    </nz-layout>
+</div>

@@ -1,0 +1,208 @@
+.btn_hoverable:hover{
+    cursor: pointer;
+}
+  
+.label-css {
+    font-size: 16px !important;
+    background: #EAEFF5;
+    border-radius: 0px;
+    text-align: left;
+    height: 40px;
+}
+
+.text-pregunta {
+    color: #000000;
+    font-style: normal;
+font-weight: 500;
+font-size: 16px;
+}
+
+.text-titulo {
+    color: #000000;
+    font-style: normal;
+font-weight: 400;
+font-size: 16px;
+}
+
+.text-descripcion{
+    color: #848B96;
+    font-style: normal;
+font-weight: 400;
+font-size: 12px;
+}
+
+.text-obligatorio {
+    color: #DC3545;
+    font-style: normal;
+font-weight: 400;
+font-size: 12px;
+}
+  
+  .btn-siguiente {
+    color: #2473B6;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    background: rgba(182, 218, 249, 0.5);
+    border-radius: 20px;           
+    padding: 10px;
+    width: 119px;
+  }
+
+  .btn-siguiente:active { background-color: rgba(182, 218, 249, 0.5);; color: #2473B6; border: none; outline:none !important;}
+
+  .btn-siguiente:focus { background-color: rgba(182, 218, 249, 0.5);; color: #2473B6; border: none; outline:none !important;}
+
+  .btn-siguiente:hover { background-color: rgba(182, 218, 249, 0.5);; color: #2473B6; border: none; outline:none !important;}
+
+  .btn-atras {
+    color: #848B96;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    background: #EAEFF5;
+    border-radius: 20px;           
+    padding: 10px;
+    width: 119px;
+  }
+  .btn-atras:active { background-color: #EAEFF5; color: #848B96; border: none; outline:none !important;}
+
+  .btn-atras:focus { background-color: #EAEFF5; color: #848B96; border: none; outline:none !important;}
+
+  .btn-atras:hover { background-color: #EAEFF5; color: #848B96; border: none; outline:none !important;}
+
+  .btn-finalizar {
+    color: #128C3C;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    background: #D5F6D6;
+    border-radius: 20px;        
+    padding: 10px;
+    width: 119px;
+  }
+  .btn-finalizar:active { background-color: #D5F6D6; color: #128C3C; border: none; outline:none !important;}
+
+  .btn-finalizar:focus { background-color: #D5F6D6; color: #128C3C; border: none; outline:none !important;}
+
+  .btn-finalizar:hover { background-color: #D5F6D6; color: #128C3C; border: none; outline:none !important;}
+
+  .label-radio {
+    color: #000000;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+
+input[type='radio'] {
+    accent-color: #128C3C;
+}
+
+input[type='radio']:hover {
+    accent-color: #128C3C;
+}
+
+input[type='checkbox'] {
+    accent-color: #128C3C;
+}
+
+input[type='checkbox']:hover {
+    accent-color: #128C3C;
+}
+
+.td-fila {
+    color: #000000 !important;
+    font-style: normal !important;
+font-weight: 400 !important;
+font-size: 13px !important;
+}
+
+.th-columna {
+    color: #FFFFFF !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 13px !important;
+    background: #2473B6 !important;
+    border: 1px solid #FFFFFF !important;
+}
+
+.text-gracias {
+    color: #2473B6;
+    font-style: normal;
+font-weight: 500;
+font-size: 24px;
+}
+
+.text-mensaje {
+    color: #000000;
+    font-style: normal;
+font-weight: 400;
+font-size: 16px;
+}
+
+.btn-continuar:active { background-color: #128C3C; color: White; border: none; outline:none !important;;
+}
+
+.btn-continuar:focus { background-color: #128C3C; color: White; border: none; outline:none !important;}
+
+.btn-continuar:hover { background-color: #128C3C; color: White; border: none; outline:none !important;;
+}
+
+.text-caracteres {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    color: #848B96;
+}
+
+.text-mensaje {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    color: #000000;
+}
+
+.text-archivo {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    color: #848B96;
+}
+
+.ant-input {
+    margin-top: 5px;
+    background: #EAEFF5;
+    border: 1px solid #EAEFF5;
+}
+
+.btn-file-input {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 12px rgb(0 0 0 / 12%);
+    border-radius: 8px;
+}
+
+
+.btn-file-input i {
+    color: #000000 !important;
+}
+
+.input-group {
+    background: #EAEFF5;
+    height: 45px;
+}
+
+.text-seccion-activo {
+    color: #2473B6;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.text-seccion-inactivo {
+    color: #C5CEDB;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+}

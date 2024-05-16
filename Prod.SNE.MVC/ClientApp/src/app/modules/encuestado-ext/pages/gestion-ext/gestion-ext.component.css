@@ -1,0 +1,16 @@
+.btn_hoverable:hover{
+  cursor: pointer;
+}
+
+.btn_disabled:hover{
+  cursor: not-allowed;
+}
+
+button:active { background-color: #128C3C; color: White; border: none; outline:none !important;;
+  }
+
+  button:focus { background-color: #128C3C; border: none; outline:none !important;}
+
+  .ck-editor__editable {
+    padding-left: 0 !important;
+  }

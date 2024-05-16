@@ -1,0 +1,691 @@
+<nz-modal 
+  [(nzVisible)]="isVisibleModal" 
+  nzTitle="{{title}} pregunta" 
+  [nzWidth]="modal_width" 
+  nzClosable="false"
+  [nzFooter]="extraTemplate">
+    <ng-container >
+        <div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label for=""><span class="span_required">*</span> Pregunta</label>
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Debe ingresar la pregunta!">
+                                <nz-input-group>
+                                    <input type="text" [formControl]="frmPRG.frmPregunta" 
+                                    class="form-control" 
+                                    placeholder="--Ingresar la pregunta--"
+                                    maxlength="500"
+                                    [(ngModel)]="frm.pregunta"
+                                    (ngModelChange)="setJsonName()">
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for=""><span class="span_required">*</span> Tipo de pregunta</label>
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Debe seleccionar el tipo de pregunta.">
+                                <nz-input-group>
+                                    <nz-select nzAllowClear nzShowSearch nzPlaceHolder="--Seleccionar--"
+                                    [(ngModel)]="frm.id_tipo_pregunta"
+                                    (ngModelChange)="cargar_formato_byTipo($event)"
+                                    [formControl]="frmPRG.frmTipoPregunta">
+                                        <ng-container *ngFor="let item of array_tipo_pregunta">
+                                            <nz-option [nzValue]="item.id_enumerado" [nzLabel]="item.nombre"></nz-option>
+                                        </ng-container>
+                                    </nz-select>
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+                <div *ngIf="frm.id_tipo_pregunta==_TIPO_PREGUNTA.mensaje" class="col-md-4">
+                    <br>
+                    <label nz-checkbox  [formControl]="frmPRG.frmEsFinalizaEncuesta" 
+                    [(ngModel)]="frm.es_finaliza_encuesta" >La pregunta finaliza la encuesta</label> 
+                </div>
+                <div class="col-md-4">
+                    <br>
+                    <label nz-checkbox  [formControl]="frmPRG.frmEsObligatorio" 
+                    [(ngModel)]="frm.es_obligatorio" >La pregunta es obligatorio</label> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="">Categoría</label>
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Debe seleccionar la categoría!">
+                                <nz-input-group>
+                                    <nz-select nzAllowClear nzShowSearch nzPlaceHolder="--Seleccionar--"
+                                    [(ngModel)]="frm.id_categoria"
+                                    (ngModelChange)="filter_sub_categoria($event)"
+                                    [formControl]="frmPRG.frmCategoria">
+                                        <ng-container *ngFor="let item of array_categoria">
+                                            <nz-option [nzValue]="item.id_categoria_extranet" [nzLabel]="item.nombre"></nz-option>
+                                        </ng-container>
+                                    </nz-select>
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="">Sub-Categoría</label>
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Debe seleccionar la sub categoría!">
+                                <nz-input-group>
+                                    <nz-select nzAllowClear nzShowSearch nzPlaceHolder="--Seleccionar--"
+                                    [(ngModel)]="frm.id_sub_categoria"
+                                    [formControl]="frmPRG.frmSubCategoria">
+                                        <ng-container *ngFor="let item of array_sub_categoria">
+                                            <nz-option [nzValue]="item.id_sub_categoria_extranet" [nzLabel]="item.nombre"></nz-option>
+                                        </ng-container>
+                                    </nz-select>
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="frm.id_tipo_pregunta==_TIPO_PREGUNTA.texto">
+                <div class="col-md-6">
+                    <label for="">Indicar cantidad máxima de caracteres</label>
+                        <nz-form-item>
+                            <nz-form-control>
+                                <nz-input-group>
+                                    <nz-input-number 
+                                        [formControl]="frmCantidadCarateres"
+                                        [(ngModel)]="JSON_NUMERICO_TEXTO.nro_caracteres" 
+                                        [nzMin]="1" 
+                                        [nzMax]="1000" 
+                                        [nzStep]="1">
+                                    </nz-input-number>
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                </div>
+            </div>
+            <div class="row" *ngIf="frm.id_tipo_pregunta==_TIPO_PREGUNTA.archivo">
+                <div class="col-md-6">
+                    <label for=""><span class="span_required">*</span> Tipo de archivo</label>
+                    <div style="padding-left: 10px" *ngFor="let item of array_archivo_tipo_archivo; let i = index">
+                        <input style="background-color: #dc3545;
+                        border-color: #dc3545;" class=""
+                        id="{{item.id_enumerado}}"
+                        name="checkTipoArchivo"
+                        type="checkbox"
+                        [checked]="item.selected"
+                        (change)="change_archivo_byTipo($event)"/>&nbsp;
+                        <label for="{{item.id_enumerado}}">{{ item.nombre }}</label>
+                    </div>
+                    <div style="padding-left: 10px" *ngIf="error_archivo_tipo_archivo" class="has-error">
+                        <div class="ant-form-explain">
+                            Debe seleccionar al menos un tipo de archivo.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row" *ngIf="frm.id_tipo_pregunta==_TIPO_PREGUNTA.fecha">
+                <div class="col-md-6">
+                    <label for=""><span class="span_required">*</span> Tipo de fecha</label>
+                    <div style="padding-left: 10px" *ngFor="let item of array_tipo_fecha; let i = index">
+                        <input style="background-color: #dc3545;
+                        border-color: #dc3545;" class=""
+                        id="{{item.id_enumerado}}"
+                        name="checkTipoArchivo"
+                        type="checkbox"
+                        [checked]="item.selected"
+                        (change)="change_fecha_byTipo($event)"/>&nbsp;
+                        <label for="{{item.id_enumerado}}">{{ item.nombre }}</label>
+                    </div>
+                    <div style="padding-left: 10px" *ngIf="error_tipo_fecha" class="has-error">
+                        <div class="ant-form-explain">
+                            Debe seleccionar al menos un tipo de fecha.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row" *ngIf="frm.id_tipo_pregunta==_TIPO_PREGUNTA.mensaje">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for=""><span class="span_required">*</span> Mensaje</label>
+                            <div style="border: 1px solid rgb(217, 217, 217) !important;">
+                            <ckeditor [editor]="editor" [config]="configEditor" [(ngModel)]="frm.mensaje" 
+                                [formControl]="frmPRG.frmMensaje" 
+                                (ready)="onReady($event)" (change)="onChange($event)"></ckeditor>
+                            </div> 
+                            <div style="padding-left: 10px" *ngIf="error_editor_mensaje" class="has-error">
+                                <div class="ant-form-explain">
+                                    Debe ingresar un mensaje.
+                                </div>
+                            </div>                           
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-4" *ngIf="es_con_seccion">
+                    <div class="form-group">
+                        <label for=""><span class="span_required">*</span> Seleccionar sección</label>
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Debe seleccionar la sección!">
+                                <nz-input-group>
+                                    <nz-select nzAllowClear nzShowSearch nzPlaceHolder="--Seleccionar--"
+                                    [(ngModel)]="frm.id_encuesta_seccion"
+                                    [formControl]="frmPRG.frmSeccion">
+                                        <ng-container *ngFor="let item of array_seccion">
+                                            <nz-option [nzValue]="item.id_encuesta_seccion" [nzLabel]="item.seccion"></nz-option>
+                                        </ng-container>
+                                    </nz-select>
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <div *ngIf="error_seccion" class="has-error">
+                            <div class="ant-form-explain">
+                                Debes seleccionar una sección.
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="">Descripción adicional</label>
+                        <nz-form-item>
+                            <nz-form-control>
+                                <nz-input-group>
+                                    <textarea [formControl]="frmPRG.frmDescripcionAdicional" 
+                                    maxlength="500"
+                                    nz-input class="form-control" 
+                                    [(ngModel)]="frm.descripcion" placeholder="--Ingrese una breve descripción adicional--"></textarea>
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div [hidden]="frm.id_tipo_pregunta!=_TIPO_PREGUNTA.seleccion_unica">
+                        <label nz-checkbox  [formControl]="frmPRG.frmEsCondicional"
+                        [(ngModel)]="frm.es_condicional" >La pregunta es condicional</label> 
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+                <div class="col-md-4" [hidden]="frmPRG.frmEsCondicional.value">
+                    <label nz-checkbox  [formControl]="frmPRG.frmEsCondicionada" 
+                    [(ngModel)]="frm.es_condicionada" >La pregunta es condicionada</label> 
+                </div>
+            </div>
+            <div class="row" [hidden]="!frmPRG.frmEsCondicionada.value || frmPRG.frmEsCondicional.value">
+                <div class="col-sm-12">
+                    <br>
+                    <nz-collapse>
+                        <nz-collapse-panel [nzHeader]="selectedPreguntaCondicional?selectedPreguntaCondicional.pregunta:'Seleccione pregunta condicional'">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for=""><span class="span_required">*</span> Pregunta</label>
+                                        <nz-form-item>
+                                            <nz-form-control nzErrorTip="Debe seleccionar de pregunta.">
+                                                <nz-input-group>
+                                                    <nz-select nzAllowClear nzShowSearch nzPlaceHolder="--Seleccionar--"
+                                                    [(ngModel)]="frm.id_pregunta_condicional"
+                                                    (ngModelChange)="setPreguntaSelecionadaCondicional($event)"
+                                                    [formControl]="frmPRG.frmPreguntaCondicional">
+                                                        <ng-container *ngFor="let item of preguntas_condicionales">
+                                                            <nz-option [nzValue]="item.id_pregunta" [nzLabel]="item.pregunta"></nz-option>
+                                                        </ng-container>
+                                                    </nz-select>
+                                                </nz-input-group>
+                                            </nz-form-control>
+                                        </nz-form-item>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <ng-container *ngIf="selectedPreguntaCondicional && !loading_condionales">
+                                        <app-app-preview-pregunta 
+                                        [show_media]="false" 
+                                        [Pregunta]="selectedPreguntaCondicional" 
+                                        [respuesta]="respuesta_disparadora"
+                                        (onClickSaveRespuesta)="handleClickSaveRespuestaCondicionada($event)"
+                                        ></app-app-preview-pregunta>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </nz-collapse-panel>
+                    </nz-collapse>
+                </div>
+            </div>
+            <!--BEGIN FORMATOS-->
+            <div class="row" style="padding-top: 15px" *ngIf="frm.id_tipo_pregunta==_TIPO_PREGUNTA.desplegable_institucional">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for=""><span class="span_required">*</span> Maestro institucional</label>
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Debe seleccionar el maestro institucional!">
+                                <nz-input-group>
+                                    <nz-select nzAllowClear nzShowSearch 
+                                    [(ngModel)]="JSON_DESPLEGABLE_INSTITUCIONAL.tbl_data"
+                                    [formControl]="frmMaestroInstitucional"
+                                    [nzDisabled]="es_por_defecto"
+                                    nzPlaceHolder="--Seleccione--">
+                                        <ng-container *ngFor="let item of array_maestro_institucional">
+                                            <nz-option [nzValue]="item.id_enumerado" [nzLabel]="item.nombre"></nz-option>
+                                        </ng-container>
+                                    </nz-select>
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="padding-top: 15px"  *ngIf="frm.id_tipo_pregunta==_TIPO_PREGUNTA.numerico_entero">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for=""><span class="span_required">*</span> Cantidad de digitos entero</label>
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Debe ingresar los digitos entero!">
+                                <nz-input-group>
+                                    <nz-input-number 
+                                        [formControl]="frmCantidadDigitosEnteros"
+                                        [(ngModel)]="JSON_NUMERICO_ENTERO.nro_entero" 
+                                        [nzMin]="1" 
+                                        [nzMax]="9" 
+                                        [nzStep]="1">
+                                    </nz-input-number>
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="padding-top: 15px" *ngIf="frm.id_tipo_pregunta==_TIPO_PREGUNTA.numerico_decimal" >
+                <div class="col-sm-6" >
+                    <div class="form-group">
+                        <label for=""><span class="span_required">*</span> Cantidad de digitos entero</label>
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Debe ingresar los digitos entero!">
+                                <nz-input-group>
+                                    <nz-input-number 
+                                        [formControl]="frmCantidadDigitosEnteros"
+                                        [(ngModel)]="JSON_NUMERICO_DECIMAL.nro_entero" 
+                                        [nzMin]="1" 
+                                        [nzMax]="9" 
+                                        [nzStep]="1">
+                                    </nz-input-number>
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for=""><span class="span_required">*</span> Cantidad de digitos decimales</label>
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Debe ingresar los digitos decimales!">
+                                <nz-input-group>
+                                    <nz-input-number 
+                                        [formControl]="frmCantidadDigitos"
+                                        [(ngModel)]="JSON_NUMERICO_DECIMAL.nro_decimal" 
+                                        [nzMin]="1" 
+                                        [nzMax]="5" 
+                                        [nzStep]="1">
+                                    </nz-input-number>
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row col-sm-12" style="padding-top: 15px" *ngIf="
+            frm.id_tipo_pregunta==_TIPO_PREGUNTA.desplegable_libre
+            || frm.id_tipo_pregunta==_TIPO_PREGUNTA.seleccion_unica 
+            || frm.id_tipo_pregunta==_TIPO_PREGUNTA.seleccion_multiple">
+                <div class="panel panel-default panel-custom">
+                    <div class="panel-heading">Alternativas</div>
+                    <div class="panel-body">                    
+                        <ng-container>
+                            <div class="row">
+                                <div class="col-sm-12 text-left">
+                                    <div>
+                                        <button class="btn btn-primary-custom pull-left" (click)="_add_alternativa_table()">
+                                            <i class="fa fa-plus-circle"></i> Agregar
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="table-responsive table-striped table-bordered table-hover">
+                                        <nz-table #ajaxTable class="container-table-custom" nzShowSizeChanger 
+                                        [nzFrontPagination]="true" [nzBordered]="true" [nzLoading]="cargando_tabla" 
+                                        [nzData]="array_alternativa_select">
+                                            <thead>
+                                                <tr>
+                                                    <th>N°</th>
+                                                    <th WIDTH="450">Descripción</th>
+                                                    <th WIDTH="80">Acción</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let item of ajaxTable.data; let i = index">
+                                                    <td align="center">{{ (item.idx+1) }}</td>
+                                                    <td>
+                                                        <nz-form-item>
+                                                            <nz-form-control nzErrorTip="Debe ingresar la descripción!">
+                                                                <nz-input-group>
+                                                                    <input class="form-control" type="text" 
+                                                                    [formControl]="frmAlternativaDescripcion[item.idx]"
+                                                                    placeholder="--Ingresar descripción de opción--"
+                                                                    [(ngModel)]="item.descripcion" >
+                                                                </nz-input-group>
+                                                            </nz-form-control>
+                                                         </nz-form-item>
+                                                    </td>               
+                                                    <td align="center" >
+                                                        <ng-container>
+                                                            <a  class="btn btn-icon" (click)="_delete_alternativa_table(item.idx)" 
+                                                                data-tooltip="tooltip" data-placement="bottom" title="Eliminar" >
+                                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                            </a>
+                                                        </ng-container>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </nz-table>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label nz-checkbox  [formControl]="frmPRG.frmEsAgregarAlternativa" 
+                                    [(ngModel)]="frm.es_agregar_pregunta" >Permite agregar una alternativa</label> 
+                                </div>
+                            </div>                            
+                        </ng-container>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="padding-top: 15px" *ngIf="frm.id_tipo_pregunta==_TIPO_PREGUNTA.matriz">
+                <div class="col-md-12">
+                    <label for=""><span class="span_required">*</span> Aplicar las preguntas tipo en</label>
+                </div>
+                <div class="col-md-12">
+                    <label class="label-radio">
+                        <input nz-radio-button type="radio" name="fila-columna" id="1" value="FILA"
+                        [checked]="checkedFila" (change)="onChangeFilaColumna('FILA')">
+                        Fila
+                    </label>
+                    <br>
+                    <label class="label-radio">
+                        <input nz-radio-button type="radio" name="fila-columna" id="2" value="COLUMNA"
+                        [checked]="checkedColumna" (change)="onChangeFilaColumna('COLUMNA')">
+                        Columna
+                    </label>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="panel panel-default panel-custom">
+                        <div class="panel-heading">Filas</div>
+                        <div class="panel-body">                    
+                            <ng-container>
+                                <div class="row">
+                                    <div class="col-sm-12 text-left">
+                                        <div>
+                                            <button class="btn btn-primary-custom pull-left" (click)="_add_filas()">
+                                                <i class="fa fa-plus-circle"></i> Agregar
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="table-responsive table-striped table-bordered table-hover">
+                                            <nz-table #ajaxTableMatriz class="container-table-custom" nzShowSizeChanger 
+                                            [nzFrontPagination]="true" [nzBordered]="true" [nzLoading]="cargando_tabla" 
+                                            [nzData]="array_filas">
+                                                <thead>
+                                                    <tr>
+                                                        <th>N°</th>
+                                                        <th WIDTH="400">Descripción</th>
+                                                        <th WIDTH="50">Acción</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let item of ajaxTableMatriz.data;">
+                                                        <td align="center">{{ (item.idx+1) }}</td>
+                                                        <td>
+                                                            <nz-form-item>
+                                                                <nz-form-control nzErrorTip="Debe ingresar la descripción de fila">
+                                                                    <nz-input-group>
+                                                                        <input class="form-control" type="text" 
+                                                                        [formControl]="frmFilaName[item.idx]"
+                                                                        placeholder="--Ingresar descripción de fila--"
+                                                                        [(ngModel)]="item.nombre_fila" >
+                                                                    </nz-input-group>
+                                                                </nz-form-control>
+                                                             </nz-form-item>
+                                                             <span class="btn_span hoverable" *ngIf="checkedFila" (click)="show_pre_modal_fila(item)" 
+                                                                style="width:30px;text-align:center" >
+                                                                <i class="fa fa-ellipsis-v"></i>
+                                                            </span>
+                                                        </td>             
+                                                        <td align="center" >
+                                                            <ng-container>
+                                                                <a  class="btn btn-icon" (click)="_delete_fila(item.idx)" 
+                                                                    data-tooltip="tooltip" data-placement="bottom" title="Eliminar" >
+                                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                </a>
+                                                            </ng-container>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </nz-table>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="error_filas_matriz" class="has-error">
+                                        <div class="ant-form-explain">
+                                            Debe ingresar por lo menos una (1) fila.
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="panel panel-default panel-custom">
+                        <div class="panel-heading">Columnas</div>
+                        <div class="panel-body">                    
+                            <ng-container>
+                                <div class="row">
+                                    <div class="col-sm-12 text-left">
+                                        <div>
+                                            <button class="btn btn-primary-custom pull-left" (click)="add_columnas()">
+                                                <i class="fa fa-plus-circle"></i> Agregar
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="table-responsive table-striped table-bordered table-hover">
+                                            <nz-table #ajaxTableColumnas class="container-table-custom" nzShowSizeChanger 
+                                            [nzFrontPagination]="true" [nzBordered]="true" [nzLoading]="cargando_columnas" 
+                                            [nzData]="array_columnas">
+                                                <thead>
+                                                    <tr>
+                                                        <th>N°</th>
+                                                        <th WIDTH="400">Descripción</th>
+                                                        <th WIDTH="50">Acción</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let item of ajaxTableColumnas.data;">
+                                                        <td align="center">{{ (item.idx+1) }}</td>
+                                                        <td>
+                                                            <nz-form-item>
+                                                                <nz-form-control nzErrorTip="Debe ingresar la descripción de columna">
+                                                                    <nz-input-group>
+                                                                        <input class="form-control" type="text" 
+                                                                        [formControl]="frmColumnaName[item.idx]"
+                                                                        placeholder="--Ingresar descripción de columna--"
+                                                                        [(ngModel)]="item.nombre_columna" >
+                                                                    </nz-input-group>
+                                                                </nz-form-control>
+                                                            </nz-form-item>
+                                                            <span class="btn_span hoverable" *ngIf="checkedColumna" (click)="show_pre_modal_columna(item)" 
+                                                                style="width:30px;text-align:center" >
+                                                                <i class="fa fa-ellipsis-v"></i>
+                                                            </span>
+                                                        </td>             
+                                                        <td align="center" >
+                                                            <ng-container>
+                                                                <a  class="btn btn-icon" (click)="_delete_columna(item.idx)" 
+                                                                    data-tooltip="tooltip" data-placement="bottom" title="Eliminar" >
+                                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                </a>
+                                                            </ng-container>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </nz-table>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="error_columnas_matriz" class="has-error">
+                                        <div class="ant-form-explain">
+                                            Debe ingresar por lo menos una (1) columna.
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--END FORMATOS-->
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="">Indicar que tipo de archivo utilizará</label>
+                        <div>
+                            <nz-form-item>
+                                <nz-form-control>
+                                    <nz-input-group>
+                                        <nz-select nzAllowClear nzShowSearch nzPlaceHolder="--Seleccionar--"
+                                        [(ngModel)]="frm.id_tipo_archivo"
+                                        (ngModelChange)="set_tipo_file()"
+                                        [formControl]="frmPRG.frmTipoArchivo">
+                                            <ng-container *ngFor="let item of array_tipo_file">
+                                                <nz-option [nzValue]="item.id_enumerado" [nzLabel]="item.nombre"></nz-option>
+                                            </ng-container>
+                                        </nz-select>
+                                    </nz-input-group>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-6">
+                    <div class="form-group"[hidden]="!show_file_uploader">
+                        <label for=""><span class="span_required">*</span> Adjuntar imagen de explicación:</label>
+                        <div>
+                            <app-file-uploader-custom  
+                            [fileInfo]="true"  
+                            [id]="frm.iden_imagen" 
+                            [(Files)]="archivo" 
+                            [(Uploading)]="estaGuardando"
+                            [pesoMaximoEnMB]="pesoMaximoEnMB" 
+                            [esBorrador]="false" 
+                            [extensionAceptados]="_extensionAceptados"
+                            [tiposMimePermitidos]="imagen_MimePermitidos"
+                            (FileChange)="set_file_iden($event)"
+                            (onRemovedIdFile)="handleRemovedFileExplicacion($event)"
+                            [view_width]="600"
+                            [puedeVerArchivo]="true"
+                                    [url]="url" 
+                                    [loading]="estaGuardando">
+                            </app-file-uploader-custom>
+                            <div *ngIf="error_imagen" class="has-error">
+                                <div class="ant-form-explain">
+                                    Debe adjuntar una imagen.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" [hidden]="!show_url">
+                        <label for=""><span class="span_required">*</span> Url de video de explicación de la plataforma:</label>
+                        <div>
+                            <input type="text" class="form-control" 
+                            maxlength="500"
+                            (ngModelChange)="this.error_video=false;"
+                            placeholder="--https://www.youtube.com/watch?v=FM7MFYoylVs--" 
+                            [(ngModel)]="frm.url_video">
+                        </div>
+                        <div *ngIf="error_video" class="has-error">
+                            <div class="ant-form-explain">
+                                Debe ingresar un url válido.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #extraTemplate>      
+        <div class="row">
+            <div class="col-sm-6 text-left"><button type="button" class="btn btn-default-custom" (click)="handleCancelarFormularioModal()"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button></div>
+            <div class="col-sm-6 text-right"><button nz-button nzType="primary" (click)="handleSaveFormularioModal()"><i class="fa fa-save" aria-hidden="true"></i> Guardar</button></div>
+        </div>  
+    </ng-template>
+</nz-modal>
+
+<nz-modal 
+  [(nzVisible)]="vista_tipo" 
+  nzTitle="Tipo de entrada" 
+  [nzWidth]="250" 
+  (nzOnCancel)="cerrar_pre_modal()"
+  [nzFooter]="extraTemplatePre">
+    <ng-container>
+        <div>
+            <p class="hoverable_txt" (click)="_show_modal_matriz(1)" [ngClass]="{'is_selected_tipo': selected_tipo_forma==1?true:false}">Desplegable institucional</p>
+            <p class="hoverable_txt" (click)="_show_modal_matriz(2)" [ngClass]="{'is_selected_tipo': selected_tipo_forma==2?true:false}">Desplegable libre</p>
+            <p class="hoverable_txt" (click)="_show_modal_matriz(3)" [ngClass]="{'is_selected_tipo': selected_tipo_forma==3?true:false}">Númerico entero</p>
+            <p class="hoverable_txt" (click)="_show_modal_matriz(4)" [ngClass]="{'is_selected_tipo': selected_tipo_forma==4?true:false}">Númerico decimal</p>
+            <p class="hoverable_txt" (click)="_show_modal_matriz(5)" [ngClass]="{'is_selected_tipo': selected_tipo_forma==5?true:false}">Selección única</p>
+            <p class="hoverable_txt" (click)="_show_modal_matriz(6)" [ngClass]="{'is_selected_tipo': selected_tipo_forma==6?true:false}">Selección multiple</p>
+
+            <p class="hoverable_txt" (click)="_show_modal_matriz(9)" [ngClass]="{'is_selected_tipo': selected_tipo_forma==9?true:false}">Fecha</p>
+            <p class="hoverable_txt" (click)="_show_modal_matriz(10)" [ngClass]="{'is_selected_tipo': selected_tipo_forma==10?true:false}">Texto</p>
+            <p class="hoverable_txt" (click)="_show_modal_matriz(11)" [ngClass]="{'is_selected_tipo': selected_tipo_forma==11?true:false}">Archivo</p>
+
+          </div>
+    </ng-container>
+    <ng-template #extraTemplatePre>
+        <div class="row">
+            <div class="col-sm-12 text-left"><button type="button" class="btn btn-default-custom" (click)="cerrar_pre_modal()"><i class="fa fa-ban" aria-hidden="true"></i> Cerrar</button></div>
+        </div>  
+    </ng-template>
+</nz-modal>
+
+
+
+<ng-container *ngIf="show_modal_matriz">
+    <app-modal-registro-columna-ext
+        [isVisibleModalMatriz]="show_modal_matriz" 
+        [modal_width]="_modal_width"
+        [title]="nombre_columna"
+        [forma]="selected_forma"
+        [array_tipo_pregunta]="array_tipo_pregunta"
+        [array_maestro_institucional]="array_maestro_institucional"
+        (onCloseModalMatriz)="handleOnCloseModalMatriz($event)"
+        (onSaveDataForma)="handleOnSaveFormaColumnaMatriz($event)">
+    </app-modal-registro-columna-ext>
+</ng-container>

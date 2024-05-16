@@ -1,0 +1,208 @@
+<nz-modal 
+  [(nzVisible)]="isVisibleModal" 
+  nzTitle="Agregar Encuestados" 
+  nzWidth="1200" 
+  nzClosable="false"
+  [nzFooter]="extraTemplate">
+    <div class="panel panel-default panel-custom">
+        <div class="panel-heading">Buscar Encuestado</div>
+        <div class="panel-body">
+            <div>                
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group mb-0">
+                            <label for="">Tipo de persona</label>
+                            <div>                                
+                               <nz-select
+                                nzPlaceHolder="--Todos--"
+                                nzAllowClear
+                                nzShowSearch   
+                                [(ngModel)]="form.id_tipo_persona"             
+                                >    
+                                <ng-container *ngFor="let item of ListTipoPersona">
+                                <nz-option
+                                    [nzValue]="item.id"
+                                    [nzLabel]="item.nombre"
+                                ></nz-option>
+                                </ng-container>      
+                                </nz-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group mb-0">
+                            <label for="">RUC o DNI</label>
+                            <div>
+                                <input type="text" class="form-control" placeholder="RUC o DNI" [(ngModel)]="form.numero_documento">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group mb-0">
+                            <label for="">Razón social</label>
+                            <div>
+                                <input type="text" class="form-control" placeholder="Razón social" [(ngModel)]="form.razon_social">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">Departamento</label>
+                            <div>
+                              <nz-select
+                                nzPlaceHolder="--Todos--"
+                                nzAllowClear
+                                nzShowSearch   
+                                [(ngModel)]="form.codigo_departamento"
+                                (ngModelChange)="onChangeDepartamento($event)"             
+                                >    
+                                <ng-container *ngFor="let item of listaDepartamento">
+                                <nz-option
+                                    [nzValue]="item.codigo"
+                                    [nzLabel]="item.nombre"
+                                ></nz-option>
+                                </ng-container>      
+                                </nz-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">Provincia</label>
+                            <div>
+                                <nz-select
+                                nzPlaceHolder="--Todos--"
+                                nzAllowClear
+                                nzShowSearch   
+                                [(ngModel)]="form.codigo_provincia"
+                                (ngModelChange)="onChangeProvincia($event)"             
+                                >    
+                                <ng-container *ngFor="let item of listaProvincia">
+                                <nz-option
+                                    [nzValue]="item.codigo"
+                                    [nzLabel]="item.nombre"
+                                ></nz-option>
+                                </ng-container>      
+                                </nz-select>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">Distrito</label>
+                            <div>
+                                <nz-select
+                                nzPlaceHolder="--Todos--"
+                                nzAllowClear
+                                nzShowSearch   
+                                [(ngModel)]="form.codigo_distrito"           
+                                >    
+                                <ng-container *ngFor="let item of listaDistrito">
+                                <nz-option
+                                    [nzValue]="item.codigo"
+                                    [nzLabel]="item.nombre"
+                                ></nz-option>
+                                </ng-container>      
+                                </nz-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+        
+
+    
+        <div class="panel-footer text-center">
+            <button (click)="getListadoOnly()" type="button" class="btn btn-primary-custom"><i class="fa fa-search"></i> Buscar</button>
+            <button (click)="handleClickLimpiar()" type="button" class="btn btn-default-custom"><i class="fa fa-eraser" aria-hidden="true"></i> Limpiar</button>
+        </div>
+
+    </div>
+
+    <div>
+        <div class="row">
+            <div class="col-md-12 table-responsive">
+                <!--
+                    #ajaxTable class="container-table-custom" 
+                    nzShowSizeChanger 
+                    [nzFrontPagination]="false" 
+                    [nzBordered]="true" 
+                    [nzData]="listaEncuestados"
+                    [nzTotal]="total" 
+                    [(nzPageIndex)]="pageIndex"
+                    [(nzPageSize)]="pageSize" 
+                    (nzPageIndexChange)="handleClickBuscar()" 
+                    [nzLoading]="loading_table"
+                    (nzPageSizeChange)="handleClickBuscar(true)"
+
+                -->
+                <nz-table 
+                    #ajaxTable class="container-table-custom" 
+                    nzShowSizeChanger 
+                    [nzFrontPagination]="true" 
+                    [nzBordered]="true" 
+                    [nzData]="listaEncuestados"
+                    [nzLoading]="loading_table"
+                    [(nzPageIndex)]="pageIndex"
+                    [(nzPageSize)]="pageSize" 
+                    >
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th 
+                            [nzShowSort]="true"
+                            [nzSort]="null"
+                            [nzSortKey]="'numero_documento'"
+                            (nzSortChangeWithKey)="handleSortByKey($event)">RUC O DNI</th>
+                            <th 
+                            [nzShowSort]="true"
+                            [nzSort]="null"
+                            [nzSortKey]="'razon_social'"
+                            (nzSortChangeWithKey)="handleSortByKey($event,'string')">RAZÓN SOCIAL</th>
+                            <th 
+                            [nzShowSort]="true"
+                            [nzSort]="null"
+                            [nzSortKey]="'tipo_persona'"
+                            (nzSortChangeWithKey)="handleSortByKey($event,'string')">TIPO DE PERSONA</th>
+                            <th  
+                            [nzShowSort]="true"
+                            [nzSort]="null"
+                            [nzSortKey]="'departamento'"
+                            (nzSortChangeWithKey)="handleSortByKey($event,'string')">DEPARTAMENTO</th>
+                            <th>
+                                <label nz-checkbox  
+                                [(ngModel)]="es_seleccionado"
+                                (ngModelChange)="handleChangeTodoSeleccion($event)"></label>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of ajaxTable.data; let i = index">
+                            <td align="center">{{ item.nro }}</td>
+                            <td align="center">{{ item.numero_documento }}</td>
+                            <td align="center">{{ item.razon_social }}</td>                     
+                            <td align="center">{{ item.tipo_persona}}</td>
+                            <td align="center">{{ item.departamento}}</td>
+                            <td align="center">
+                                <label nz-checkbox [(ngModel)]="item.es_seleccionado" 
+                                (ngModelChange)="handleChangeSeleccion($event, item)" ></label>
+                            </td>                           
+                        </tr>
+                    </tbody>
+                </nz-table>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #extraTemplate>      
+        <div class="row">
+            <div class="col-sm-6 text-left"><button type="button" class="btn btn-default-custom" (click)="handleCerrarFormularioModal()"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button></div>
+            <div class="col-sm-6 text-right"><button nz-button nzType="primary" (click)="handleCerrarFormularioModal(true)"><i class="fa fa-check" aria-hidden="true"></i> Confirmar Selección</button></div>
+        </div>  
+    </ng-template>
+</nz-modal>

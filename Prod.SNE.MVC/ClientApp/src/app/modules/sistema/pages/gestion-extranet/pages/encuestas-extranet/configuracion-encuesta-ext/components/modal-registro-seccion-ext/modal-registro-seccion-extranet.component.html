@@ -1,0 +1,38 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Procesando información, por favor no cierre la ventana.</p>
+    </ngx-spinner>
+<nz-modal 
+  [(nzVisible)]="isVisibleModal" 
+  nzTitle="{{title}} sección" 
+  [nzWidth]="modal_width" 
+  nzClosable="false"
+  [nzFooter]="extraTemplate">
+    <ng-container >
+        <div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label for=""><span class="span_required">*</span> Nombre de la sección</label>
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Debe ingresar el nombre de la sección!">
+                                <nz-input-group>
+                                    <input type="text" [formControl]="frmSEC.frmSeccion" 
+                                    class="form-control" 
+                                    placeholder="--Ingresar sección--"
+                                    maxlength="500"
+                                    [(ngModel)]="frm.seccion">    
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #extraTemplate>      
+        <div class="row">
+            <div class="col-sm-6 text-left"><button type="button" class="btn btn-default-custom" (click)="handleCancelarFormularioModal()"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button></div>
+            <div class="col-sm-6 text-right"><button nz-button nzType="primary" (click)="handleSaveFormularioModal()"><i class="fa fa-save" aria-hidden="true"></i> Guardar</button></div>
+        </div>  
+    </ng-template>
+</nz-modal>

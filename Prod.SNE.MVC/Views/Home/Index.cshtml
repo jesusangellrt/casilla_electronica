@@ -1,0 +1,4 @@
+﻿<app-cmp login-path="@Html.Raw(ViewBag.loginPath)"  user-data="@Html.Raw(ViewBag.user)" per-data="@Html.Raw(ViewBag.permiso)" config-data="@Html.Raw(ViewBag.ns)" config-file="@Html.Raw(ViewBag.fileConfig)"></app-cmp>
+@section scripts {
+    @Html.Raw(ViewBag.SpaModule);
+}

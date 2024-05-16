@@ -1,0 +1,108 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Procesando información, por favor no cierre la ventana.</p>
+    </ngx-spinner>
+<nz-modal 
+  [(nzVisible)]="isVisibleModal" 
+  nzTitle="{{title}} notificación" 
+  [nzWidth]="modal_width" 
+  nzClosable="false"
+  [nzFooter]="extraTemplate">
+    <ng-container >
+        <div>
+            <div class="row">
+                <div class="col-md-7 col-sm-12">
+                    <div class="form-group">
+                        <label for=""><span class="span_required">*</span> Título de notificación</label>
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Debe ingresar el título!">
+                                <nz-input-group>
+                                    <input type="text" [formControl]="frmNOT.frmTitulos" 
+                                    class="form-control" 
+                                    placeholder="--Ingresar título--"
+                                    maxlength="500"
+                                    [(ngModel)]="frm.titulo">
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+                <div class="col-md-5 col-sm-12">
+                    <div class="form-group">
+                        <label for=""><span class="span_required">*</span> Fecha y hora de envío de notificación</label>
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Debe ingresar fecha y hora!">
+                                <nz-input-group>
+                                    <nz-date-picker [formControl]="frmNOT.frmFecha" 
+                                    [(ngModel)]="frm.fecha_notificacion"
+                                    nzShowTime nzFormat="dd/MM/yyyy HH:mm a" ngModel
+                                    ></nz-date-picker>
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7 col-sm-12">
+                    <div class="form-group">
+                        <label for=""><span class="span_required">*</span> Asunto de la notificación</label>
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="Debe ingresar el asunto!">
+                                <nz-input-group>
+                                    <input type="text" [formControl]="frmNOT.frmAsunto" 
+                                    class="form-control" 
+                                    placeholder="--Ingresar asunto--"
+                                    maxlength="500"
+                                    [(ngModel)]="frm.asunto">
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>                
+            </div>
+            <div class="row" style="padding-top: 5px;">
+                <div class="col-md-12 col-sm-12">
+                    <label for=""><span class="span_required">*</span> A quién va dirigido la notificación</label>
+                    <div style="padding-left: 10px" *ngFor="let item of array_dirigido; let i = index">
+                        <input style="background-color: #dc3545;
+                        border-color: #dc3545;" class=""
+                        id="{{item.id_enumerado}}"
+                        name="checkTipoArchivo"
+                        type="radio"
+                        [checked]="item.selected"
+                        (change)="changeDirigido($event)"/>&nbsp;
+                        <label for="{{item.id_enumerado}}">{{ item.nombre }}</label>
+                    </div>
+                    <div style="padding-left: 10px" *ngIf="error_dirigido" class="has-error">
+                        <div class="ant-form-explain">
+                            Debe seleccionar una opción!
+                        </div>
+                    </div>
+                </div>                
+            </div>
+            <div class="row" style="padding-top: 20px;">
+                <div class="col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <label for=""><span class="span_required">*</span> Mensaje de notificación</label>
+                            <div style="border: 1px solid rgb(217, 217, 217) !important;">
+                            <ckeditor [editor]="editor" [config]="configEditor" [(ngModel)]="frm.mensaje" 
+                                [formControl]="frmNOT.frmMensaje" 
+                                (ready)="onReady($event)" (change)="onChange($event)"></ckeditor>
+                            </div>  
+                            <div style="padding-left: 10px" *ngIf="error_editor_mensaje" class="has-error">
+                                <div class="ant-form-explain">
+                                    Debe ingresar un mensaje!
+                                </div>
+                            </div>                                                     
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #extraTemplate>      
+        <div class="row">
+            <div class="col-sm-6 text-left"><button type="button" class="btn btn-default-custom" (click)="handleCancelarFormularioModal()"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button></div>
+            <div class="col-sm-6 text-right"><button nz-button nzType="primary" (click)="handleSaveFormularioModal()"><i class="fa fa-save" aria-hidden="true"></i> Guardar</button></div>
+        </div>  
+    </ng-template>
+</nz-modal>

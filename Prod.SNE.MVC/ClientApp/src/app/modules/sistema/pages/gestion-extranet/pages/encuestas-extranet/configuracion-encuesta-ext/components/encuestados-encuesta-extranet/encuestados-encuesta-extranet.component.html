@@ -1,0 +1,118 @@
+<div class="row">
+    <div class="col-xs-12" style="margin-bottom:5px;">
+        <div class="col-xs-12 input-group pull-left">
+            <button (click)="handleClickAgregarEncuestado()" class="btn btn-primary-custom pull-left"> 
+                <i class="fa fa-plus-circle"></i> Agregar encuestados</button>
+        </div>
+    </div>
+</div>
+<ng-container>
+    <div style="margin-bottom:5px;">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="">RUC o DNI</label>
+                    <input class="form-control" type="text" 
+                    placeholder="--Filtrar por RUC o DNI--"
+                    [(ngModel)]="form.dni" >
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="">Razón social</label>
+                    <input class="form-control" type="text" 
+                    placeholder="--Filtrar por Razón social--"
+                    [(ngModel)]="form.nombres" >
+                </div>
+            </div>
+            <div class="col-sm-3 text-right">
+                <div class="form-group">
+                    <br>
+                    <button type="button" class="btn btn-primary-custom" (click)="get_list()">
+                        <i class="fa fa-search"></i> Filtrar
+                    </button>
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn-default-custom" (click)="handleClickLimpiar()">
+                        <i class="fa fa-eraser"aria-hidden="true"></i> Limpiar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container>
+    <div class="table-responsive table-striped table-bordered table-hover">
+        <nz-table #ajaxTable class="container-table-custom" nzShowSizeChanger [nzFrontPagination]="true"
+        [nzBordered]="true" [nzData]="EncuestadosList" [nzLoading]="cargando_tabla">
+    
+            <thead>
+                <tr>
+                    <th WIDTH="50">N°</th>
+                    <th WIDTH="550"
+                    [nzShowSort]="true"
+                    [nzSort]="null"
+                    [nzSortKey]="'full_name'"
+                    (nzSortChangeWithKey)="handleSortByKey($event,'string')">
+                        RUC o DNI</th>
+                    <th WIDTH="550"
+                    [nzShowSort]="true"
+                    [nzSort]="null"
+                    [nzSortKey]="'full_name'"
+                    (nzSortChangeWithKey)="handleSortByKey($event,'string')">
+                        Nombres y apellidos</th>
+                    <th WIDTH="550"
+                    [nzShowSort]="true"
+                    [nzSort]="null"
+                    [nzSortKey]="'full_name'"
+                    (nzSortChangeWithKey)="handleSortByKey($event,'string')">
+                        Tipo de persona</th>
+                    <th WIDTH="100"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of ajaxTable.data; let i = index">
+                    <td>{{ (pageSize * (pageIndex - 1)) + (i + 1) }}</td>
+                    <td>{{ item.numero_documento }} </td>  
+                    <td>{{ item.razon_social }} </td>  
+                    <td>{{ item.tipo_persona }} </td>  
+                    <td align="center" >
+                        <ng-container>
+                            <a  class="btn btn-icon" data-tooltip="tooltip" data-placement="bottom" (click)="_delete_encuestado(item.id_encuesta_administrado)" title="Eliminar" >
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+                        </ng-container>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+    <div *ngIf="error_encuestados" class="has-error">
+        <div class="ant-form-explain">
+        Debe ingresar al menos un encuestado.
+        </div>
+    </div>
+</ng-container>
+
+<div class="row" style="margin-top: 15px;">
+    <div class="col-sm-6 text-left">
+        <button type="button" class="btn btn-default-custom" (click)="goback()">
+            Retornar
+        </button>
+    </div>
+    <div class="col-sm-6 text-right">
+        <button type="button" class="btn btn-primary-custom" (click)="save_update_encuestados()" ><i class="fa fa-save"></i> Guardar</button>
+        &nbsp;&nbsp;
+        <button type="button" class="btn btn-primary-custom" (click)="save_update_encuestados(true)" ><i class="fa fa-paper-plane"></i> Publicar</button>
+    </div>
+</div>
+
+
+<ng-container *ngIf="esVisibleFormularioEncuestados">
+    <app-configurar-encuestados-formulario-ext 
+    [isVisibleModal]="esVisibleFormularioEncuestados" 
+    (onChangeVisible)="handleCloseAgregarEncuestado($event)"
+    (onSaveForm)="handleSave($event)"
+    (onEmitListaSeleccionada)="handleEmitListaSeleccionada($event)">
+    </app-configurar-encuestados-formulario-ext>
+</ng-container>

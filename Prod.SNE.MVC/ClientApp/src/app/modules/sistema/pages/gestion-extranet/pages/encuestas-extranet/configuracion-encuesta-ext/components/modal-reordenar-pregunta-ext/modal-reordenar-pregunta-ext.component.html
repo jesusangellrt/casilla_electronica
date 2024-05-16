@@ -1,0 +1,48 @@
+<nz-modal 
+  [(nzVisible)]="isVisibleModal" 
+  nzTitle="Reordenar preguntas" 
+  nzClosable="false"
+  [nzWidth]="850"
+  [nzFooter]="extraTemplateOrder">
+    <ng-container>
+        <div class="row">
+            <div class="col-md-12">
+                <p><b>Selecciona la pregunta y arrástrala para ubicarlo en el orden que desees</b></p>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                    <table class="table table table-custom table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">N°</th>
+                            <th scope="col">PREGUNTA</th>
+                            <th scope="col">TIPO</th>
+                            <th scope="col">CONDICIONAL</th>
+                            <th scope="col">CONDICIONADA</th>
+                          </tr>
+                        </thead>
+                        <tbody cdkDropList (cdkDropListDropped)="drop($event)">
+                          <tr *ngFor="let item of PreguntasList;let i = index" cdkDrag >
+                            <th>
+                              {{i+1}}
+                            </th>
+                            <th>{{item.pregunta}}</th>
+                                    <th>{{item.tipo_pregunta}}</th>
+                                    <th>{{item.condicional}}</th>
+                                    <th>{{item.condicionada}}</th> 
+                          </tr>
+                        </tbody>
+                      </table>
+            </div>
+            
+        </div>
+    </ng-container>
+    <ng-template #extraTemplateOrder>
+        <div class="row">
+            <div class="col-sm-6 text-left"><button type="button" class="btn btn-default-custom" (click)="handleCancelarModal()"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button></div>
+            <div class="col-sm-6 text-right"><button type="button" class="btn btn-primary-custom" (click)="handleSaveModal()"><i class="fa fa-save" aria-hidden="true"></i> Guardar</button></div>
+        </div>  
+    </ng-template>
+</nz-modal>
