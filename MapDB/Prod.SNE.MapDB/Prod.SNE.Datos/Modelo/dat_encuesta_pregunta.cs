@@ -54,9 +54,11 @@ namespace Prod.SNE.Datos.Modelo
     	public Nullable<int> id_encuesta_seccion { get; set; }
     	public string json_tipo_fecha { get; set; }
     
-        public virtual cat_sub_categoria cat_sub_categoria { get; set; }
-        public virtual dat_encuesta dat_encuesta { get; set; }
         public virtual cat_categoria cat_categoria { get; set; }
+        public virtual cat_sub_categoria cat_sub_categoria { get; set; }
+        public virtual cat_tipo_archivo cat_tipo_archivo { get; set; }
+        public virtual cat_tipo_pregunta cat_tipo_pregunta { get; set; }
+        public virtual dat_encuesta dat_encuesta { get; set; }
         
         public virtual ICollection<dat_respuesta_pregunta> dat_respuesta_pregunta { get; set; }
     }

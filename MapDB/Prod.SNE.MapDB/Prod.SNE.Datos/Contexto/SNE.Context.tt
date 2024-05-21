@@ -2,7 +2,7 @@
 <#@ include file="EF6.Utility.CS.ttinclude"#><#@
  output extension=".cs"#><#
 
-const string inputFile = @"ClimaOrganizacional.edmx";
+const string inputFile = @"SNE.edmx";
 var textTransform = DynamicTextTransformation.Create(this);
 var code = new CodeGenerationTools(this);
 var ef = new MetadataTools(this);
@@ -13,7 +13,7 @@ var modelNamespace = loader.GetModelNamespace(inputFile);
 var codeStringGenerator = new CodeStringGenerator(code, typeMapper, ef);
 
 var container = itemCollection.OfType<EntityContainer>().FirstOrDefault();
-var containerName="ClimaOrganizacionalDbContext";//container.Name;//Esta linea solo se puso para renombrar el Name de la clase
+var containerName="SNEDbContext";//container.Name;//Esta linea solo se puso para renombrar el Name de la clase
 if (container == null)
 {
     return string.Empty;

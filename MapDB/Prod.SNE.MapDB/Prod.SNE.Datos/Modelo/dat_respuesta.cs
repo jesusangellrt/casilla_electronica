@@ -43,8 +43,9 @@ namespace Prod.SNE.Datos.Modelo
     	public Nullable<int> nro_seccion_actual { get; set; }
     	public string ruc_administrado { get; set; }
     
-        public virtual dat_encuesta dat_encuesta { get; set; }
         
         public virtual ICollection<dat_respuesta_pregunta> dat_respuesta_pregunta { get; set; }
+        public virtual cat_estado_respuesta cat_estado_respuesta { get; set; }
+        public virtual dat_encuesta dat_encuesta { get; set; }
     }
 }

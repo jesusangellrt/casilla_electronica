@@ -19,10 +19,10 @@ namespace Prod.SNE.Core.Api.App_Start
             #region Base Context
 
             //Conexion
-            string connectionString = Configuration.GetSection("ConnectionStrings:ClimaOrganizacionalDbContext").Value;
+            string connectionString = Configuration.GetSection("ConnectionStrings:SNEDbContext").Value;
 
             //Context           
-            builder.RegisterType<ClimaOrganizacionalDbContext>().Named<IDbContext>("contextClimaOrganizacional").WithParameter("connstr", connectionString).InstancePerLifetimeScope();
+            builder.RegisterType<SNEDbContext>().Named<IDbContext>("contextSNE").WithParameter("connstr", connectionString).InstancePerLifetimeScope();
             
             //Resolver UnitOfWork
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().WithParameter((c, p) => true, (c, p) => p.ResolveNamed<IDbContext>("contextClimaOrganizacional"));

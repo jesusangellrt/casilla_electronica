@@ -14,10 +14,10 @@ namespace Prod.SNE.Datos.Contexto
     using System.Data.Entity.Infrastructure;
     using Prod.SNE.Datos.Modelo;
     
-    public partial class ClimaOrganizacionalDbContext : DbContext
+    public partial class SNEDbContext : DbContext
     {
-        public ClimaOrganizacionalDbContext()
-            : base("name=ClimaOrganizacionalDbContext")
+        public SNEDbContext()
+            : base("name=SNEDbContext")
         {
         }
     

@@ -39,5 +39,6 @@ namespace Prod.SNE.Datos.Modelo
     	public string BD { get; set; }
     	public string SRV { get; set; }
     	public string SRVAPP { get; set; }
+    	public string SRVAPP1 { get; set; }
     }
 }

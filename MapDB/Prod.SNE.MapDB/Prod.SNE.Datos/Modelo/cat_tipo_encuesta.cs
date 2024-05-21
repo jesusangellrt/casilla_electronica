@@ -18,9 +18,21 @@ namespace Prod.SNE.Datos.Modelo
     
     public partial class cat_tipo_encuesta
     {
-        [Key()]	
+        
+        public cat_tipo_encuesta()
+        {
+            this.cat_configuracion_inicial = new HashSet<cat_configuracion_inicial>();
+            this.dat_encuesta = new HashSet<dat_encuesta>();
+        }
+    
+    	[Key()]	
     	public int id { get; set; }
     	public string nombre { get; set; }
     	public Nullable<bool> es_eliminado { get; set; }
+    
+        
+        public virtual ICollection<cat_configuracion_inicial> cat_configuracion_inicial { get; set; }
+        
+        public virtual ICollection<dat_encuesta> dat_encuesta { get; set; }
     }
 }

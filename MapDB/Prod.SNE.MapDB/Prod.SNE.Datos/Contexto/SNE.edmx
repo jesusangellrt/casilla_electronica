@@ -1185,7 +1185,7 @@ warning 6002: The table/view 'DB_ENCUESTA.dbo.vw_usuario_rol_intranet' does not 
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Modelo" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="ClimaOrganizacionalDbContext" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SNEDbContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CAT_CATEGORIA" EntityType="Modelo.CAT_CATEGORIA" />
           <EntitySet Name="CAT_CONFIGURACION_INICIAL" EntityType="Modelo.CAT_CONFIGURACION_INICIAL" />
           <EntitySet Name="CAT_SUB_CATEGORIA" EntityType="Modelo.CAT_SUB_CATEGORIA" />
@@ -2221,7 +2221,7 @@ warning 6002: The table/view 'DB_ENCUESTA.dbo.vw_usuario_rol_intranet' does not 
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ModeloStoreContainer" CdmEntityContainer="ClimaOrganizacionalDbContext">
+        <EntityContainerMapping StorageEntityContainer="ModeloStoreContainer" CdmEntityContainer="SNEDbContext">
           <EntitySetMapping Name="CAT_CATEGORIA">
             <EntityTypeMapping TypeName="Modelo.CAT_CATEGORIA">
               <MappingFragment StoreEntitySet="CAT_CATEGORIA">

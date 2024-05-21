@@ -27,8 +27,8 @@ namespace Prod.SNE.Datos.Modelo
             this.dat_encuesta_pregunta = new HashSet<dat_encuesta_pregunta>();
             this.dat_respuesta = new HashSet<dat_respuesta>();
             this.dat_encuesta_administrado = new HashSet<dat_encuesta_administrado>();
-            this.dat_encuesta_seccion = new HashSet<dat_encuesta_seccion>();
             this.dat_encuesta_notificacion = new HashSet<dat_encuesta_notificacion>();
+            this.dat_encuesta_seccion = new HashSet<dat_encuesta_seccion>();
         }
     
     	[Key()]	
@@ -61,7 +61,9 @@ namespace Prod.SNE.Datos.Modelo
     	public string ip_modificacion { get; set; }
     	public int id_tipo_encuesta { get; set; }
     	public bool es_con_seccion_pregunta { get; set; }
-    	public bool es_autorizado_datos { get; set; }    
+    	public bool es_autorizado_datos { get; set; }
+    
+        public virtual cat_estado_encuesta cat_estado_encuesta { get; set; }
         
         public virtual ICollection<dat_encuesta_bienvenida> dat_encuesta_bienvenida { get; set; }
         
@@ -75,8 +77,9 @@ namespace Prod.SNE.Datos.Modelo
         
         public virtual ICollection<dat_encuesta_administrado> dat_encuesta_administrado { get; set; }
         
-        public virtual ICollection<dat_encuesta_seccion> dat_encuesta_seccion { get; set; }
-        
         public virtual ICollection<dat_encuesta_notificacion> dat_encuesta_notificacion { get; set; }
+        
+        public virtual ICollection<dat_encuesta_seccion> dat_encuesta_seccion { get; set; }
+        public virtual cat_tipo_encuesta cat_tipo_encuesta { get; set; }
     }
 }

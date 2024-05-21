@@ -19,6 +19,10 @@ namespace Prod.SNE.Datos.Modelo
     public partial class cat_estado_respuesta
     {
         
+        public cat_estado_respuesta()
+        {
+            this.dat_respuesta = new HashSet<dat_respuesta>();
+        }
     
     	[Key()]	
     	public int id { get; set; }
@@ -26,5 +30,6 @@ namespace Prod.SNE.Datos.Modelo
     	public Nullable<bool> es_eliminado { get; set; }
     
         
+        public virtual ICollection<dat_respuesta> dat_respuesta { get; set; }
     }
 }

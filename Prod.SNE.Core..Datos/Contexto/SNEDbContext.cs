@@ -1,19 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Prod.SNE.Datos.Modelo;
 using Release.Helper.Data.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Prod.SNE.Core.Datos.Contexto
 {
-    public partial class ClimaOrganizacionalDbContext: DbContext, IDbContext
+    public partial class SNEDbContext: DbContext, IDbContext
     {
         private readonly string _connstr;
 
-        public ClimaOrganizacionalDbContext(string connstr)
+        public SNEDbContext(string connstr)
         {
             this._connstr = connstr;
         }
@@ -21,7 +16,7 @@ namespace Prod.SNE.Core.Datos.Contexto
         {
 
         }
-        public ClimaOrganizacionalDbContext(DbContextOptions<ClimaOrganizacionalDbContext> options)
+        public SNEDbContext(DbContextOptions<SNEDbContext> options)
             : base(options)
         {
         }

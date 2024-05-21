@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Prod.SNE.Core.Datos.Contexto
 {
-    public partial class ClimaOrganizacionalDbContext
+    public partial class SNEDbContext
     {
         public void SaveChanges(string jsonAuthN)
         {

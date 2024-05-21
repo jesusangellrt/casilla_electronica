@@ -19,12 +19,20 @@ namespace Prod.SNE.Datos.Modelo
     public partial class cat_tipo_archivo
     {
         
-     
+        public cat_tipo_archivo()
+        {
+            this.dat_encuesta_agradecimiento = new HashSet<dat_encuesta_agradecimiento>();
+            this.dat_encuesta_pregunta = new HashSet<dat_encuesta_pregunta>();
+        }
     
     	[Key()]	
     	public int id { get; set; }
     	public string nombre { get; set; }
     	public Nullable<bool> es_eliminado { get; set; }
-
+    
+        
+        public virtual ICollection<dat_encuesta_agradecimiento> dat_encuesta_agradecimiento { get; set; }
+        
+        public virtual ICollection<dat_encuesta_pregunta> dat_encuesta_pregunta { get; set; }
     }
 }

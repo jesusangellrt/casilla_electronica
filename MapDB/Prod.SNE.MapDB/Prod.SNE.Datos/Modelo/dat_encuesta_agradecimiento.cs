@@ -33,7 +33,7 @@ namespace Prod.SNE.Datos.Modelo
     	public string usuario_modificacion { get; set; }
     	public Nullable<bool> es_activar_audio { get; set; }
     
-        public virtual dat_encuesta dat_encuesta { get; set; }
         public virtual cat_tipo_archivo cat_tipo_archivo { get; set; }
+        public virtual dat_encuesta dat_encuesta { get; set; }
     }
 }

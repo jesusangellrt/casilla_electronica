@@ -8,8 +8,8 @@
     <ProjectGuid>{8263962B-8E75-401A-BCAF-B71324DC5CD3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Prod.ClimaOrganizacional.Datos</RootNamespace>
-    <AssemblyName>Prod.ClimaOrganizacional.Datos</AssemblyName>
+    <RootNamespace>Prod.SNE.Datos</RootNamespace>
+    <AssemblyName>Prod.SNE.Datos</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -55,11 +55,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contexto\ClimaOrganizacional.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ClimaOrganizacional.Context.tt</DependentUpon>
-    </Compile>
+   <Compile Include="Contexto\SNE.Context.cs">
+	   <AutoGen>True</AutoGen>
+	   <DesignTime>True</DesignTime>
+	   <DependentUpon>SNE.Context.tt</DependentUpon>
+	</Compile>
     <Compile Include="Contexto\SNE.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -194,11 +194,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Contexto\ClimaOrganizacional.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ClimaOrganizacional.Context.cs</LastGenOutput>
-      <DependentUpon>SNE.edmx</DependentUpon>
-    </Content>
+	<Content Include="Contexto\SNE.Context.tt">
+	  <Generator>TextTemplatingFileGenerator</Generator>
+	  <LastGenOutput>SNE.Context.cs</LastGenOutput>
+	  <DependentUpon>SNE.edmx</DependentUpon>
+	</Content>
     <Content Include="Modelo\Modelo.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Modelo.cs</LastGenOutput>

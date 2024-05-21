@@ -28,5 +28,6 @@ namespace Prod.SNE.Datos.Modelo
     	public System.DateTime fecha_registro { get; set; }
     	public string usuario_modificacion { get; set; }
     	public System.DateTime fecha_modificacion { get; set; }
+    	public Nullable<bool> es_default { get; set; }
     }
 }

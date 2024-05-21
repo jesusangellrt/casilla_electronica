@@ -33,5 +33,7 @@ namespace Prod.SNE.Datos.Modelo
     	public string ip_creacion { get; set; }
     	public string ip_modificacion { get; set; }
     	public int id_tipo_encuesta { get; set; }
+    
+        public virtual cat_tipo_encuesta cat_tipo_encuesta { get; set; }
     }
 }

@@ -8,7 +8,7 @@
 
 <#@ output extension=".cs"#><#
 
-const string inputFile = @"..\Contexto\ClimaOrganizacional.edmx";
+const string inputFile = @"..\Contexto\SNE.edmx";
 var textTransform = DynamicTextTransformation.Create(this);
 var code = new CodeGenerationTools(this);
 var ef = new MetadataTools(this);
