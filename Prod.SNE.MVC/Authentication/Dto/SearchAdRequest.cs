@@ -21,5 +21,6 @@ namespace Prod.SNE.MVC.Authentication.Dto
         public string? searchBase { get; set; }
         public string? filterSearch { get; set; }
         public string[]? attributeList { get; set; }
+        public int tipo_usuario { get; set; }
     }
 }
