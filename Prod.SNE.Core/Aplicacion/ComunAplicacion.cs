@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Configuration;
+using Oracle.ManagedDataAccess.Client;
 using Prod.SNE.Core.Aplicacion.Interfaces;
 using Prod.SNE.Core.Datos;
 using Prod.SNE.Entidades;
@@ -8,9 +9,11 @@ using Release.Helper;
 using Release.Helper.Data.ICore;
 using System;
 using System.Collections.Generic;
-
+using System.Data;
 using System.Linq;
 using Modelo = Prod.SNE.Datos.Modelo;
+using Dapper.Oracle;
+using Dapper;
 
 namespace Prod.SNE.Core.Aplicacion
 {
@@ -139,6 +142,26 @@ namespace Prod.SNE.Core.Aplicacion
             var sr = new StatusResponse<TrabajadorResponse>() { Success = true };
 			try
 			{
+				var _connectionString = _configuration.GetSection("ConnectionStrings:Oracle").Value;
+
+				using (IDbConnection dbConnection = new OracleConnection(_connectionString))
+				{
+					dbConnection.Open();
+
+					var dynamicParametersAdmin = new OracleDynamicParameters();
+					dynamicParametersAdmin.Add(name: ":p_UserName", dbType: OracleMappingType.Varchar2, direction: ParameterDirection.Input, value: username);
+					dynamicParametersAdmin.Add(name: ":p_ResultSet", dbType: OracleMappingType.RefCursor, direction: ParameterDirection.Output);
+					var resAdmin = dbConnection.Query<TrabajadorResponse>("SICAELSYS.PKG_SCESCASIELEC.SPR_OBTENER_TRABAJADOR", param: dynamicParametersAdmin, commandType: CommandType.StoredProcedure).ToList();
+					
+					foreach (var usuario in resAdmin)
+					{
+						Console.WriteLine($"Nombre: {usuario.nombres_trabajador}, Activo: {usuario.roles}");
+					}
+				}
+
+
+
+
 
 				sr.Data = (from trab in _context.Query<Modelo.vw_trabajador>()
 						   where trab.ESTADO == "ACTIVO" && trab.EMAIL == username
