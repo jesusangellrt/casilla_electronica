@@ -100,7 +100,6 @@ namespace Prod.SNE.MVC.Authentication
                             CodDependencia = trabajador.Data.siglas_dependencia, 
                             roles = mapperToRol(trabajador.Data.roles)
                         };
-                        //_logger.LogWarning(JsonConvert.SerializeObject(sr.Data), "adUser");
                     }
                 }
                 
