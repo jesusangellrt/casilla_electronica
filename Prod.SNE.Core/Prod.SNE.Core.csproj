@@ -20,7 +20,7 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-		<ProjectReference Include="..\Prod.SNE.Core..Datos\Prod.SNE.Core.Datos.csproj" />
+		<ProjectReference Include="..\Prod.SNE.Core.Datos\Prod.SNE.Core.Datos.csproj" />
 		<ProjectReference Include="..\Prod.SNE.Entidades\Prod.SNE.Entidades.csproj" />
 	</ItemGroup>
 
