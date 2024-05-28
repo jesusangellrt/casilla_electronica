@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Prod.SNE.Core..Datos\Prod.SNE.Core.Datos.csproj" />
+    <ProjectReference Include="..\Prod.SNE.Core.Datos\Prod.SNE.Core.Datos.csproj" />
     <ProjectReference Include="..\Prod.SNE.Core\Prod.SNE.Core.csproj" />
   </ItemGroup>
 
