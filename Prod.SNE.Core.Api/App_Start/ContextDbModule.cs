@@ -25,7 +25,7 @@ namespace Prod.SNE.Core.Api.App_Start
             builder.RegisterType<SNEDbContext>().Named<IDbContext>("contextSNE").WithParameter("connstr", connectionString).InstancePerLifetimeScope();
             
             //Resolver UnitOfWork
-            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().WithParameter((c, p) => true, (c, p) => p.ResolveNamed<IDbContext>("contextClimaOrganizacional"));
+            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().WithParameter((c, p) => true, (c, p) => p.ResolveNamed<IDbContext>("contextSNE"));
 
 
             //-> Aplicacion

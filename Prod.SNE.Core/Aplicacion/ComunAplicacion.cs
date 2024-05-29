@@ -142,65 +142,88 @@ namespace Prod.SNE.Core.Aplicacion
             var sr = new StatusResponse<TrabajadorResponse>() { Success = true };
 			try
 			{
-				var _connectionString = _configuration.GetSection("ConnectionStrings:Oracle").Value;
+                //var _connectionString = _configuration.GetSection("ConnectionStrings:Oracle").Value;
 
-				using (IDbConnection dbConnection = new OracleConnection(_connectionString))
-				{
-					dbConnection.Open();
+                //using (IDbConnection dbConnection = new OracleConnection(_connectionString))
+                //{
+                //	dbConnection.Open();
 
-					var dynamicParametersAdmin = new OracleDynamicParameters();
-					dynamicParametersAdmin.Add(name: ":p_UserName", dbType: OracleMappingType.Varchar2, direction: ParameterDirection.Input, value: username);
-					dynamicParametersAdmin.Add(name: ":p_ResultSet", dbType: OracleMappingType.RefCursor, direction: ParameterDirection.Output);
-					var resAdmin = dbConnection.Query<TrabajadorResponse>("SICAELSYS.PKG_SCESCASIELEC.SPR_OBTENER_TRABAJADOR", param: dynamicParametersAdmin, commandType: CommandType.StoredProcedure).ToList();
-					
-					foreach (var usuario in resAdmin)
-					{
-						Console.WriteLine($"Nombre: {usuario.nombres_trabajador}, Activo: {usuario.roles}");
-					}
-				}
+                //	var dynamicParametersAdmin = new OracleDynamicParameters();
+                //	dynamicParametersAdmin.Add(name: ":p_UserName", dbType: OracleMappingType.Varchar2, direction: ParameterDirection.Input, value: username);
+                //	dynamicParametersAdmin.Add(name: ":p_ResultSet", dbType: OracleMappingType.RefCursor, direction: ParameterDirection.Output);
+                //	var resAdmin = dbConnection.Query<TrabajadorResponse>("SICAELSYS.PKG_SCESCASIELEC.SPR_OBTENER_TRABAJADOR", param: dynamicParametersAdmin, commandType: CommandType.StoredProcedure).ToList();
+
+                //	foreach (var usuario in resAdmin)
+                //	{
+                //		Console.WriteLine($"Nombre: {usuario.nombres_trabajador}, Activo: {usuario.roles}");
+                //	}
+                //}
+
+                TrabajadorResponse trabajador = new TrabajadorResponse();
+                trabajador.codigo_trabajador = 1;
+                trabajador.codigo_dependencia = 13;
+                trabajador.apellidos_trabajador = "La Rosa Trinidad";
+                trabajador.nombres_trabajador = "Jesus Angel";
+                trabajador.condicion = "Nombreado";
+                trabajador.email = "ogti_temp84@mintra.gob.pe";
+                trabajador.fecha_nacimiento = "03/04/1994";
+                trabajador.identificador = "";
+                trabajador.dni = "71998036";
+                trabajador.telefono = "999999999";
+                trabajador.estado = "Activo";
+                trabajador.dominio = "gob.pe";
+                trabajador.genero = "Masculino";
+				
+                sr.Data = trabajador;
+
+                List<Rol> roles = new List<Rol>();
+
+                // Añadir roles manualmente a la lista
+                roles.Add(new Rol { IdRol = 1, DescRol = "Admin" });
+                roles.Add(new Rol { IdRol = 2, DescRol = "User" });
+                roles.Add(new Rol { IdRol = 3, DescRol = "Guest" });
+
+                sr.Data.roles = roles;
 
 
+    //            sr.Data = (from trab in _context.Query<Modelo.vw_trabajador>()
+    //		   where trab.ESTADO == "ACTIVO" && trab.EMAIL == username
+    //		   select new TrabajadorResponse()
+    //		   {
+
+                //			   codigo_trabajador = trab.CODIGO_TRABAJADOR,
+                //			   codigo_dependencia = trab.CODIGO_DEPENDENCIA,
+                //			   apellidos_trabajador = trab.APELLIDOS_TRABAJADOR,
+                //			   nombres_trabajador = trab.NOMBRES_TRABAJADOR,
+                //			   condicion = trab.CONDICION,
+                //			   email = trab.EMAIL,
+                //			   fecha_nacimiento = trab.FECHA_NACIMIENTO,
+                //			   identificador = trab.IDENTIFICADOR,
+                //			   dni = trab.DNI,
+                //			   telefono = trab.TELEFONO,
+                //			   estado = trab.ESTADO,
+                //			   dominio = trab.DOMINIO,
+                //			   genero = trab.GENERO
+
+                //		   }).FirstOrDefault();
+
+                //var dependencia = _context.Query<Modelo.vw_dependencia>().FirstOrDefault(x => x.CODIGO_DEPENDENCIA == sr.Data.codigo_dependencia);
+                //sr.Data.siglas_dependencia = dependencia.SIGLAS;
+                //sr.Data.nombre_dependencia = dependencia.DEPENDENCIA;
+                //var roles = _context.Query<Modelo.vw_usuario_rol_intranet>()
+                //						.Where(x => x.codigo_trabajador == sr.Data.codigo_trabajador);
+
+                //if (roles.Any())
+                //{
+                //                sr.Data.roles = roles.Select(x => new Rol
+                //                {
+                //                    IdRol = x.id_rol,
+                //                    DescRol = x.nombre
+
+                //                }).ToList();
+                //            }
 
 
-
-				sr.Data = (from trab in _context.Query<Modelo.vw_trabajador>()
-						   where trab.ESTADO == "ACTIVO" && trab.EMAIL == username
-						   select new TrabajadorResponse()
-						   {
-
-							   codigo_trabajador = trab.CODIGO_TRABAJADOR,
-							   codigo_dependencia = trab.CODIGO_DEPENDENCIA,
-							   apellidos_trabajador = trab.APELLIDOS_TRABAJADOR,
-							   nombres_trabajador = trab.NOMBRES_TRABAJADOR,
-							   condicion = trab.CONDICION,
-							   email = trab.EMAIL,
-							   fecha_nacimiento = trab.FECHA_NACIMIENTO,
-							   identificador = trab.IDENTIFICADOR,
-							   dni = trab.DNI,
-							   telefono = trab.TELEFONO,
-							   estado = trab.ESTADO,
-							   dominio = trab.DOMINIO,
-							   genero = trab.GENERO
-
-						   }).FirstOrDefault();
-
-				var dependencia = _context.Query<Modelo.vw_dependencia>().FirstOrDefault(x => x.CODIGO_DEPENDENCIA == sr.Data.codigo_dependencia);
-				sr.Data.siglas_dependencia = dependencia.SIGLAS;
-				sr.Data.nombre_dependencia = dependencia.DEPENDENCIA;
-				var roles = _context.Query<Modelo.vw_usuario_rol_intranet>()
-										.Where(x => x.codigo_trabajador == sr.Data.codigo_trabajador);
-
-				if (roles.Any())
-				{
-                    sr.Data.roles = roles.Select(x => new Rol
-                    {
-                        IdRol = x.id_rol,
-                        DescRol = x.nombre
-
-                    }).ToList();
-                }
-
-               
                 sr.Success = sr.Data != null;
             }
 			catch (Exception ex)

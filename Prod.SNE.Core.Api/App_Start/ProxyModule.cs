@@ -1,7 +1,5 @@
 ﻿using Autofac;
 using Microsoft.Extensions.Configuration;
-using Prod.SNE.Core.Aplicacion;
-using Prod.SNE.Core.Aplicacion.Interfaces;
 
 namespace Prod.SNE.Servicios.Host
 {

@@ -9,7 +9,7 @@ using System.Text;
 namespace Prod.SNE.Core.Controllers
 {
     [Route("[controller]")]
-    public class ComunWSExternoController : Controller
+    public class ComunWSExternoController : BaseController
     {
         private readonly IComunAplicacion _comunAplicacion;
         public ComunWSExternoController(IComunAplicacion comunAplicacion)

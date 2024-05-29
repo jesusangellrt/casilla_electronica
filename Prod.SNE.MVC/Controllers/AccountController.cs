@@ -69,7 +69,7 @@ namespace Prod.SNE.MVC.Controllers
                 try
                 {
                     var signingInSuccessful = await _signInManager.SignIn(model.Username, model.Password);
-                    if (signingInSuccessful.Success)
+                    if (signingInSuccessful.Success) 
                     {
                         if (string.IsNullOrEmpty(returnUrl)) { returnUrl = "/"; }
                         return LocalRedirect(returnUrl);
